@@ -1,5 +1,8 @@
 .MainView {
   display: inline-block;
-  width: 90%;
+  position: absolute;
+  top: 0px;
+  left: 10%;
+  width: 89.9%;
   outline: 2px solid blue;
 }

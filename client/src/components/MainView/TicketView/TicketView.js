@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './TicketView.css';
-import HorizontalTab from '../../HorizontalTab';
+import HorizontalTab from '../../resuable/HorizontalTab';
 import Form from './Form/Form';
 
 class TicketView extends Component {

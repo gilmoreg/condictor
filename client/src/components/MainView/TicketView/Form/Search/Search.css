@@ -1,0 +1,13 @@
+.Search {
+  padding: 10px 0px 20px 10px;
+  outline: 1px solid red;
+}
+
+.Search ul {
+  list-style: none;
+}
+
+.Search li {
+  display: inline-block;
+  padding-right: 10px;
+}
