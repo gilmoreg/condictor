@@ -5,7 +5,7 @@ class HorizontalTab extends Component {
   render() {
     return (
       <div className="HorizontalTab">
-        {this.props.title}
+        <button onClick={this.props.onClick}>{this.props.title}</button>
       </div>
     );
   }
@@ -17,6 +17,7 @@ HorizontalTab.defaultProps = {
 
 HorizontalTab.propTypes = {
   title: React.PropTypes.string,
+  onClick: React.PropTypes.func.isRequired,
 };
 
 export default HorizontalTab;

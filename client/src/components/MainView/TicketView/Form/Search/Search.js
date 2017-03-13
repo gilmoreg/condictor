@@ -5,11 +5,13 @@ class Search extends Component {
   render() {
     return (
       <form className="Search">
+        <label htmlFor="search-id">ID</label>
+        <input id="search-id" type="number" placeholder="Title" />
         <button type="submit" id="search-submit-button">Search</button>
         <h4>Quick searches:</h4>
         <ul>
-          <li><button id="quicksearch-allopen-button">All Open</button></li>
           <li><button id="quicksearch-allmyopen-button">All My Open</button></li>
+          <li><button id="quicksearch-allopen-button">All Open</button></li>
           <li><button id="quicksearch-allmine-button">All Mine</button></li>
         </ul>
       </form>

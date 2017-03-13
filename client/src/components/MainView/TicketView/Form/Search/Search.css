@@ -11,3 +11,7 @@
   display: inline-block;
   padding-right: 10px;
 }
+
+.Search input {
+  width: 100px;
+}
