@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import './NewTicket.css';
 
 class NewTicket extends Component {
+  constructor(props) {
+    super(props);
+    this.submitNewTicket = this.submitNewTicket.bind(this);
+  }
+
+  submitNewTicket(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
-      <form className="NewTicket">
+      <form className="NewTicket" onSubmit={this.submitNewTicket}>
         <label htmlFor="new-ticket-title">Title</label>
         <input id="new-ticket-title" type="text" placeholder="Title" />
         <label htmlFor="new-ticket-priority">Priority</label>
