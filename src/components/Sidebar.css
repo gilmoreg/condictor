@@ -1,0 +1,21 @@
+.Sidebar {
+  display: inline-block;
+  width: 10%;
+  outline: 1px solid black;
+}
+
+.logo {
+  padding-top: 25px;
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+}
+
+.Sidebar ul {
+  list-style: none;
+  text-align: left;
+}
+
+.Sidebar li {
+  padding-top: 50px;
+}

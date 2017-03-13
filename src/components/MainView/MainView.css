@@ -1,0 +1,5 @@
+.MainView {
+  display: inline-block;
+  width: 90%;
+  outline: 1px solid black;
+}
