@@ -1,0 +1,18 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        // For redux connect()
+        "import/no-named-as-default": 0
+    },
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import",
+        "promise"
+    ]
+}

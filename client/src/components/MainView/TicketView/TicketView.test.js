@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Condictor from '../../components/Condictor';
+import TicketView from './TicketView';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Condictor />, div);
+  ReactDOM.render(<TicketView />, div);
 });
