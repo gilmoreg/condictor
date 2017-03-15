@@ -16,13 +16,33 @@ class TicketListItem extends Component {
   }
 
   render() {
+    const { id, title, product, consumer, description, created, priority, status, closed } = this.props.ticket;
     return (
       <div className="TicketListItem">
-        <button onClick={this.handleClick}>TicketListItem</button>
-        {this.state.visible ? <Ticket /> : ''}
+        <button onClick={this.handleClick}>{`${id}: ${title} ${consumer} ${priority}`}</button>
+        {this.state.visible ? <Ticket ticket={this.props.ticket} /> : ''}
       </div>
     );
   }
 }
+
+TicketListItem.defaultProps = {
+  ticket: {},
+};
+
+TicketListItem.propTypes = {
+  ticket: React.PropTypes.shape({
+    id: React.PropTypes.string,
+    title: React.PropTypes.string,
+    product: React.PropTypes.string,
+    consumer: React.PropTypes.string,
+    description: React.PropTypes.string,
+    author: React.PropTypes.string,
+    created: React.PropTypes.number,
+    priority: React.PropTypes.number,
+    status: React.PropTypes.string,
+    closed: React.PropTypes.number,
+  }),
+};
 
 export default TicketListItem;
