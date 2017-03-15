@@ -13,6 +13,8 @@ class Ticket extends Component {
 
   render() {
     const { id, title, product, consumer, description, author, created, priority, status, closed } = this.props.ticket;
+    const d = new Date(created);
+    const dateCreated = d.toISOString();
     return (
       <div className="Ticket">
         <ul>
@@ -22,7 +24,7 @@ class Ticket extends Component {
           <li>Consumer: {consumer}</li>
           <li>Product: {product}</li>
           <li>Author: {author}</li>
-          <li>Created: {created}</li>
+          <li>Created: {dateCreated}</li>
           <li>Status: {status}</li>
           <li>Closed: {closed}</li>
           <li>Description: <p>{description}</p></li>
@@ -57,15 +59,3 @@ Ticket.propTypes = {
 };
 
 export default Ticket;
-
-/*
-  id: React.PropTypes.string,
-  title: React.PropTypes.string,
-  product: React.PropTypes.string,
-  consumer: React.PropTypes.string,
-  description: React.PropTypes.string,
-  created: React.PropTypes.number,
-  priority: React.PropTypes.number,
-  status: React.PropTypes.string,
-  closed: React.PropTypes.number,
-*/

@@ -12,12 +12,13 @@ class HorizontalTab extends Component {
 }
 
 HorizontalTab.defaultProps = {
-  title: 'Tab',
+  title: '',
+  onClick: null,
 };
 
 HorizontalTab.propTypes = {
   title: React.PropTypes.string,
-  onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func,
 };
 
 export default HorizontalTab;

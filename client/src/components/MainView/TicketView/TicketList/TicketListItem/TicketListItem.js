@@ -19,7 +19,7 @@ class TicketListItem extends Component {
     const { id, title, product, consumer, description, created, priority, status, closed } = this.props.ticket;
     return (
       <div className="TicketListItem">
-        <button onClick={this.handleClick}>{`${id}: ${title} ${consumer} ${priority}`}</button>
+        <button onClick={this.handleClick}>{`${id}: ${title} ${consumer} Priority: ${priority}`}</button>
         {this.state.visible ? <Ticket ticket={this.props.ticket} /> : ''}
       </div>
     );

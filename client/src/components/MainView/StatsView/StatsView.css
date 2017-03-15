@@ -1,0 +1,8 @@
+.StatsView {
+  padding: 5px;
+  margin: 5px;
+}
+
+.StatsView ul {
+  text-align: left;
+}
