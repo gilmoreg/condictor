@@ -17,6 +17,7 @@
 .Sidebar ul {
   list-style: none;
   text-align: left;
+  padding-left: 25px;
 }
 
 .Sidebar li {

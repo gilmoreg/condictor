@@ -13,23 +13,26 @@ class Form extends Component {
     switch (this.props.activeTab) {
       case 'new': formView = (<NewTicket />); break;
       case 'search': formView = (<Search />); break;
+      case 'closed': formView = (<div />); break;
       default: formView = (<div />);
     }
 
     return (
       <div className="Form">
         {formView}
+        <div className="close-button"><button onClick={this.props.close}>Close</button></div>
       </div>
     );
   }
 }
 
 Form.defaultProps = {
-  activeTab: 'new',
+  activeTab: 'closed',
 };
 
 Form.propTypes = {
   activeTab: React.PropTypes.string,
+  close: React.PropTypes.func.isRequired,
 };
 
 export default Form;

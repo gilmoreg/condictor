@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import './Search.css';
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.search = this.search.bind(this);
+  }
+
+  search(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
-      <form className="Search">
+      <form className="Search" onSubmit={this.search}>
         <label htmlFor="search-id">ID</label>
         <input id="search-id" type="number" placeholder="Title" />
         <button type="submit" id="search-submit-button">Search</button>

@@ -12,6 +12,10 @@
   margin: 5px 0;
 }
 
+.close-button {
+  text-align: center;
+}
+
 #new-ticket-title, #new-ticket-desc {
   width: 50%;
 }
