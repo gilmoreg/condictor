@@ -1,6 +1,6 @@
 .Form {
   padding: 10px 0px 20px 10px;
-  outline: 1px solid red;
+  background-color: slategrey;
 }
 
 .Form label {

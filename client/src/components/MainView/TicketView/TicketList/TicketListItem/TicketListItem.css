@@ -1,4 +1,5 @@
 .TicketListItem {
-  outline: 1px solid red;
   padding: 5px;
+  background-color: palegoldenrod;
 }
+

@@ -3,5 +3,5 @@
   display: inline-block;
   width: 100px;
   height: 25px;
-  outline: 1px solid red;
+  background-color: lightcyan;
 }

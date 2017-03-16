@@ -20,7 +20,7 @@ class Form extends Component {
     return (
       <div className="Form">
         {formView}
-        <div className="close-button"><button onClick={this.props.close}>Close</button></div>
+        {this.props.activeTab !== 'closed' ? <div className="close-button"><button onClick={this.props.close}>Close</button></div> : <div />}
       </div>
     );
   }

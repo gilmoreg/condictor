@@ -15,6 +15,12 @@ class Ticket extends Component {
     const { id, title, product, consumer, description, author, created, priority, status, closed } = this.props.ticket;
     const d = new Date(created);
     const dateCreated = d.toISOString();
+    let c;
+    let dateClosed;
+    if (closed) {
+      c = new Date(closed);
+      dateClosed = c.toISOString();
+    }
     return (
       <div className="Ticket">
         <ul>
@@ -26,7 +32,7 @@ class Ticket extends Component {
           <li>Author: {author}</li>
           <li>Created: {dateCreated}</li>
           <li>Status: {status}</li>
-          <li>Closed: {closed}</li>
+          <li>Closed: {closed ? dateClosed : 'n/a'}</li>
           <li>Description: <p>{description}</p></li>
         </ul>
         <Comment comment={this.comments[0]} />
