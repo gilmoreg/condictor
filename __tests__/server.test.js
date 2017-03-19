@@ -12,14 +12,11 @@ describe('Server Status', () => {
   beforeAll(() => runServer());
   afterAll(() => closeServer());
 
-  it('should give a 200 status', () => {
+  it('should give a 200 status', () =>
     chai.request(app)
       .get('/')
       .then((res) => {
-        res.should.have.status(200);
-      })
-      .catch((err) => {
-        should.fail();
-      });
-  });
+        expect(res.status).toEqual(200);
+      }),
+  );
 });
