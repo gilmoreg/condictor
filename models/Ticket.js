@@ -1,19 +1,14 @@
 const mongoose = require('mongoose');
-const Comment = require('./Comment');
 
 mongoose.Promise = global.Promise;
 
 const TicketSchema = mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   description: String,
   resource: String,
   consumer: String,
   owner: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
   created: {

@@ -1,9 +1,4 @@
-const express = require('express');
 const GraphQL = require('graphql');
-const graphqlHTTP = require('express-graphql');
-
-
-const router = express.Router();
 
 const schema = new GraphQL.GraphQLSchema({
   query: new GraphQL.GraphQLObjectType({
@@ -19,9 +14,4 @@ const schema = new GraphQL.GraphQLSchema({
   }),
 });
 
-router.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true,
-}));
-
-module.exports = { router };
+module.exports = schema;
