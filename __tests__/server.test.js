@@ -9,8 +9,8 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Server Status', () => {
-  before(() => runServer());
-  after(() => closeServer());
+  beforeAll(() => runServer());
+  afterAll(() => closeServer());
 
   it('should give a 200 status', () => {
     chai.request(app)

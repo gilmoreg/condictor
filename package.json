@@ -39,7 +39,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.0",
-    "mocha": "^3.2.0"
+    "jest": "^19.0.2"
   },
   "babel": {
     "presets": [
@@ -52,6 +52,12 @@
     "server": "babel-node server.js",
     "client": "cd client && npm start",
     "test-client": "cd client && npm test",
-    "test-server": "mocha --inline-diffs ./test"
+    "test-server": "jest"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testRegex": "__tests__/.*\\.(js|jsx)$"
   }
 }
