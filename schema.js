@@ -1,17 +1,7 @@
 const GraphQL = require('graphql');
+const graffitiMongoose = require('@risingstack/graffiti-mongoose');
+const Ticket = require('./models/Ticket').Ticket;
 
-const schema = new GraphQL.GraphQLSchema({
-  query: new GraphQL.GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      hello: {
-        type: GraphQL.GraphQLString,
-        resolve() {
-          return 'world';
-        },
-      },
-    },
-  }),
-});
+const schema = graffitiMongoose.getSchema([Ticket]);
 
 module.exports = schema;
