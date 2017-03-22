@@ -1,4 +1,4 @@
-import Consumer from '../../models/Consumer';
+import { ConsumerLoader } from '../loaders';
 import ProductHandler from './Product';
 
 export default class ConsumerHandler {
@@ -9,7 +9,7 @@ export default class ConsumerHandler {
   fetchConsumer() {
     return new Promise((resolve, reject) => {
       if (this.consumer) resolve(this.consumer);
-      Consumer.findById(this.id)
+      ConsumerLoader.load(this.id)
         .then((consumer) => {
           this.consumer = consumer;
           resolve(consumer);

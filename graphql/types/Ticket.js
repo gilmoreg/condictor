@@ -1,4 +1,4 @@
-import Ticket from '../../models/Ticket';
+import { TicketLoader } from '../loaders';
 import ProductHandler from './Product';
 import ConsumerHandler from './Consumer';
 import CommentHandler from './Comment';
@@ -6,6 +6,7 @@ import UserHandler from './User';
 
 export default class TicketHandler {
   constructor(id) {
+    console.log('constructing TicketHandler');
     this.id = id;
     this.ticket = null;
     this.Product = null;
@@ -15,7 +16,7 @@ export default class TicketHandler {
   fetchTicket() {
     return new Promise((resolve, reject) => {
       if (this.ticket) resolve(this.ticket);
-      Ticket.findById(this.id)
+      TicketLoader.load(this.id)
         .then((ticket) => {
           this.ticket = ticket;
           resolve(ticket);

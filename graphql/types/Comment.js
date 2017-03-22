@@ -1,4 +1,4 @@
-import Comment from '../../models/Comment';
+import { CommentLoader } from '../loaders';
 import UserHandler from './User';
 
 export default class CommentHandler {
@@ -9,7 +9,7 @@ export default class CommentHandler {
   fetchComment() {
     return new Promise((resolve, reject) => {
       if (this.comment) resolve(this.comment);
-      Comment.findById(this.id)
+      CommentLoader.load(this.id)
         .then((comment) => {
           this.comment = comment;
           resolve(comment);

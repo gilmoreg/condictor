@@ -1,4 +1,5 @@
 import { schema, root } from '../graphql/schema';
+import * as loaders from '../graphql/loaders';
 
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
@@ -6,10 +7,9 @@ const passport = require('passport');
 
 
 const router = express.Router();
-
 // router.use(require('./passport'));
-
 router.use('/graphql', graphqlHTTP({
+  context: { loaders },
   schema,
   rootValue: root,
   graphiql: true,

@@ -1,4 +1,4 @@
-import Product from '../../models/Product';
+import { ProductLoader } from '../loaders';
 
 export default class ProductHandler {
   constructor(id) {
@@ -8,7 +8,7 @@ export default class ProductHandler {
   fetchProduct() {
     return new Promise((resolve, reject) => {
       if (this.product) resolve(this.product);
-      Product.findById(this.id)
+      ProductLoader.load(this.id)
         .then((product) => {
           this.product = product;
           resolve(product);

@@ -1,5 +1,5 @@
  /* eslint-disable no-underscore-dangle */
-import User from '../../models/User';
+import { UserLoader } from '../loaders';
 import Ticket from '../../models/Ticket';
 import TicketHandler from './Ticket';
 
@@ -13,7 +13,7 @@ export default class UserHandler {
   fetchUser() {
     return new Promise((resolve, reject) => {
       if (this.user) resolve(this.user);
-      User.findById(this.id)
+      UserLoader.load(this.id)
         .then((user) => {
           this.user = user;
           resolve(user);
