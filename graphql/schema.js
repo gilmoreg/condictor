@@ -4,12 +4,6 @@ import TicketHandler from './types/Ticket';
 import UserHandler from './types/User';
 
 export const schema = buildSchema(`
-  type User {
-    username: String,
-    fullname: String,
-    tickets: [Ticket]
-  }
-
   type Comment {
     owner: String,
     created: String,
@@ -29,7 +23,7 @@ export const schema = buildSchema(`
     description: String,
     product: Product,
     consumer: Consumer,
-    owner: String,
+    owner: User,
     created: String,
     closed: String,
     priority: Int,
@@ -37,9 +31,16 @@ export const schema = buildSchema(`
     comments: [Comment]
   }
 
+  type User {
+    username: String,
+    fullname: String,
+    tickets: [Ticket]
+  }
+
   type Query {
     ticket(id: String): Ticket
     comment(id: String): Comment
+    user(id: String): User
   }
 `);
 
@@ -50,5 +51,4 @@ export const root = {
     new CommentHandler(id),
   user: ({ id }) =>
     new UserHandler(id),
-
 };

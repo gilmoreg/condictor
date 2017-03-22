@@ -1,7 +1,11 @@
 import Ticket from '../../models/Ticket';
+import User from '../../models/User';
 import ProductHandler from './Product';
 import ConsumerHandler from './Consumer';
 import CommentHandler from './Comment';
+import UserHandler from './User';
+
+const ObjectId = require('mongoose').Types.ObjectId;
 
 export default class TicketHandler {
   constructor(id) {
@@ -24,6 +28,7 @@ export default class TicketHandler {
     });
   }
   description() {
+    console.log('getting description', this.ticket);
     if (this.ticket) return this.ticket.description;
     return this.fetchTicket()
       .then(ticket => ticket.description)
@@ -82,18 +87,11 @@ export default class TicketHandler {
       .catch(() => null);
   }
   owner() {
-    if (this.ticket && this.Owner) return this.Owner;
-    if (this.ticket) {
-      this.Owner = new ConsumerHandler(this.ticket.owner);
-      return this.Owner;
-    }
-    return this.fetchTicket()
-      .then((ticket) => {
-        this.ticket = ticket;
-        this.Owner = new ConsumerHandler(this.ticket.owner);
-        return this.Owner;
-      })
-      .catch(() => null);
+    return new Promise((resolve, reject) => {
+      this.fetchTicket()
+        .then(ticket => resolve(new UserHandler(ticket.owner)))
+        .catch(() => reject(null));
+    });
   }
   comments() {
     if (this.ticket && this.Comments) return this.Comments;

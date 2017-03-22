@@ -1,22 +1,27 @@
+ /* eslint-disable no-underscore-dangle */
 import User from '../../models/User';
-import CommentHandler from './Comment';
+import Ticket from '../../models/Ticket';
 import TicketHandler from './Ticket';
+
+const ObjectId = require('mongoose').Types.ObjectId;
 
 export default class UserHandler {
   constructor(id) {
+    console.log('creating new UserHandler');
     this.id = id;
     this.user = null;
-    this.Tickets = null;
   }
   fetchUser() {
     if (this.user) return this.user;
     return new Promise((resolve, reject) => {
-      User.findById(this.id)
+      User.findById(this.id).exec()
         .then((user) => {
           this.user = user;
           resolve(user);
         })
-        .catch(err => reject(err));
+        .catch((err) => {
+          reject(err);
+        });
     });
   }
   username() {
@@ -32,16 +37,18 @@ export default class UserHandler {
       .catch(() => null);
   }
   tickets() {
-    if (this.user && this.Tickets) return this.Comments;
-    if (this.user) {
-      this.Comments = this.ticket.comments.map(pid => new CommentHandler(pid));
-      return this.Comments;
-    }
-    return this.fetchUser()
-      .then(() => {
-        this.Tickets = this.user.tickets.map(tid => new TicketHandler(tid));
-        return this.Tickets;
-      })
-      .catch(() => null);
-  }
+    console.log('getting tickets', this.id);
+    return new Promise((resolve, reject) => {
+      Ticket.find({ owner: ObjectId(this.id) })
+        .then((results) => {
+          console.log('results: ', results);
+          const ticketArray = results.map(ticket => new TicketHandler(ticket._id));
+          resolve(ticketArray);
+        })
+        .catch((err) => {
+          console.log('error fetching user tickets', err);
+          reject(err);
+        });
+    });
+  } 
 }
