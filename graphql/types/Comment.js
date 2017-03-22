@@ -7,8 +7,8 @@ export default class CommentHandler {
     this.comment = null;
   }
   fetchComment() {
-    if (this.comment) return this.comment;
     return new Promise((resolve, reject) => {
+      if (this.comment) resolve(this.comment);
       Comment.findById(this.id)
         .then((comment) => {
           this.comment = comment;
@@ -18,20 +18,16 @@ export default class CommentHandler {
     });
   }
   owner() {
-    return new Promise((resolve, reject) => {
-      this.fetchComment()
-        .then(ticket => resolve(new UserHandler(ticket.owner)))
-        .catch(() => reject(null));
-    });
+    return this.fetchComment()
+      .then(ticket => new UserHandler(ticket.owner))
+      .catch(() => null);
   }
   created() {
-    if (this.comment) return this.comment.created;
     return this.fetchComment()
       .then(comment => comment.created)
       .catch(() => null);
   }
   description() {
-    if (this.comment) return this.comment.description;
     return this.fetchComment()
       .then(comment => comment.description)
       .catch(() => null);

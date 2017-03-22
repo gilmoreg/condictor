@@ -1,24 +1,20 @@
 import Ticket from '../../models/Ticket';
-import User from '../../models/User';
 import ProductHandler from './Product';
 import ConsumerHandler from './Consumer';
 import CommentHandler from './Comment';
 import UserHandler from './User';
-
-const ObjectId = require('mongoose').Types.ObjectId;
 
 export default class TicketHandler {
   constructor(id) {
     this.id = id;
     this.ticket = null;
     this.Product = null;
-    this.Consumer = null;
     this.Owner = null;
     this.Comments = null;
   }
   fetchTicket() {
-    if (this.ticket) return this.ticket;
     return new Promise((resolve, reject) => {
+      if (this.ticket) resolve(this.ticket);
       Ticket.findById(this.id)
         .then((ticket) => {
           this.ticket = ticket;
@@ -28,83 +24,48 @@ export default class TicketHandler {
     });
   }
   description() {
-    console.log('getting description', this.ticket);
-    if (this.ticket) return this.ticket.description;
     return this.fetchTicket()
       .then(ticket => ticket.description)
       .catch(() => null);
   }
   category() {
-    if (this.ticket) return this.ticket.category;
     return this.fetchTicket()
       .then(ticket => ticket.category)
       .catch(() => null);
   }
   priority() {
-    if (this.ticket) return this.ticket.priority;
     return this.fetchTicket()
       .then(ticket => ticket.priority)
       .catch(() => null);
   }
   created() {
-    if (this.ticket) return this.ticket.created;
     return this.fetchTicket()
       .then(ticket => ticket.created)
       .catch(() => null);
   }
   closed() {
-    if (this.ticket) return this.ticket.closed;
     return this.fetchTicket()
       .then(ticket => ticket.closed)
       .catch(() => null);
   }
   product() {
-    if (this.ticket && this.Product) return this.Product;
-    if (this.ticket) {
-      this.Product = new ProductHandler(this.ticket.product);
-      return this.Product;
-    }
     return this.fetchTicket()
-      .then((ticket) => {
-        this.ticket = ticket;
-        this.Product = new ProductHandler(this.ticket.product);
-        return this.Product;
-      })
+      .then(ticket => new ProductHandler(ticket.product))
       .catch(() => null);
   }
   consumer() {
-    if (this.ticket && this.Consumer) return this.Consumer;
-    if (this.ticket) {
-      this.Consumer = new ConsumerHandler(this.ticket.consumer);
-      return this.Consumer;
-    }
     return this.fetchTicket()
-      .then((ticket) => {
-        this.ticket = ticket;
-        this.Consumer = new ConsumerHandler(this.ticket.consumer);
-        return this.Consumer;
-      })
+      .then(ticket => new ConsumerHandler(ticket.consumer))
       .catch(() => null);
   }
   owner() {
-    return new Promise((resolve, reject) => {
-      this.fetchTicket()
-        .then(ticket => resolve(new UserHandler(ticket.owner)))
-        .catch(() => reject(null));
-    });
+    return this.fetchTicket()
+      .then(ticket => new UserHandler(ticket.owner))
+      .catch(() => null);
   }
   comments() {
-    if (this.ticket && this.Comments) return this.Comments;
-    if (this.ticket) {
-      this.Comments = this.ticket.comments.map(pid => new CommentHandler(pid));
-      return this.Comments;
-    }
     return this.fetchTicket()
-      .then((ticket) => {
-        this.ticket = ticket;
-        this.Comments = this.ticket.comments.map(pid => new CommentHandler(pid));
-        return this.Comments;
-      })
+      .then(ticket => ticket.comments.map(pid => new CommentHandler(pid)))
       .catch(() => null);
   }
 }

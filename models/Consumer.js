@@ -12,4 +12,4 @@ const ConsumerSchema = mongoose.Schema({
 
 const Consumer = mongoose.model('Consumer', ConsumerSchema);
 
-module.exports = { Consumer };
+module.exports = Consumer;

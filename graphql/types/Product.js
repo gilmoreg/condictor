@@ -6,8 +6,8 @@ export default class ProductHandler {
     this.product = null;
   }
   fetchProduct() {
-    if (this.product) return this.product;
     return new Promise((resolve, reject) => {
+      if (this.product) resolve(this.product);
       Product.findById(this.id)
         .then((product) => {
           this.product = product;
@@ -17,7 +17,6 @@ export default class ProductHandler {
     });
   }
   name() {
-    if (this.product) return this.product.name;
     return this.fetchProduct()
       .then(product => product.name)
       .catch(() => null);
