@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 const { router } = require('./routes');
@@ -18,26 +19,38 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-function runServer(port = process.env.PORT) {
+function runServer(databaseUrl = process.env.DATABASE_URL, port = process.env.PORT) {
   return new Promise((resolve, reject) => {
-    server = app.listen(port, () => {
-      logger.log(`Your app is listening on port ${port}`);
-      resolve();
-    })
-    .on('error', (err) => {
-      reject(err);
+    /* eslint-disable consistent-return */
+    mongoose.connect(databaseUrl, (err) => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        logger.log(`Your app is listening on port ${port}`);
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', () => {
+        mongoose.disconnect();
+        reject();
+      });
     });
   });
 }
 
 function closeServer() {
-  return new Promise((resolve, reject) => {
-    logger.log('Closing server');
-    server.close((err) => {
-      if (err) reject(err);
-      resolve();
-    });
-  });
+  return mongoose.disconnect().then(() =>
+    new Promise((resolve, reject) => {
+      logger.log('Closing server');
+      server.close((err) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    }),
+  );
 }
 
 if (require.main === module) {

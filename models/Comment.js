@@ -3,11 +3,6 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const CommentSchema = mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   owner: {
     type: String,
     required: true,
@@ -21,4 +16,4 @@ const CommentSchema = mongoose.Schema({
 
 const Comment = mongoose.model('Comment', CommentSchema);
 
-module.exports = { Comment };
+module.exports = Comment;

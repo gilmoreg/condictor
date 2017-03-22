@@ -10,8 +10,16 @@ chai.use(require('chai-http'));
 const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
 
 describe('Mongo/Mongoose', () => {
-  beforeAll(() => runServer());
+  beforeAll(() => runServer(TEST_DATABASE_URL));
   afterAll(() => closeServer());
 
-  // it('should create a new Ticket', () =>
+  beforeEach((done) => {
+    chai.request.agent(app)
+      .post('/login')
+      .send({})
+  });
+
+  it('should create a new Ticket', () => {
+
+  });
 });
