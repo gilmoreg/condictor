@@ -5,7 +5,7 @@ import UserHandler from './types/User';
 
 export const schema = buildSchema(`
   type Comment {
-    owner: String,
+    owner: User,
     created: String,
     description: String
   }
