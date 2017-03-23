@@ -3,7 +3,6 @@
 /* eslint-disable no-undef */
 const chai = require('chai');
 const mongoose = require('mongoose');
-
 const { app, runServer, closeServer } = require('../server');
 const Comment = require('../models/Comment');
 const Consumer = require('../models/Consumer');
@@ -11,23 +10,12 @@ const Product = require('../models/Product');
 const Ticket = require('../models/Ticket');
 const User = require('../models/User');
 
-chai.use(require('chai-http'));
-
 const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
 
 describe('Mongo/Mongoose', () => {
   beforeAll(() => {
     runServer(TEST_DATABASE_URL)
-     /* .then(() => {
-        User.create({ username: 'test', password: 'test' })
-          .then((user) => {
-            chai.request.agent(app)
-              .post('/login')
-              .send({ username: 'test', password: 'test' })
-              .then(res => res);
-          });
-      }) */
-      .catch(() => new Error('beforeAll fail'));
+    .catch(() => new Error('beforeAll fail'));
   });
   afterAll(() => {
     closeServer()
