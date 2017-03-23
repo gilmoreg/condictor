@@ -17,12 +17,13 @@ describe('Mongo/Mongoose', () => {
       .then(() => {
         User.create({ username: 'test', password: 'test' })
           .then((user) => {
-            console.log('beforeAll user', user);
+            chai.request.agent(app)
+              .post('/login')
+              .send({ username: 'test', password: 'test' })
+              .then(res => res);
           });
       })
-      .catch(() => {
-        return new Error('beforeAll fail');
-      });
+      .catch(() => new Error('beforeAll fail'));
   });
   afterAll(() => {
     closeServer()

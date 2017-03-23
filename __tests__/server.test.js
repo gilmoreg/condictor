@@ -13,14 +13,10 @@ describe('Server Status', () => {
   beforeAll(() => runServer(TEST_DATABASE_URL, TEST_PORT));
   afterAll(() => closeServer());
 
-  it('should give a 200 status', async () =>
+  it('should give a 200 status', () =>
     chai.request(app)
       .get('/')
-      .then((res) => {
-        console.log('Server Status test', res.status);
-        return expect(res.status).toBe(200);
-      })
-      .catch((err) => {
-        console.log('server status test error', err);
-      }));
+      .then(res => expect(res.status).toBe(200))
+      .catch(err => err),
+    );
 });
