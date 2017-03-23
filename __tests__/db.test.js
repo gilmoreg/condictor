@@ -5,6 +5,10 @@ const chai = require('chai');
 const mongoose = require('mongoose');
 
 const { app, runServer, closeServer } = require('../server');
+const Comment = require('../models/Comment');
+const Consumer = require('../models/Consumer');
+const Product = require('../models/Product');
+const Ticket = require('../models/Ticket');
 const User = require('../models/User');
 
 chai.use(require('chai-http'));
@@ -14,7 +18,7 @@ const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
 describe('Mongo/Mongoose', () => {
   beforeAll(() => {
     runServer(TEST_DATABASE_URL)
-      .then(() => {
+     /* .then(() => {
         User.create({ username: 'test', password: 'test' })
           .then((user) => {
             chai.request.agent(app)
@@ -22,27 +26,52 @@ describe('Mongo/Mongoose', () => {
               .send({ username: 'test', password: 'test' })
               .then(res => res);
           });
-      })
+      }) */
       .catch(() => new Error('beforeAll fail'));
   });
   afterAll(() => {
     closeServer()
-      .then(() => {
-        console.warn('dropping test database');
-        return mongoose.connection.dropDatabase();
-      })
-      .catch(() => {
-        return new Error('afterAll fail');
-      });
+      .then(() => mongoose.connection.dropDatabase())
+      .catch(err => new Error(err));
   });
 
-  /* beforeEach((done) => {
-    chai.request.agent(app)
-      .post('/login')
-      .send({})
-  }); */
+  it('should create a new Comment', () => {
+    Comment.create({ description: 'test' })
+      .then((comment) => {
+        expect(comment.description).toEqual('test');
+      })
+      .catch(err => new Error(err));
+  });
+
+  it('should create a new Consumer', () => {
+    Consumer.create({ name: 'test' })
+      .then((consumer) => {
+        expect(consumer.name).toEqual('test');
+      })
+      .catch(err => new Error(err));
+  });
+
+  it('should create a new Product', () => {
+    Product.create({ name: 'test' })
+      .then((product) => {
+        expect(product.name).toEqual('test');
+      })
+      .catch(err => new Error(err));
+  });
 
   it('should create a new Ticket', () => {
-    expect(true).toEqual(true);
+    Ticket.create({ description: 'test' })
+      .then((ticket) => {
+        expect(ticket.description).toEqual('test');
+      })
+      .catch(err => new Error(err));
+  });
+
+  it('should create a new User', () => {
+    User.create({ username: 'test', password: 'test' })
+      .then((user) => {
+        expect(user.username).toEqual('test');
+      })
+      .catch(err => new Error(err));
   });
 });
