@@ -1,10 +1,8 @@
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import passport from 'passport';
 import { schema, root } from '../graphql/schema';
 import * as loaders from '../graphql/loaders';
-
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const passport = require('passport');
-
 
 const router = express.Router();
 // router.use(require('./passport'));

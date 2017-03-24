@@ -1,9 +1,10 @@
-const express = require('express');
-const session = require('express-session');
+import express from 'express';
+import session from 'express-session';
+import passport from 'passport';
+import User from '../models/User';
+
 const MongoStore = require('connect-mongo')(session);
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { User } = require('../models/User');
 
 const router = express.Router();
 

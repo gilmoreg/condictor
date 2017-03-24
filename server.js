@@ -1,10 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-
-const { router } = require('./routes');
-const { logger } = require('./logger');
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import { router } from './routes';
+import { logger } from './logger';
 
 require('dotenv').config();
 
