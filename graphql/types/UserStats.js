@@ -1,4 +1,5 @@
 import Ticket from '../../models/Ticket';
+import UserHandler from './User';
 
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -6,8 +7,8 @@ export default class UserStatsHandler {
   constructor(id) {
     this.id = id;
   }
-  id() {
-    return this.id;
+  user() {
+    return new UserHandler(this.id);
   }
   owned() {
     return new Promise((resolve, reject) => {

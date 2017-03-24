@@ -47,7 +47,7 @@ export const schema = buildSchema(`
   }
 
   type UserStats {
-    id: String,
+    user: User,
     owned: Int,
     open: Int,
     averageOpenTime: Int
