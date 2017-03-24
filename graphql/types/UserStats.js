@@ -6,6 +6,9 @@ export default class UserStatsHandler {
   constructor(id) {
     this.id = id;
   }
+  id() {
+    return this.id;
+  }
   owned() {
     return new Promise((resolve, reject) => {
       Ticket.find({ owner: ObjectId(this.id) })

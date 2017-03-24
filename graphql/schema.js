@@ -40,12 +40,14 @@ export const schema = buildSchema(`
   }
 
   type User {
+    id: String,
     username: String,
     fullname: String,
     tickets: [Ticket]
   }
 
   type UserStats {
+    id: String,
     owned: Int,
     open: Int,
     averageOpenTime: Int

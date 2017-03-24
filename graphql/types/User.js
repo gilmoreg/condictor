@@ -21,6 +21,9 @@ export default class UserHandler {
         .catch(err => reject(err));
     });
   }
+  id() {
+    return this.id;
+  }
   username() {
     return this.fetchUser()
       .then(user => user.username)

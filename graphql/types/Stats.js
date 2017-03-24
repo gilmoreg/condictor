@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
- /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-underscore-dangle */
 import Ticket from '../../models/Ticket';
 import User from '../../models/User';
 import UserStatsHandler from './UserStats';
