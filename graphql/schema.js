@@ -23,6 +23,7 @@ export const schema = buildSchema(`
   }
 
   type Ticket {
+    id: String,
     description: String,
     product: Product,
     consumer: Consumer,

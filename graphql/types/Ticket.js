@@ -24,6 +24,9 @@ export default class TicketHandler {
         .catch(err => reject(err));
     });
   }
+  id() {
+    return this.id;
+  }
   description() {
     return this.fetchTicket()
       .then(ticket => ticket.description)

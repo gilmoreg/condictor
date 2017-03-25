@@ -5,5 +5,5 @@ import './index.css';
 
 ReactDOM.render(
   <Condictor />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
