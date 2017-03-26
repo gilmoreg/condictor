@@ -42,8 +42,29 @@ export const getTicket = id => dispatch =>
       }
     `)
     .then((response) => {
-      dispatch(fillTicket(response));
-      resolve(response);
+      dispatch(fillTicket(response.data));
+      resolve(response.data);
+    })
+    .catch(err => reject(err));
+  });
+
+export const SEARCH_TICKETS = 'SEARCH_TICKETS';
+export const searchTickets = params => dispatch =>
+  new Promise((resolve, reject) => {
+    client.query(`
+      query {
+        search(params: ${JSON.stringify(params)}) {
+          id
+          title
+          priority
+          created
+          closed
+        }
+      }
+    `)
+    .then((response) => {
+      dispatch(response.data); // TODO SYNC ACTION
+      resolve(response.data);
     })
     .catch(err => reject(err));
   });

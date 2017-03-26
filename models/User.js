@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
-// mongoose.set('debug', true);
+mongoose.set('debug', true);
 
 const UserSchema = mongoose.Schema({
   username: {

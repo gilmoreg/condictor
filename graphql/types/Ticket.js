@@ -6,7 +6,6 @@ import UserHandler from './User';
 
 export default class TicketHandler {
   constructor(id) {
-    console.log('constructing TicketHandler');
     this.id = id;
     this.ticket = null;
     this.Product = null;

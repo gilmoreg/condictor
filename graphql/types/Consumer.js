@@ -17,6 +17,9 @@ export default class ConsumerHandler {
         .catch(err => reject(err));
     });
   }
+  id() {
+    return this.id;
+  }
   name() {
     return this.fetchConsumer()
       .then(consumer => consumer.name)

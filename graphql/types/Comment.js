@@ -17,6 +17,9 @@ export default class CommentHandler {
         .catch(err => reject(err));
     });
   }
+  id() {
+    return this.id;
+  }
   owner() {
     return this.fetchComment()
       .then(ticket => new UserHandler(ticket.owner))
