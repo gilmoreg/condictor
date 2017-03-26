@@ -51,20 +51,29 @@ export const getTicket = id => dispatch =>
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
+    let options = '';
+    if (params && params.length) {
+      options = `(${params})`;
+    }
     client.query(`
       query {
-        search(${params}) {
-          id
-          title
-          priority
-          created
-          closed
+        search${options} {
+          results {
+            id
+            priority
+            created
+            closed
+          }
         }
       }
     `)
     .then((response) => {
-      dispatch(response.data); // TODO SYNC ACTION
-      resolve(response.data);
+      if (response.search && response.search.results) {
+        response.search.results.forEach(ticket => dispatch(fillTicket(ticket)));
+        resolve(response.search.results);
+      } else {
+        reject('no results');
+      }
     })
     .catch(err => reject(err));
   });

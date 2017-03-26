@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../../../actions';
 import './Search.css';
 
-class Search extends Component {
+export class Search extends Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
@@ -9,6 +11,7 @@ class Search extends Component {
 
   search(e) {
     e.preventDefault();
+    this.props.dispatch(actions.searchTickets());
   }
 
   render() {
@@ -28,4 +31,8 @@ class Search extends Component {
   }
 }
 
-export default Search;
+Search.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+};
+
+export default connect()(Search);

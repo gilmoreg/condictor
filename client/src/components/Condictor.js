@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './Condictor.css';
+import { Provider } from 'react-redux';
+import store from '../store';
 import Sidebar from './Sidebar/Sidebar';
 import MainView from './MainView/MainView';
+import './Condictor.css';
 
 class Condictor extends Component {
   constructor(props) {
@@ -18,10 +20,12 @@ class Condictor extends Component {
 
   render() {
     return (
-      <div className="Condictor">
-        <Sidebar changeView={this.changeView} />
-        <MainView activeView={this.state.activeView} />
-      </div>
+      <Provider store={store}>
+        <div className="Condictor">
+          <Sidebar changeView={this.changeView} />
+          <MainView activeView={this.state.activeView} />
+        </div>
+      </Provider>
     );
   }
 }
