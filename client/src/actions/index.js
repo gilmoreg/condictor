@@ -53,7 +53,7 @@ export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
     client.query(`
       query {
-        search(params: ${JSON.stringify(params)}) {
+        search(${params}) {
           id
           title
           priority
