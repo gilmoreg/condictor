@@ -15,6 +15,10 @@ export const schema = buildSchema(`
     products: [Product]
   }
 
+  type Consumers {
+    consumers: [Consumer]
+  }
+
   type Product {
     id: String,
     name: String
@@ -65,6 +69,7 @@ export const schema = buildSchema(`
   type Query {
     ticket(id: String): Ticket
     consumer(id: String): Consumer
+    consumers: Consumers
     product(id: String): Product
     products: Products
     comment(id: String): Comment
@@ -80,6 +85,8 @@ export const root = {
     new Handlers.TicketHandler(id),
   consumer: ({ id }) =>
     new Handlers.ConsumerHandler(id),
+  consumers: () =>
+    new Handlers.ConsumersHandler(),
   product: ({ id }) =>
     new Handlers.ProductHandler(id),
   products: () =>
