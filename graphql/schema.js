@@ -1,12 +1,5 @@
 import { buildSchema } from 'graphql';
-import CommentHandler from './types/Comment';
-import ConsumerHandler from './types/Consumer';
-import ProductHandler from './types/Product';
-import SearchHandler from './types/Search';
-import StatsHandler from './types/Stats';
-import TicketHandler from './types/Ticket';
-import UserHandler from './types/User';
-import UserStatsHandler from './types/UserStats';
+import * as Handlers from './types';
 
 export const schema = buildSchema(`
   type Comment {
@@ -25,6 +18,10 @@ export const schema = buildSchema(`
   type Product {
     id: String,
     name: String
+  }
+
+  type Products {
+    products: [Product]
   }
 
   type Ticket {
@@ -69,6 +66,7 @@ export const schema = buildSchema(`
     ticket(id: String): Ticket
     consumer(id: String): Consumer
     product(id: String): Product
+    products: Products
     comment(id: String): Comment
     user(id: String): User
     userStats(id: String): UserStats
@@ -79,19 +77,21 @@ export const schema = buildSchema(`
 
 export const root = {
   ticket: ({ id }) =>
-    new TicketHandler(id),
+    new Handlers.TicketHandler(id),
   consumer: ({ id }) =>
-    new ConsumerHandler(id),
+    new Handlers.ConsumerHandler(id),
   product: ({ id }) =>
-    new ProductHandler(id),
+    new Handlers.ProductHandler(id),
+  products: () =>
+    new Handlers.ProductsHandler(),
   comment: ({ id }) =>
-    new CommentHandler(id),
+    new Handlers.CommentHandler(id),
   user: ({ id }) =>
-    new UserHandler(id),
+    new Handlers.UserHandler(id),
   userStats: ({ id }) =>
-    new UserStatsHandler(id),
+    new Handlers.UserStatsHandler(id),
   stats: () =>
-    new StatsHandler(),
+    new Handlers.StatsHandler(),
   search: ({ consumer, product, owner, open }) =>
-    new SearchHandler(consumer, product, owner, open),
+    new Handlers.SearchHandler(consumer, product, owner, open),
 };

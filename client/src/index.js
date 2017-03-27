@@ -5,8 +5,6 @@ import { store, client } from './store';
 import Condictor from './components/Condictor';
 import './index.css';
 
-
-
 ReactDOM.render(
   <ApolloProvider store={store} client={client}>
     <Condictor />

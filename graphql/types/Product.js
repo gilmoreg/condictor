@@ -2,14 +2,10 @@ import { ProductLoader } from '../loaders';
 
 export default class ProductHandler {
   constructor(id) {
-    this.id = id;
+    this.id = id || null;
   }
   fetchProduct() {
     return new Promise((resolve, reject) => {
-      if (this.product) {
-        console.log('product exists');
-        resolve(this.product);
-      }
       ProductLoader.load(this.id)
         .then((product) => {
           this.product = product;

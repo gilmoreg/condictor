@@ -25,4 +25,10 @@ const UserLoader = new DataLoader(
   keys => Promise.all(keys.map(key => User.findById(key))),
 );
 
-module.exports = { CommentLoader, ConsumerLoader, ProductLoader, TicketLoader, UserLoader };
+module.exports = {
+  CommentLoader,
+  ConsumerLoader,
+  ProductLoader,
+  TicketLoader,
+  UserLoader,
+};
