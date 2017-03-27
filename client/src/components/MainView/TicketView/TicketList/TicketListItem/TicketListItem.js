@@ -7,20 +7,22 @@ class TicketListItem extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      visible: false,
+      expand: false,
     };
   }
 
   handleClick() {
-    this.setState({ visible: !this.state.visible });
+    this.setState({ expand: !this.state.expand });
   }
 
   render() {
-    const { id, title, product, consumer, description, created, priority, status, closed } = this.props.ticket;
+    const { closed, created, description, priority } = this.props.ticket;
+    // TODO use the other fields to determine styling
+    const desc = `${description.substring(0, 30)}...`;
     return (
       <div className="TicketListItem">
-        <button onClick={this.handleClick}>{`${id}: ${title} ${consumer} Priority: ${priority}`}</button>
-        {this.state.visible ? <Ticket ticket={this.props.ticket} /> : ''}
+        <button onClick={this.handleClick}>{`${desc} Priority ${priority}`}</button>
+        {this.state.expand ? <Ticket ticket={this.props.ticket} /> : ''}
       </div>
     );
   }
@@ -33,15 +35,19 @@ TicketListItem.defaultProps = {
 TicketListItem.propTypes = {
   ticket: React.PropTypes.shape({
     id: React.PropTypes.string,
-    title: React.PropTypes.string,
-    product: React.PropTypes.string,
-    consumer: React.PropTypes.string,
+    product: React.PropTypes.shape({
+      name: React.PropTypes.string,
+    }),
+    consumer: React.PropTypes.shape({
+      name: React.PropTypes.string,
+    }),
     description: React.PropTypes.string,
-    author: React.PropTypes.string,
-    created: React.PropTypes.number,
+    owner: React.PropTypes.shape({
+      username: React.PropTypes.string,
+    }),
+    created: React.PropTypes.string,
     priority: React.PropTypes.number,
-    status: React.PropTypes.string,
-    closed: React.PropTypes.number,
+    closed: React.PropTypes.string,
   }),
 };
 

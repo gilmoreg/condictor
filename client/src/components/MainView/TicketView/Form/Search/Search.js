@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../../../actions';
+import { gql, graphql } from 'react-apollo';
 import './Search.css';
 
 export class Search extends Component {
@@ -11,6 +11,7 @@ export class Search extends Component {
 
   search(e) {
     e.preventDefault();
+    console.log('searching', this.props);
     // this.props.dispatch(actions.searchTickets());
   }
 
@@ -35,4 +36,22 @@ Search.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
 };
 
-export default connect()(Search);
+const query = gql`
+  query { 
+    products { 
+      products {
+        id
+        name
+      } 
+    } 
+    consumers { 
+      consumers {
+        id
+        name
+      } 
+    }  
+  }
+`;
+
+const graphSearch = graphql(query)(Search);
+export default connect()(graphSearch);

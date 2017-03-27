@@ -1,60 +1,69 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { gql, graphql } from 'react-apollo';
 import './TicketList.css';
 import TicketListItem from './TicketListItem/TicketListItem';
 
-class TicketList extends Component {
+export class TicketList extends Component {
   constructor(props) {
     super(props);
-    this.tickets = [
-      {
-        id: '0001',
-        title: 'slowness in x during y',
-        product: 'Condictor v0.1',
-        consumer: 'Consumer A',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-        author: 'tech A',
-        created: Date.now(),
-        priority: 1,
-        status: 'open',
-        closed: null,
-      },
-      {
-        id: '0002',
-        title: 'feature x not working',
-        product: 'Condictor v0.2',
-        consumer: 'Consumer B',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-        author: 'tech B',
-        created: Date.now(),
-        priority: 2,
-        status: 'open',
-        closed: null,
-      },
-      {
-        id: '0003',
-        title: 'slowness in x during y',
-        product: 'Condictor v0.1',
-        consumer: 'Consumer C',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-        author: 'tech C',
-        created: Date.now() - 100000,
-        priority: 3,
-        status: 'closed',
-        closed: Date.now(),
-      },
-    ];
   }
 
   render() {
+    let tickets = [];
+    if (this.props.data.search && this.props.data.search.results) {
+      tickets = this.props.data.search.results.map(ticket => <TicketListItem key={ticket.id} ticket={ticket} />);
+    }
     return (
       <div className="TicketList">
         <h4>TicketList</h4>
-        <TicketListItem ticket={this.tickets[0]} />
-        <TicketListItem ticket={this.tickets[1]} />
-        <TicketListItem ticket={this.tickets[2]} />
+        {tickets}
       </div>
     );
   }
 }
 
-export default TicketList;
+TicketList.defaultProps = {
+  data: {
+    loading: true,
+    search: {
+      results: [],
+    },
+  },
+};
+
+TicketList.propTypes = {
+  data: React.PropTypes.shape({
+    loading: React.PropTypes.bool.isRequired,
+    search: React.PropTypes.shape({
+      results: React.PropTypes.array,
+    }),
+  }),
+};
+
+// TODO convert this to search with current options
+const query = gql`
+  {
+    search {
+      results {
+        id
+        product {
+          name
+        }
+        consumer {
+          name
+        }
+        description
+        owner {
+          username
+        }
+        created
+        closed
+        priority
+      }
+    }
+  }
+`;
+
+const GraphTicketList = graphql(query)(TicketList);
+export default connect()(GraphTicketList);

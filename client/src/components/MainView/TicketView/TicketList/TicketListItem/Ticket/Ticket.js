@@ -12,7 +12,7 @@ class Ticket extends Component {
   }
 
   render() {
-    const { id, title, product, consumer, description, author, created, priority, status, closed } = this.props.ticket;
+    const { id, product, consumer, description, owner, created, priority, closed } = this.props.ticket;
     const d = new Date(created);
     const dateCreated = d.toISOString();
     let c;
@@ -26,12 +26,10 @@ class Ticket extends Component {
         <ul>
           <li>ID: {id}</li>
           <li>priority: {priority}</li>
-          <li>Title: {title}</li>
-          <li>Consumer: {consumer}</li>
-          <li>Product: {product}</li>
-          <li>Author: {author}</li>
+          <li>Consumer: {consumer.name}</li>
+          <li>Product: {product.name}</li>
+          <li>Owner: {owner.username}</li>
           <li>Created: {dateCreated}</li>
-          <li>Status: {status}</li>
           <li>Closed: {closed ? dateClosed : 'n/a'}</li>
           <li>Description: <p>{description}</p></li>
         </ul>
@@ -52,15 +50,19 @@ Ticket.defaultProps = {
 Ticket.propTypes = {
   ticket: React.PropTypes.shape({
     id: React.PropTypes.string,
-    title: React.PropTypes.string,
-    product: React.PropTypes.string,
-    consumer: React.PropTypes.string,
+    product: React.PropTypes.shape({
+      name: React.PropTypes.string,
+    }),
+    consumer: React.PropTypes.shape({
+      name: React.PropTypes.string,
+    }),
     description: React.PropTypes.string,
-    author: React.PropTypes.string,
-    created: React.PropTypes.number,
+    owner: React.PropTypes.shape({
+      username: React.PropTypes.string,
+    }),
+    created: React.PropTypes.string,
     priority: React.PropTypes.number,
-    status: React.PropTypes.string,
-    closed: React.PropTypes.number,
+    closed: React.PropTypes.string,
   }),
 };
 

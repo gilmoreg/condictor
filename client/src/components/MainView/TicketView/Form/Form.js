@@ -4,10 +4,6 @@ import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let formView;
     switch (this.props.activeTab) {
