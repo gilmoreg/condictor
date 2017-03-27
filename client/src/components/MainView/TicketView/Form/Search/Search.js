@@ -11,7 +11,7 @@ export class Search extends Component {
 
   search(e) {
     e.preventDefault();
-    this.props.dispatch(actions.searchTickets());
+    // this.props.dispatch(actions.searchTickets());
   }
 
   render() {

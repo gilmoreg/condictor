@@ -1,10 +1,3 @@
-import Lokka from 'lokka';
-import Transport from 'lokka-transport-http';
-
-const client = new Lokka({
-  transport: new Transport('http://localhost:3001/graphql', { credentials: false }),
-});
-
 // Sync Actions
 export const FILL_TICKET = 'FILL_TICKET';
 export const fillTicket = ticket => ({
@@ -13,6 +6,7 @@ export const fillTicket = ticket => ({
 });
 
 // Async Actions
+/*
 export const GET_TICKET = 'GET_TICKET';
 export const getTicket = id => dispatch =>
   new Promise((resolve, reject) => {
@@ -76,4 +70,4 @@ export const searchTickets = params => dispatch =>
       }
     })
     .catch(err => reject(err));
-  });
+  });*/
