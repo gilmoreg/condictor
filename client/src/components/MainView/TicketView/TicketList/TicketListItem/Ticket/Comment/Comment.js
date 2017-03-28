@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment-shortformat';
 import './Comment.css';
 
 class Comment extends Component {
@@ -8,11 +9,10 @@ class Comment extends Component {
 
   render() {
     const { owner, description, created } = this.props.comment;
-    const d = new Date(created);
-    const dateCreated = d.toISOString();
+    const createDate = moment(created).short();
     return (
       <div className="Comment">
-        {owner.username} ({dateCreated}):
+        {owner.username} ({createDate}):
         <p>{description}</p>
       </div>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment-shortformat';
 import './Ticket.css';
 import Comment from './Comment/Comment';
 
@@ -18,13 +19,10 @@ class Ticket extends Component {
       priority,
       closed,
     } = this.props.ticket;
-    const d = new Date(created);
-    const dateCreated = d.toISOString();
-    let c;
-    let dateClosed;
+    const createDate = moment(created).short();
+    let closeDate;
     if (closed) {
-      c = new Date(closed);
-      dateClosed = c.toISOString();
+      closeDate = moment(closed).short();
     }
     console.log(this.props);
     let comments = [];
@@ -40,8 +38,8 @@ class Ticket extends Component {
           <li>Consumer: {consumer.name}</li>
           <li>Product: {product.name}</li>
           <li>Owner: {owner.username}</li>
-          <li>Created: {dateCreated}</li>
-          <li>Closed: {closed ? dateClosed : 'n/a'}</li>
+          <li>Created: {createDate}</li>
+          <li>Closed: {closed ? closeDate : 'n/a'}</li>
           <li>Description: <p>{description}</p></li>
         </ul>
         {comments}
