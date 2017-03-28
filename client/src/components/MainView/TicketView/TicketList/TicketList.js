@@ -60,6 +60,14 @@ const query = gql`
         created
         closed
         priority
+        comments {
+          id
+          created
+          description
+          owner {
+            username
+          }
+        }
       }
     }
   }

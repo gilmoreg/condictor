@@ -5,14 +5,19 @@ import Comment from './Comment/Comment';
 class Ticket extends Component {
   constructor(props) {
     super(props);
-    this.comments = [
-      { author: 'tech A', text: 'Lorem ipsum dolor sit amet', created: Date.now() },
-      { author: 'tech B', text: 'Lorem ipsum dolor sit amet', created: Date.now() },
-    ];
   }
 
   render() {
-    const { id, product, consumer, description, owner, created, priority, closed } = this.props.ticket;
+    const {
+      id,
+      product,
+      consumer,
+      description,
+      owner,
+      created,
+      priority,
+      closed,
+    } = this.props.ticket;
     const d = new Date(created);
     const dateCreated = d.toISOString();
     let c;
@@ -20,6 +25,12 @@ class Ticket extends Component {
     if (closed) {
       c = new Date(closed);
       dateClosed = c.toISOString();
+    }
+    console.log(this.props);
+    let comments = [];
+    if (this.props.ticket.comments.length) {
+      comments = this.props.ticket.comments
+        .map(comment => <Comment key={comment.id} comment={comment} />);
     }
     return (
       <div className="Ticket">
@@ -33,8 +44,7 @@ class Ticket extends Component {
           <li>Closed: {closed ? dateClosed : 'n/a'}</li>
           <li>Description: <p>{description}</p></li>
         </ul>
-        <Comment comment={this.comments[0]} />
-        <Comment comment={this.comments[1]} />
+        {comments}
         <button>Add Comment</button>
         <button>Edit</button>
         <button>Close</button>
@@ -63,6 +73,7 @@ Ticket.propTypes = {
     created: React.PropTypes.string,
     priority: React.PropTypes.number,
     closed: React.PropTypes.string,
+    comments: React.PropTypes.array,
   }),
 };
 
