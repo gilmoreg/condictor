@@ -7,12 +7,43 @@ export class Search extends Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
+    this.handleConsumerChange = this.handleConsumerChange.bind(this);
+    this.handleProductChange = this.handleProductChange.bind(this);
+    this.handleOwnerChange = this.handleOwnerChange.bind(this);
+    this.state = {
+      consumer: '',
+      product: '',
+      owner: '',
+    };
+  }
+
+  handleConsumerChange(e) {
+    console.log('changing consumer', e.target.value);
+    this.setState({
+      consumer: e.target.value,
+    });
+  }
+
+  handleProductChange(e) {
+    this.setState({
+      product: e.target.value,
+    });
+  }
+
+  handleOwnerChange(e) {
+    this.setState({
+      owner: e.target.value,
+    });
   }
 
   search(e) {
     e.preventDefault();
-    console.log('searching', this.props);
     // this.props.dispatch(actions.searchTickets());
+    const searchOptions = {};
+    if (this.state.consumer) searchOptions.consumer = this.state.consumer;
+    if (this.state.product) searchOptions.product = this.state.product;
+    if (this.state.owner) searchOptions.owner = this.state.owner;
+    console.log(searchOptions);
   }
 
   render() {
@@ -21,37 +52,52 @@ export class Search extends Component {
       this.props.data.consumers &&
       this.props.data.consumers.consumers) {
       consumerOptions = this.props.data.consumers.consumers
-        .map(consumer => <option key={consumer.id}>{consumer.name}</option>);
+        .map(consumer => <option key={consumer.id} value={consumer.name}>{consumer.name}</option>);
     }
     let productOptions = [];
     if (this.props.data &&
       this.props.data.products &&
       this.props.data.products.products) {
       productOptions = this.props.data.products.products
-        .map(product => <option key={product.id}>{product.name}</option>);
+        .map(product => <option key={product.id} value={product.name}>{product.name}</option>);
     }
     let userOptions = [];
     if (this.props.data &&
       this.props.data.users &&
       this.props.data.users.users) {
       userOptions = this.props.data.users.users
-        .map(user => <option key={user.id}>{user.username}</option>);
+        .map(user => <option key={user.id} value={user.username}>{user.username}</option>);
     }
 
     return (
       <form className="Search" onSubmit={this.search}>
         <label htmlFor="search-consumer">Consumer:</label>
-        <select id="search-consumer" placeholder="Consumer">
+        <select
+          id="search-consumer"
+          placeholder="Consumer"
+          value={this.state.consumer}
+          onChange={this.handleConsumerChange}
+        >
           <option />
           {consumerOptions}
         </select>
         <label htmlFor="search-product">Product:</label>
-        <select id="search-product" placeholder="Product">
+        <select
+          id="search-product"
+          placeholder="Product"
+          value={this.state.product}
+          onChange={this.handleProductChange}
+        >
           <option />
           {productOptions}
         </select>
         <label htmlFor="search-owner">Owner:</label>
-        <select id="search-owner" placeholder="Owner">
+        <select
+          id="search-owner"
+          placeholder="Owner"
+          value={this.state.owner}
+          onChange={this.handleOwnerChange}
+        >
           <option />
           {userOptions}
         </select>
