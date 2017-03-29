@@ -12,6 +12,16 @@
   padding-right: 10px;
 }
 
+.Search label {
+  margin: 0 10px;
+}
+
 .Search input {
   width: 100px;
+  display: inline-block;
+}
+
+.Search button {
+  display: block;
+  margin: 0 10px;
 }

@@ -30,9 +30,9 @@ const Comment = mongoose.model('Comment', CommentSchema);
 
 const TicketSchema = mongoose.Schema({
   description: String,
-  resource: String,
-  consumer: String,
-  owner: [mongoose.Schema.Types.ObjectId],
+  product: mongoose.Schema.Types.ObjectId,
+  consumer: mongoose.Schema.Types.ObjectId,
+  owner: mongoose.Schema.Types.ObjectId,
   created: Date,
   closed: Date,
   priority: String,

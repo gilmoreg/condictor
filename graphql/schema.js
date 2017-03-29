@@ -48,6 +48,10 @@ export const schema = buildSchema(`
     tickets: [Ticket]
   }
 
+  type Users {
+    users: [User]
+  }
+
   type UserStats {
     user: User,
     owned: Int,
@@ -74,6 +78,7 @@ export const schema = buildSchema(`
     products: Products
     comment(id: String): Comment
     user(id: String): User
+    users: Users
     userStats(id: String): UserStats
     stats: Stats
     search(consumer: String, product: String, owner: String, open: Boolean): SearchResults
@@ -95,6 +100,8 @@ export const root = {
     new Handlers.CommentHandler(id),
   user: ({ id }) =>
     new Handlers.UserHandler(id),
+  users: () =>
+    new Handlers.UsersHandler(),
   userStats: ({ id }) =>
     new Handlers.UserStatsHandler(id),
   stats: () =>

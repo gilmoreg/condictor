@@ -7,6 +7,7 @@ import SearchHandler from './Search';
 import StatsHandler from './Stats';
 import TicketHandler from './Ticket';
 import UserHandler from './User';
+import UsersHandler from './Users';
 import UserStatsHandler from './UserStats';
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
   StatsHandler,
   TicketHandler,
   UserHandler,
+  UsersHandler,
   UserStatsHandler,
 };
