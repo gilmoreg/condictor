@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { gql, graphql } from 'react-apollo';
 import Sidebar from './Sidebar/Sidebar';
 import MainView from './MainView/MainView';
 import './Condictor.css';
 
-class Condictor extends Component {
+export class Condictor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,4 +27,27 @@ class Condictor extends Component {
   }
 }
 
-export default Condictor;
+const query = gql`
+  query { 
+    products { 
+      products {
+        id
+        name
+      } 
+    } 
+    consumers { 
+      consumers {
+        id
+        name
+      } 
+    }
+    users {
+      users {
+        id
+        name: username
+      }
+    } 
+  }
+`;
+
+export default graphql(query)(Condictor);

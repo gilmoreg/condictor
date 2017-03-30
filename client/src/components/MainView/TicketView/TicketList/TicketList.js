@@ -5,10 +5,6 @@ import './TicketList.css';
 import TicketListItem from './TicketListItem/TicketListItem';
 
 export class TicketList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let tickets = [];
     if (this.props.data.search && this.props.data.search.results) {

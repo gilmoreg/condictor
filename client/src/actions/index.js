@@ -5,6 +5,11 @@ export const fillTicket = ticket => ({
   ticket,
 });
 
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
+export const updateSearch = options => ({
+  type: UPDATE_SEARCH,
+  options,
+});
 // Async Actions
 /*
 export const GET_TICKET = 'GET_TICKET';

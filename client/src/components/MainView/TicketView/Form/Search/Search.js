@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { gql, graphql } from 'react-apollo';
-import searchTickets from '../../../../../actions';
+import SearchOption from './SearchOption';
+import * as actions from '../../../../../actions';
 import './Search.css';
 
 export class Search extends Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
-    this.handleConsumerChange = this.handleConsumerChange.bind(this);
-    this.handleProductChange = this.handleProductChange.bind(this);
-    this.handleOwnerChange = this.handleOwnerChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       consumer: '',
       product: '',
@@ -18,23 +16,16 @@ export class Search extends Component {
     };
   }
 
-  handleConsumerChange(e) {
-    console.log('changing consumer', e.target.value);
-    this.setState({
-      consumer: e.target.value,
-    });
-  }
-
-  handleProductChange(e) {
-    this.setState({
-      product: e.target.value,
-    });
-  }
-
-  handleOwnerChange(e) {
-    this.setState({
-      owner: e.target.value,
-    });
+  handleChange(e) {
+    let options = this.state;
+    console.log('handleChange', e.target.value);
+    /* switch (type) {
+      case 'Consumer': options.consumer = e.target.value; break;
+      case 'Product': options.product = e.target.value; break;
+      case 'Owner': options.owner = e.target.value; break;
+      default: options = this.state;
+    } */
+    this.setState(options);
   }
 
   search(e) {
@@ -43,11 +34,12 @@ export class Search extends Component {
     if (this.state.consumer) searchOptions.consumer = this.state.consumer;
     if (this.state.product) searchOptions.product = this.state.product;
     if (this.state.owner) searchOptions.owner = this.state.owner;
-    this.props.dispatch(searchTickets(searchOptions));
+    console.log('search', searchOptions, this.props.dispatch);
+    this.props.dispatch(actions.updateSearch(searchOptions));
   }
 
   render() {
-    let consumerOptions = [];
+    /* let consumerOptions = [];
     if (this.props.data &&
       this.props.data.consumers &&
       this.props.data.consumers.consumers) {
@@ -67,40 +59,13 @@ export class Search extends Component {
       this.props.data.users.users) {
       userOptions = this.props.data.users.users
         .map(user => <option key={user.id} value={user.username}>{user.username}</option>);
-    }
+    } */
 
     return (
       <form className="Search" onSubmit={this.search}>
-        <label htmlFor="search-consumer">Consumer:</label>
-        <select
-          id="search-consumer"
-          placeholder="Consumer"
-          value={this.state.consumer}
-          onChange={this.handleConsumerChange}
-        >
-          <option />
-          {consumerOptions}
-        </select>
-        <label htmlFor="search-product">Product:</label>
-        <select
-          id="search-product"
-          placeholder="Product"
-          value={this.state.product}
-          onChange={this.handleProductChange}
-        >
-          <option />
-          {productOptions}
-        </select>
-        <label htmlFor="search-owner">Owner:</label>
-        <select
-          id="search-owner"
-          placeholder="Owner"
-          value={this.state.owner}
-          onChange={this.handleOwnerChange}
-        >
-          <option />
-          {userOptions}
-        </select>
+        <SearchOption type={'Consumer'} handleChange={this.handleChange} />
+        <SearchOption type={'Product'} handleChange={this.handleChange} />
+        <SearchOption type={'Owner'} handleChange={this.handleChange} />
         <button type="submit" id="search-submit-button">Search</button>
         <h4>Quick searches:</h4>
         <ul>
@@ -129,40 +94,6 @@ Search.defaultProps = {
 
 Search.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  data: React.PropTypes.shape({
-    consumers: React.PropTypes.shape({
-      consumers: React.PropTypes.array,
-    }),
-    products: React.PropTypes.shape({
-      products: React.PropTypes.array,
-    }),
-    users: React.PropTypes.shape({
-      users: React.PropTypes.array,
-    }),
-  }),
 };
 
-const query = gql`
-  query { 
-    products { 
-      products {
-        id
-        name
-      } 
-    } 
-    consumers { 
-      consumers {
-        id
-        name
-      } 
-    }
-    users {
-      users {
-        username
-      }
-    } 
-  }
-`;
-
-const graphSearch = graphql(query)(Search);
-export default connect()(graphSearch);
+export default connect()(Search);
