@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { gql, graphql } from 'react-apollo';
+import searchTickets from '../../../../../actions';
 import './Search.css';
 
 export class Search extends Component {
@@ -38,12 +39,11 @@ export class Search extends Component {
 
   search(e) {
     e.preventDefault();
-    // this.props.dispatch(actions.searchTickets());
     const searchOptions = {};
     if (this.state.consumer) searchOptions.consumer = this.state.consumer;
     if (this.state.product) searchOptions.product = this.state.product;
     if (this.state.owner) searchOptions.owner = this.state.owner;
-    console.log(searchOptions);
+    this.props.dispatch(searchTickets(searchOptions));
   }
 
   render() {
@@ -128,7 +128,7 @@ Search.defaultProps = {
 };
 
 Search.propTypes = {
-  // dispatch: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
   data: React.PropTypes.shape({
     consumers: React.PropTypes.shape({
       consumers: React.PropTypes.array,
