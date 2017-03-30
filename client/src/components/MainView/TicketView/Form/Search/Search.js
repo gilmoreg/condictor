@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchOption from './SearchOption';
+import Select from './Select';
 import * as actions from '../../../../../actions';
 import './Search.css';
 
@@ -18,13 +18,13 @@ export class Search extends Component {
 
   handleChange(e) {
     let options = this.state;
-    console.log('handleChange', e.target.value);
-    /* switch (type) {
-      case 'Consumer': options.consumer = e.target.value; break;
-      case 'Product': options.product = e.target.value; break;
-      case 'Owner': options.owner = e.target.value; break;
+    console.log('handleChange', e.target.value, e.target.id);
+    switch (e.target.id) {
+      case 'search-consumer': options.consumer = e.target.value; break;
+      case 'search-product': options.product = e.target.value; break;
+      case 'search-owner': options.owner = e.target.value; break;
       default: options = this.state;
-    } */
+    }
     this.setState(options);
   }
 
@@ -34,38 +34,15 @@ export class Search extends Component {
     if (this.state.consumer) searchOptions.consumer = this.state.consumer;
     if (this.state.product) searchOptions.product = this.state.product;
     if (this.state.owner) searchOptions.owner = this.state.owner;
-    console.log('search', searchOptions, this.props.dispatch);
     this.props.dispatch(actions.updateSearch(searchOptions));
   }
 
   render() {
-    /* let consumerOptions = [];
-    if (this.props.data &&
-      this.props.data.consumers &&
-      this.props.data.consumers.consumers) {
-      consumerOptions = this.props.data.consumers.consumers
-        .map(consumer => <option key={consumer.id} value={consumer.name}>{consumer.name}</option>);
-    }
-    let productOptions = [];
-    if (this.props.data &&
-      this.props.data.products &&
-      this.props.data.products.products) {
-      productOptions = this.props.data.products.products
-        .map(product => <option key={product.id} value={product.name}>{product.name}</option>);
-    }
-    let userOptions = [];
-    if (this.props.data &&
-      this.props.data.users &&
-      this.props.data.users.users) {
-      userOptions = this.props.data.users.users
-        .map(user => <option key={user.id} value={user.username}>{user.username}</option>);
-    } */
-
     return (
       <form className="Search" onSubmit={this.search}>
-        <SearchOption type={'Consumer'} handleChange={this.handleChange} />
-        <SearchOption type={'Product'} handleChange={this.handleChange} />
-        <SearchOption type={'Owner'} handleChange={this.handleChange} />
+        <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
+        <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
+        <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.users} />
         <button type="submit" id="search-submit-button">Search</button>
         <h4>Quick searches:</h4>
         <ul>
@@ -79,7 +56,7 @@ export class Search extends Component {
 }
 
 Search.defaultProps = {
-  data: {
+  options: {
     consumers: {
       consumers: [],
     },
@@ -94,6 +71,11 @@ Search.defaultProps = {
 
 Search.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  options: React.PropTypes.shape({
+    consumers: React.PropTypes.array,
+    products: React.PropTypes.array,
+    users: React.PropTypes.array,
+  }),
 };
 
 export default connect()(Search);

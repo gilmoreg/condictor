@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
+import { gql, graphql } from 'react-apollo';
 import './Form.css';
 import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
 
-class Form extends Component {
+function fetchOptions(data) {
+  return {
+    consumers: data.consumers.consumers.map(consumer => ({ id: consumer.id, name: consumer.name })),
+    products: data.products.products.map(product => ({ id: product.id, name: product.name })),
+    users: data.users.users.map(user => ({ id: user.id, name: user.name })),
+  };
+}
+
+export class Form extends Component {
   render() {
     let formView;
+    console.log('Form options', this.props.data);
     switch (this.props.activeTab) {
       case 'new': formView = (<NewTicket />); break;
-      case 'search': formView = (<Search />); break;
+      case 'search': formView = (<Search options={fetchOptions(this.props.data)} />); break;
       case 'closed': formView = (<div />); break;
       default: formView = (<div />);
     }
@@ -24,11 +34,60 @@ class Form extends Component {
 
 Form.defaultProps = {
   activeTab: 'closed',
+  data: {
+    consumers: {
+      consumers: [],
+    },
+    products: {
+      products: [],
+    },
+    users: {
+      users: [],
+    },
+  },
+  loading: true,
 };
 
 Form.propTypes = {
   activeTab: React.PropTypes.string,
   close: React.PropTypes.func.isRequired,
+  data: React.PropTypes.shape({
+    consumers: React.PropTypes.shape({
+      consumers: React.PropTypes.array,
+    }),
+    products: React.PropTypes.shape({
+      products: React.PropTypes.array,
+    }),
+    users: React.PropTypes.shape({
+      users: React.PropTypes.array,
+    }),
+  }),
+  loading: React.PropTypes.bool,
 };
 
-export default Form;
+
+const query = gql`
+  query { 
+    products { 
+      products {
+        id
+        name
+      } 
+    } 
+    consumers { 
+      consumers {
+        id
+        name
+      } 
+    }
+    users {
+      users {
+        id
+        name: username
+      }
+    } 
+  }
+`;
+
+
+export default graphql(query)(Form);

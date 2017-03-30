@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchOption from './SearchOption';
+import Select from './Select';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<SearchOption />, div);
+  ReactDOM.render(<Select />, div);
 });

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-export default class SearchOption extends Component {
+export default class Select extends Component {
   render() {
-    let options = [];
-    if (this.props.options) {
-      options = this.props.options
-        .map(item => <option key={item.id} value={item.name}>{item.name}</option>);
-    }
+    const options = this.props.options
+      .map(item => <option key={item.id} value={item.name}>{item.name}</option>);
     const type = this.props.type.toLowerCase();
+
     return (
       <div>
         <label htmlFor={`search-${type}`}>{this.props.type}:</label>
@@ -24,11 +22,12 @@ export default class SearchOption extends Component {
   }
 }
 
-SearchOption.defaultProps = {
+Select.defaultProps = {
+  type: '',
   options: [],
 };
 
-SearchOption.propTypes = {
+Select.propTypes = {
   options: React.PropTypes.arrayOf(
     React.PropTypes.shape({
       id: React.PropTypes.string,
