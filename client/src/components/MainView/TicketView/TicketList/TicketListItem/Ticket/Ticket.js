@@ -4,10 +4,6 @@ import './Ticket.css';
 import Comment from './Comment/Comment';
 
 class Ticket extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       id,
@@ -24,7 +20,6 @@ class Ticket extends Component {
     if (closed) {
       closeDate = moment(closed).short();
     }
-    console.log(this.props);
     let comments = [];
     if (this.props.ticket.comments.length) {
       comments = this.props.ticket.comments

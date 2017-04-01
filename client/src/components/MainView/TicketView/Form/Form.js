@@ -15,7 +15,6 @@ function fetchOptions(data) {
 export class Form extends Component {
   render() {
     let formView;
-    console.log('Form options', this.props.data);
     switch (this.props.activeTab) {
       case 'new': formView = (<NewTicket />); break;
       case 'search': formView = (<Search options={fetchOptions(this.props.data)} />); break;
@@ -62,7 +61,6 @@ Form.propTypes = {
       users: React.PropTypes.array,
     }),
   }),
-  loading: React.PropTypes.bool,
 };
 
 

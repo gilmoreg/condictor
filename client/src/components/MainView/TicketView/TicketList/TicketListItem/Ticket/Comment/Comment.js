@@ -3,10 +3,6 @@ import moment from 'moment-shortformat';
 import './Comment.css';
 
 class Comment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { owner, description, created } = this.props.comment;
     const createDate = moment(created).short();

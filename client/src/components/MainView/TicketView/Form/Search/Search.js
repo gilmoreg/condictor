@@ -18,7 +18,6 @@ export class Search extends Component {
 
   handleChange(e) {
     let options = this.state;
-    console.log('handleChange', e.target.value, e.target.id);
     switch (e.target.id) {
       case 'search-consumer': options.consumer = e.target.value; break;
       case 'search-product': options.product = e.target.value; break;

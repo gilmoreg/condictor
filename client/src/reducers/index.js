@@ -13,7 +13,7 @@ export default function rootReducer(state = initialState, action) {
       const tickets = state.tickets;
       tickets.push(action.ticket);
       return {
-        tickets,
+        ...tickets,
         searchOptions: state.searchOptions,
         user: state.user,
       };

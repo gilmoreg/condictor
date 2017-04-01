@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers/index';
+import rootReducer from './reducers';
 
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:3001/graphql',
@@ -27,6 +27,9 @@ export default createStore(
     root: rootReducer,
     apollo: client.reducer(),
   }),
-  reduxDevtools,
-  applyMiddleware(thunk),
+  {},
+  compose(
+    reduxDevtools,
+    applyMiddleware(thunk),
+  ),
 );

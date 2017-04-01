@@ -4,10 +4,6 @@ import TicketView from './TicketView/TicketView';
 import StatsView from './StatsView/StatsView';
 
 class MainView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let view;
     switch (this.props.activeView) {
@@ -15,7 +11,6 @@ class MainView extends Component {
       case 'stats': view = (<StatsView />); break;
       default: view = (<div />);
     }
-    console.log(this.props.activeView);
     return (
       <div className="MainView">
         MainView
