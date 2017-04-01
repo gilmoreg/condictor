@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { gql, graphql } from 'react-apollo';
 import './TicketList.css';
 import TicketListItem from './TicketListItem/TicketListItem';
@@ -69,5 +68,4 @@ const query = gql`
   }
 `;
 
-const GraphTicketList = graphql(query)(TicketList);
-export default connect()(GraphTicketList);
+export default graphql(query)(TicketList);

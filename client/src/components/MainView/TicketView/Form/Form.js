@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
+import { connect } from 'react-redux';
 import './Form.css';
 import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
@@ -13,11 +14,20 @@ function fetchOptions(data) {
 }
 
 export class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.updateSearch = this.updateSearch.bind(this);
+  }
+
+  updateSearch(e) {
+    console.log('updateSearch', this, e);
+  }
+
   render() {
     let formView;
     switch (this.props.activeTab) {
       case 'new': formView = (<NewTicket />); break;
-      case 'search': formView = (<Search options={fetchOptions(this.props.data)} />); break;
+      case 'search': formView = (<Search options={fetchOptions(this.props.data)} updateSearch={this.updateSearch} />); break;
       case 'closed': formView = (<div />); break;
       default: formView = (<div />);
     }
@@ -87,5 +97,5 @@ const query = gql`
   }
 `;
 
-
-export default graphql(query)(Form);
+const ConnectForm = connect()(Form);
+export default graphql(query)(ConnectForm);
