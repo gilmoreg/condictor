@@ -6,7 +6,6 @@ import TicketListItem from './TicketListItem/TicketListItem';
 
 export class TicketList extends Component {
   render() {
-    console.log('searchOptions props', this.props.searchOptions);
     let tickets = [];
     if (this.props.data.search && this.props.data.search.results) {
       tickets = this.props.data.search.results.map(ticket => <TicketListItem key={ticket.id} ticket={ticket} />);
@@ -74,15 +73,13 @@ const mapStateToProps = state => ({
   searchOptions: state.root.searchOptions,
 });
 
-
-
-
 const GraphedTicketList = graphql(
   query,
-  { props: ({ ownProps }) => {
-    console.log('searchOptions', ownProps.searchOptions);
-    return ownProps;
-  } },
+  { props: ({ ownProps }) => ({ variables: {
+    consumer: ownProps.searchOptions.consumer || '',
+    product: ownProps.searchOptions.product || '',
+    owner: ownProps.searchOptions.owner || '',
+  } }) },
   )(TicketList);
 
 export default connect(mapStateToProps)(GraphedTicketList);
