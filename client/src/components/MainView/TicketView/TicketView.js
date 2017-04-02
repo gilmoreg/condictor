@@ -34,7 +34,7 @@ class TicketView extends Component {
         <HorizontalTab title="New" onClick={this.newClick} />
         <HorizontalTab title="Search" onClick={this.searchClick} />
         <Form activeTab={this.state.activeTab} close={this.closeClick} />
-        <TicketList />
+        <TicketList test={'test'} />
       </div>
     );
   }
