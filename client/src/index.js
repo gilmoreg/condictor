@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloProvider } from 'react-apollo';
-import { store, client } from './store';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import Condictor from './components/Condictor';
 import './index.css';
 
 ReactDOM.render(
-  <ApolloProvider store={store} client={client}>
+  <Provider store={store}>
     <Condictor />
-  </ApolloProvider>,
+  </Provider>,
   document.getElementById('root'),
 );
