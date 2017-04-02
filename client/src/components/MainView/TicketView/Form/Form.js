@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Form.css';
 import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
-import * as actions from '../../../../actions';
+// import * as actions from '../../../../actions';
 
 // function fetchOptions(data) {
 //   return {
@@ -26,9 +26,14 @@ export class Form extends Component {
 
   render() {
     let formView;
+    const options = {
+      consumers: [],
+      products: [],
+      owners: [],
+    };
     switch (this.props.activeTab) {
       case 'new': formView = (<NewTicket />); break;
-      case 'search': formView = (<Search updateSearch={this.updateSearch} />); break;
+      case 'search': formView = (<Search options={options} updateSearch={this.updateSearch} />); break;
       case 'closed': formView = (<div />); break;
       default: formView = (<div />);
     }
