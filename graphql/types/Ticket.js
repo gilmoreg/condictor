@@ -7,14 +7,9 @@ import UserHandler from './User';
 export default class TicketHandler {
   constructor(id) {
     this.id = id;
-    this.ticket = null;
-    this.Product = null;
-    this.Owner = null;
-    this.Comments = null;
   }
   fetchTicket() {
     return new Promise((resolve, reject) => {
-      if (this.ticket) resolve(this.ticket);
       TicketLoader.load(this.id)
         .then((ticket) => {
           this.ticket = ticket;
