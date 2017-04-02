@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './Form.css';
 import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
+import * as actions from '../../../../actions';
 
 function fetchOptions(data) {
   return {
@@ -21,6 +22,7 @@ export class Form extends Component {
 
   updateSearch(e) {
     console.log('updateSearch', this, e);
+    this.props.dispatch(actions.updateSearch(e));
   }
 
   render() {
@@ -71,6 +73,7 @@ Form.propTypes = {
       users: React.PropTypes.array,
     }),
   }),
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
+import { connect } from 'react-redux';
 import './TicketList.css';
 import TicketListItem from './TicketListItem/TicketListItem';
 
@@ -38,8 +39,8 @@ TicketList.propTypes = {
 
 // TODO convert this to search with current options
 const query = gql`
-  {
-    search {
+  query search($consumer: String, $product: String, $owner: String) {
+    search(consumer: $consumer, product: $product, owner: $owner) {
       results {
         id
         product {
@@ -68,4 +69,22 @@ const query = gql`
   }
 `;
 
-export default graphql(query)(TicketList);
+const mapStateToProps = state => ({
+  searchOptions: state.root.searchOptions,
+});
+
+const calcOptions = ({ searchOptions }) => {
+  const variables = {};
+  console.log('searchOptions', searchOptions);
+  if (!searchOptions) return {};
+  if (searchOptions.consumer) variables.consumer = searchOptions.consumer;
+  if (searchOptions.product) variables.product = searchOptions.product;
+  if (searchOptions.owner) variables.owner = searchOptions.owner;
+  return variables;
+};
+
+const ConnectTicketList = connect(mapStateToProps)(TicketList);
+export default graphql(
+  query,
+  { options: calcOptions },
+  )(ConnectTicketList);
