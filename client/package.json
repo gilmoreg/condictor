@@ -7,6 +7,8 @@
     "enzyme": "^2.4.1",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
+    "lokka": "^1.7.0",
+    "lokka-transport-http": "^1.6.1",
     "moment": "^2.18.1",
     "moment-shortformat": "^2.0.0",
     "react": "^15.4.2",

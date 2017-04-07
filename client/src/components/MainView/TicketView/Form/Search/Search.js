@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Select from './Select';
+import * as actions from '../../../../../actions';
 import './Search.css';
 
-export default class Search extends Component {
+export class Search extends Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
@@ -31,7 +33,8 @@ export default class Search extends Component {
     if (this.state.consumer) searchOptions.consumer = this.state.consumer;
     if (this.state.product) searchOptions.product = this.state.product;
     if (this.state.owner) searchOptions.owner = this.state.owner;
-    this.props.updateSearch(searchOptions);
+    // this.props.updateSearch(searchOptions);
+    this.props.dispatch(actions.searchTickets(searchOptions));
   }
 
   render() {
@@ -67,10 +70,12 @@ Search.defaultProps = {
 };
 
 Search.propTypes = {
-  updateSearch: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
   options: React.PropTypes.shape({
     consumers: React.PropTypes.array,
     products: React.PropTypes.array,
     users: React.PropTypes.array,
   }),
 };
+
+export default connect()(Search);

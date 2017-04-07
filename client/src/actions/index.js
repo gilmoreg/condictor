@@ -1,3 +1,10 @@
+const Lokka = require('lokka').Lokka;
+const Transport = require('lokka-transport-http').Transport;
+
+const client = new Lokka({
+  transport: new Transport('http://localhost:3001/graphql', { credentials: false }),
+});
+
 // Sync Actions
 export const FILL_TICKET = 'FILL_TICKET';
 export const fillTicket = ticket => ({
@@ -11,6 +18,7 @@ export const updateSearch = options => ({
   options,
 });
 // Async Actions
+
 /*
 export const GET_TICKET = 'GET_TICKET';
 export const getTicket = id => dispatch =>
@@ -46,10 +54,11 @@ export const getTicket = id => dispatch =>
     })
     .catch(err => reject(err));
   });
-
+*/
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
+    console.log('searchTickets', params);
     let options = '';
     if (params && params.length) {
       options = `(${params})`;
@@ -67,6 +76,7 @@ export const searchTickets = params => dispatch =>
       }
     `)
     .then((response) => {
+      console.log('searchTickets response', response.search);
       if (response.search && response.search.results) {
         response.search.results.forEach(ticket => dispatch(fillTicket(ticket)));
         resolve(response.search.results);
@@ -75,4 +85,4 @@ export const searchTickets = params => dispatch =>
       }
     })
     .catch(err => reject(err));
-  });*/
+  });
