@@ -71,6 +71,24 @@ export const searchTickets = params => dispatch =>
             priority
             created
             closed
+            owner {
+              username
+            }
+            description
+            consumer {
+              name
+            }
+            product {
+              name
+            }
+            comments {
+              id
+              created
+              owner {
+                username
+              }
+              description
+            }
           }
         }
       }

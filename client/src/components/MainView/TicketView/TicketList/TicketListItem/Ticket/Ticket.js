@@ -6,7 +6,6 @@ import Comment from './Comment/Comment';
 class Ticket extends Component {
   render() {
     const {
-      id,
       product,
       consumer,
       description,
@@ -28,8 +27,7 @@ class Ticket extends Component {
     return (
       <div className="Ticket">
         <ul>
-          <li>ID: {id}</li>
-          <li>priority: {priority}</li>
+          <li>Priority: {priority}</li>
           <li>Consumer: {consumer.name}</li>
           <li>Product: {product.name}</li>
           <li>Owner: {owner.username}</li>
