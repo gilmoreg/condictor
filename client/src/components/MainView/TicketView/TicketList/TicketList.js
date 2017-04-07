@@ -5,10 +5,13 @@ import TicketListItem from './TicketListItem/TicketListItem';
 
 export class TicketList extends Component {
   render() {
-    const tickets = [];
-    // if (this.props.data.search && this.props.data.search.results) {
-    //   tickets = this.props.data.search.results.map(ticket => <TicketListItem key={ticket.id} ticket={ticket} />);
-    // }
+    let tickets = [];
+    console.log('TicketList', this.props.tickets);
+    if (this.props.tickets.length) {
+      tickets = this.props.tickets.map(ticket =>
+        <TicketListItem key={ticket.id} ticket={ticket} />,
+      );
+    }
     return (
       <div className="TicketList">
         <h4>TicketList</h4>
@@ -18,4 +21,16 @@ export class TicketList extends Component {
   }
 }
 
-export default connect()(TicketList);
+TicketList.defaultProps = {
+  tickets: [],
+};
+
+TicketList.propTypes = {
+  tickets: React.PropTypes.array,
+};
+
+const mapStateToProps = state => ({
+  tickets: state.tickets,
+});
+
+export default connect(mapStateToProps)(TicketList);

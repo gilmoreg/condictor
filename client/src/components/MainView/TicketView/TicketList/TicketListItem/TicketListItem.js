@@ -18,7 +18,7 @@ class TicketListItem extends Component {
   render() {
     const { /* closed, created, */ description, priority } = this.props.ticket;
     // TODO use the other fields to determine styling
-    const desc = `${description.substring(0, 30)}...`;
+    const desc = `${description}...`;
     return (
       <div className="TicketListItem">
         <button onClick={this.handleClick}>{`${desc} Priority ${priority}`}</button>
