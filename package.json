@@ -22,6 +22,8 @@
     "express-graphql": "^0.6.3",
     "express-session": "^1.15.1",
     "graphql": "^0.9.1",
+    "lokka": "^1.7.0",
+    "lokka-transport-http": "^1.6.1",
     "mongoose": "^4.9.0",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
