@@ -16,6 +16,10 @@ export class Search extends Component {
     };
   }
 
+  componentWillMount() {
+    this.props.dispatch(actions.fillSearchOptions());
+  }
+
   handleChange(e) {
     let options = this.state;
     switch (e.target.id) {
@@ -33,7 +37,6 @@ export class Search extends Component {
     if (this.state.consumer) searchOptions.consumer = this.state.consumer;
     if (this.state.product) searchOptions.product = this.state.product;
     if (this.state.owner) searchOptions.owner = this.state.owner;
-    // this.props.updateSearch(searchOptions);
     this.props.dispatch(actions.searchTickets(searchOptions));
   }
 
@@ -42,7 +45,7 @@ export class Search extends Component {
       <form className="Search" onSubmit={this.search}>
         <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
         <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
-        <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.users} />
+        <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
         <button type="submit" id="search-submit-button">Search</button>
         <h4>Quick searches:</h4>
         <ul>
@@ -57,15 +60,9 @@ export class Search extends Component {
 
 Search.defaultProps = {
   options: {
-    consumers: {
-      consumers: [],
-    },
-    products: {
-      products: [],
-    },
-    users: {
-      users: [],
-    },
+    consumers: [],
+    products: [],
+    owners: [],
   },
 };
 
@@ -74,8 +71,16 @@ Search.propTypes = {
   options: React.PropTypes.shape({
     consumers: React.PropTypes.array,
     products: React.PropTypes.array,
-    users: React.PropTypes.array,
+    owners: React.PropTypes.array,
   }),
 };
 
-export default connect()(Search);
+const mapStateToProps = state => ({
+  options: {
+    consumers: state.consumers,
+    products: state.products,
+    owners: state.owners,
+  },
+});
+
+export default connect(mapStateToProps)(Search);

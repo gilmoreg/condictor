@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Select extends Component {
   render() {
     const options = this.props.options
-      .map(item => <option key={item.id} value={item.name}>{item.name}</option>);
+      .map(item => <option key={item.id} value={item.username || item.name}>{item.username || item.name}</option>);
     const type = this.props.type.toLowerCase();
 
     return (

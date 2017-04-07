@@ -6,7 +6,6 @@ import TicketListItem from './TicketListItem/TicketListItem';
 export class TicketList extends Component {
   render() {
     let tickets = [];
-    console.log('TicketList', this.props.tickets);
     if (this.props.tickets.length) {
       tickets = this.props.tickets.map(ticket =>
         <TicketListItem key={ticket.id} ticket={ticket} />,

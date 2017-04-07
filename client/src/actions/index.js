@@ -12,49 +12,25 @@ export const fillTicket = ticket => ({
   ticket,
 });
 
-export const UPDATE_SEARCH = 'UPDATE_SEARCH';
-export const updateSearch = options => ({
-  type: UPDATE_SEARCH,
-  options,
+export const FILL_CONSUMER_OPTION = 'FILL_CONSUMER_OPTION';
+export const fillConsumerOption = consumer => ({
+  type: FILL_CONSUMER_OPTION,
+  consumer,
 });
-// Async Actions
 
-/*
-export const GET_TICKET = 'GET_TICKET';
-export const getTicket = id => dispatch =>
-  new Promise((resolve, reject) => {
-    client.query(`
-      query {
-        ticket(id: "${id}") {
-          id
-          owner {
-            username
-          }
-          description
-          created
-          consumer {
-            name
-          }
-          product {
-            name
-          }
-          comments {
-            created
-            owner {
-              username
-            }
-            description
-          }
-        }
-      }
-    `)
-    .then((response) => {
-      dispatch(fillTicket(response.data));
-      resolve(response.data);
-    })
-    .catch(err => reject(err));
-  });
-*/
+export const FILL_OWNER_OPTION = 'FILL_OWNER_OPTION';
+export const fillOwnerOption = owner => ({
+  type: FILL_OWNER_OPTION,
+  owner,
+});
+
+export const FILL_PRODUCT_OPTION = 'FILL_PRODUCT_OPTION';
+export const fillProductOption = product => ({
+  type: FILL_PRODUCT_OPTION,
+  product,
+});
+
+// Async Actions
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
@@ -94,13 +70,51 @@ export const searchTickets = params => dispatch =>
       }
     `)
     .then((response) => {
-      console.log('searchTickets response', response.search);
+      console.log('searchTickets response', options, response.search);
       if (response.search && response.search.results) {
         response.search.results.forEach(ticket => dispatch(fillTicket(ticket)));
         resolve(response.search.results);
       } else {
         reject('no results');
       }
+    })
+    .catch(err => reject(err));
+  });
+
+export const FILL_SEARCH_OPTIONS = 'FILL_SEARCH_OPTIONS';
+export const fillSearchOptions = () => dispatch =>
+  new Promise((resolve, reject) => {
+    console.log('FILL_SEARCH_OPTIONS');
+    client.query(`
+      query {
+        products {
+          products {
+            id
+            name
+          }
+        }
+        consumers {
+          consumers {
+            id
+            name
+          }
+        }
+        users {
+          users {
+            id
+            username
+          }
+        }
+      }
+    `)
+    .then((options) => {
+      const { consumers } = options.consumers;
+      const { products } = options.products;
+      const { users } = options.users;
+      if (consumers) consumers.forEach(consumer => dispatch(fillConsumerOption(consumer)));
+      if (products) products.forEach(product => dispatch(fillProductOption(product)));
+      if (users) users.forEach(user => dispatch(fillOwnerOption(user)));
+      resolve(options);
     })
     .catch(err => reject(err));
   });
