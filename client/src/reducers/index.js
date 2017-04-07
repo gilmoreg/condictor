@@ -11,6 +11,9 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
   console.log(action.type, 'dispatched');
   switch (action.type) {
+    case actions.CLEAR_TICKETS: {
+      return Object.assign({}, state, { tickets: [] });
+    }
     case actions.FILL_TICKET: {
       return Object.assign({}, state, { tickets: [...state.tickets, action.ticket] });
     }

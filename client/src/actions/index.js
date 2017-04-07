@@ -6,6 +6,11 @@ const client = new Lokka({
 });
 
 // Sync Actions
+export const CLEAR_TICKETS = 'CLEAR_TICKETS';
+export const clearTickets = () => ({
+  type: CLEAR_TICKETS,
+});
+
 export const FILL_TICKET = 'FILL_TICKET';
 export const fillTicket = ticket => ({
   type: FILL_TICKET,
@@ -35,10 +40,11 @@ export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
     let options = '';
-    if (params) {
+    console.log('searchTickets', params);
+    if (Object.keys(params).length) {
       options = '(';
       Object.keys(params).forEach((key) => {
-        options += `${key}: "${params[key]}"`;
+        options += `${key}: "${params[key]}" `;
       });
       options += ')';
     }
@@ -75,6 +81,7 @@ export const searchTickets = params => dispatch =>
     client.query(query)
     .then((response) => {
       if (response.search && response.search.results) {
+        dispatch(clearTickets());
         response.search.results.forEach(ticket => dispatch(fillTicket(ticket)));
         resolve(response.search.results);
       } else {
