@@ -34,12 +34,15 @@ export const fillProductOption = product => ({
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
-    console.log('searchTickets', params);
     let options = '';
-    if (params && params.length) {
-      options = `(${params})`;
+    if (params) {
+      options = '(';
+      Object.keys(params).forEach((key) => {
+        options += `${key}: "${params[key]}"`;
+      });
+      options += ')';
     }
-    client.query(`
+    const query = `
       query {
         search${options} {
           results {
@@ -68,9 +71,9 @@ export const searchTickets = params => dispatch =>
           }
         }
       }
-    `)
+    `;
+    client.query(query)
     .then((response) => {
-      console.log('searchTickets response', options, response.search);
       if (response.search && response.search.results) {
         response.search.results.forEach(ticket => dispatch(fillTicket(ticket)));
         resolve(response.search.results);
@@ -84,7 +87,6 @@ export const searchTickets = params => dispatch =>
 export const FILL_SEARCH_OPTIONS = 'FILL_SEARCH_OPTIONS';
 export const fillSearchOptions = () => dispatch =>
   new Promise((resolve, reject) => {
-    console.log('FILL_SEARCH_OPTIONS');
     client.query(`
       query {
         products {
