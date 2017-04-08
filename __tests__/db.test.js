@@ -10,49 +10,44 @@ const { app, runServer, closeServer } = require('../server');
 const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
 
 describe('Mongo/Mongoose', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     runServer(TEST_DATABASE_URL)
-    .catch(() => new Error('beforeAll fail'));
+    .catch(() => new Error('beforeEach fail'));
   });
-  afterAll(() => {
-    closeServer()
-      .then(() => mongoose.connection.dropDatabase())
+
+  afterEach(() => {
+    mongoose.connection.dropDatabase()
+      .then(() => closeServer())
       .catch(err => new Error(err));
   });
 
   it('should create a new Comment', () =>
     Models.Comment.create({ description: 'test' })
       .then((comment) => {
-        expect(comment.description).toEqual('test');
-      })
-      .catch(err => new Error(err)));
+        expect(comment.description).toBe('test');
+      }));
+
   it('should create a new Product', () =>
     Models.Product.create({ name: 'test' })
       .then((product) => {
-        console.log('Created product', product);
         expect(product.name).toEqual('test');
-      })
-      .catch(err => new Error(err)));
+      }));
+
   it('should create a new Consumer', () =>
     Models.Consumer.create({ name: 'test' })
       .then((consumer) => {
         expect(consumer.name).toEqual('test');
-      })
-      .catch(err => new Error(err)));
+      }));
 
-
-/*
   it('should create a new Ticket', () =>
     Models.Ticket.create({ description: 'test' })
       .then((ticket) => {
         expect(ticket.description).toEqual('test');
-      })
-      .catch(err => new Error(err)));
+      }));
 
   it('should create a new User', () =>
     Models.User.create({ username: 'test', password: 'test' })
       .then((user) => {
         expect(user.username).toEqual('test');
-      })
-      .catch(err => new Error(err)));*/
+      }));
 });

@@ -56,6 +56,7 @@
     "client": "cd client && npm start",
     "test-client": "cd client && npm test",
     "test-server": "jest --verbose --runInBand --watch",
+    "test-server-debug": "node --debug-brk ./node_modules/.bin/jest --verbose --runInBand --watch",
     "seed": "babel-watch ./seed/seed.js"
   },
   "jest": {

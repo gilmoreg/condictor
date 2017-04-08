@@ -26,7 +26,8 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "redux-mock-store": "^1.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

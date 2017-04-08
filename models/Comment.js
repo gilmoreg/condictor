@@ -1,16 +1,11 @@
 import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
+mongoose.set('debug', true);
 
 const CommentSchema = mongoose.Schema({
-  owner: {
-    type: String,
-    required: true,
-  },
-  created: {
-    type: Date,
-    required: true,
-  },
+  owner: String,
+  created: Date,
   description: String,
 });
 
