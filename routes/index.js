@@ -5,8 +5,18 @@ import { schema, root } from '../graphql/schema';
 import * as loaders from '../graphql/loaders';
 
 const router = express.Router();
-// router.use(require('./passport'));
-router.use('/graphql', graphqlHTTP({
+
+/* eslint-disable consistent-return */
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
+
+router.use(require('./passport'));
+
+router.use('/graphql', isAuthenticated, graphqlHTTP({
   context: { loaders },
   schema,
   rootValue: root,
@@ -22,7 +32,7 @@ router.post('/login',
   },
 );
 
-router.get('/logout', (req, res) => {
+router.get('/logout', isAuthenticated, (req, res) => {
   req.logout();
   res.redirect('/');
 });
