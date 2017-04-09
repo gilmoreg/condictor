@@ -12,6 +12,7 @@ class Sidebar extends Component {
     switch (e.target.innerText) {
       case 'tickets': this.props.changeView('tickets'); break;
       case 'stats': this.props.changeView('stats'); break;
+      case 'login': this.props.changeView('login'); break;
       default: this.props.changeView('none');
     }
   }
@@ -23,7 +24,7 @@ class Sidebar extends Component {
         <ul>
           <li><button onClick={this.changeView}>tickets</button></li>
           <li><button onClick={this.changeView}>stats</button></li>
-          <li>login</li>
+          <li><button onClick={this.changeView}>login</button></li>
         </ul>
       </div>
     );

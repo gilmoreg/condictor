@@ -16,11 +16,8 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-UserSchema.methods.json = () =>
-  ({ username: this.username || '' });
-
-UserSchema.methods.validatePassword = (password, cb) => {
-  bcrypt.compare(password, this.password, (err, res) => {
+UserSchema.methods.validatePassword = (password, modelPassword, cb) => {
+  bcrypt.compare(password, modelPassword, (err, res) => {
     if (err) {
       cb(err, false);
     }

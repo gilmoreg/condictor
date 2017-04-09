@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MainView.css';
 import TicketView from './TicketView/TicketView';
 import StatsView from './StatsView/StatsView';
+import Login from './Login';
 
 class MainView extends Component {
   render() {
@@ -9,6 +10,7 @@ class MainView extends Component {
     switch (this.props.activeView) {
       case 'tickets': view = (<TicketView />); break;
       case 'stats': view = (<StatsView />); break;
+      case 'login': view = (<Login />); break;
       default: view = (<div />);
     }
     return (

@@ -8,7 +8,6 @@ export default class ProductsHandler {
     return new Promise((resolve, reject) => {
       Product.find({})
         .then((products) => {
-          console.log('products fetched', products);
           products.map(product => new ProductHandler(product._id));
           resolve(products);
         })

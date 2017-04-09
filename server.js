@@ -15,19 +15,14 @@ let server;
 
 // Middleware
 app.use(compression({ level: 9, threshold: 0 }));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
-app.use(bodyParser.json());
 app.use(morgan('common', { stream: logger.stream }));
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
-
-app.use((err, req, res) => {
-  logger.error(err);
-  res.status(500).json({ error: 'Something went wrong' }).end();
-});
 
 function runServer(databaseUrl = process.env.DATABASE_URL, port = process.env.PORT) {
   return new Promise((resolve, reject) => {
