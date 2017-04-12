@@ -41,7 +41,7 @@ router.use(session(
   {
     secret: 'keyboard puma',
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: new MongoStore({ url: process.env.DATABASE_URL }),
   },
 ));
@@ -55,7 +55,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
+  console.log('deserializeUser', id);
   User.findById(id, (err, user) => {
+    console.log('deserialized', err, user);
     done(err, user);
   });
 });

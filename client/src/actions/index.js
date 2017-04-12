@@ -2,7 +2,7 @@ const Lokka = require('lokka').Lokka;
 const Transport = require('lokka-transport-http').Transport;
 
 const client = new Lokka({
-  transport: new Transport('http://localhost:3001/graphql', { credentials: false }),
+  transport: new Transport('http://localhost:3001/graphql'),
 });
 
 // Sync Actions
@@ -116,6 +116,7 @@ export const fillSearchOptions = () => dispatch =>
       }
     `)
     .then((options) => {
+      if (!options) throw new Error('Server response empty');
       const { consumers } = options.consumers;
       const { products } = options.products;
       const { users } = options.users;

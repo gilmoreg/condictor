@@ -2,7 +2,6 @@
   "name": "condictor-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
   "dependencies": {
     "enzyme": "^2.4.1",
     "eslint": "^3.19.0",

@@ -28,14 +28,17 @@ class Login extends Component {
     if (this.state.username && this.state.password && self.fetch) {
       fetch('http://localhost:3001/login', {
         method: 'POST',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json, */*',
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           username: this.state.username,
           password: this.state.password,
         }),
       })
-      .then(() => {
-
-      })
+      .then(res => console.log('auth success', res.json())) // todo more
       .catch(err => new Error(err));
     }
   }

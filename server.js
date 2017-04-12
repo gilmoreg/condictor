@@ -15,10 +15,16 @@ let server;
 
 // Middleware
 app.use(compression({ level: 9, threshold: 0 }));
-app.use(bodyParser.json());
-app.use(cors());
-app.use(router);
 app.use(morgan('common', { stream: logger.stream }));
+app.use(bodyParser.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: 'Accept, Origin, Content-Type, Referer',
+  credentials: true,
+}));
+app.use(router);
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
