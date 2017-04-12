@@ -35,7 +35,49 @@ export const fillProductOption = product => ({
   product,
 });
 
+export const FILL_USER = 'FILL_USER';
+export const fillUser = user => ({
+  type: FILL_USER,
+  user,
+});
+
 // Async Actions
+export const LOGIN = 'LOGIN';
+export const login = credentials => dispatch =>
+  fetch('http://localhost:3001/login', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json, */*',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: credentials.username,
+      password: credentials.password,
+    }),
+  })
+  .then((res) => {
+    if (res.status !== 200) throw new Error('Login failed');
+    return res.json();
+  })
+  .then((res) => {
+    dispatch(fillUser(res.user));  // todo more
+  })
+  .catch((err) => {
+    dispatch(fillUser({ user: null, error: 'Login failed' }));
+    console.log('LOGIN ERROR', err);
+  });
+
+export const LOGOUT = 'LOGOUT';
+export const logout = (dispatch) => {
+  fetch('http://localhost:3001/logout', {
+    credentials: 'include',
+  })
+  .then(() => {
+    dispatch(fillUser({ user: null }));
+  });
+};
+
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {

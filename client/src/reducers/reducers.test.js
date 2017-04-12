@@ -96,4 +96,15 @@ describe('Reducers', () => {
     )
     .toEqual(productState);
   });
+
+  it('should fill a user on FILL_USER', () => {
+    const userState = Object.assign({}, initialState, { user: 'test' });
+    expect(
+      rootReducer(
+        initialState,
+        { type: actions.FILL_USER, user: 'test' },
+      ),
+    )
+    .toEqual(userState);
+  });
 });

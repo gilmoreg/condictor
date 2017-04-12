@@ -26,6 +26,10 @@ export default function rootReducer(state = initialState, action) {
     case actions.FILL_PRODUCT_OPTION: {
       return Object.assign({}, state, { products: [...state.products, action.product] });
     }
+    case actions.FILL_USER: {
+      console.log('FILL_USER', action.user);
+      return Object.assign({}, state, { user: action.user });
+    }
     default: return state;
   }
 }

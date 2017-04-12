@@ -24,8 +24,7 @@ router.post('/login',
   (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    console.log('/login', req.user, req.session);
-    res.status(200).json({ message: 'Login successful' });
+    res.status(200).json({ message: 'Login successful', user: req.user.username });
   },
 );
 

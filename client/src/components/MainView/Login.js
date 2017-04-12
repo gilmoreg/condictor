@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../actions';
 import './Login.css';
 
-class Login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
@@ -25,21 +27,10 @@ class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    if (this.state.username && this.state.password && self.fetch) {
-      fetch('http://localhost:3001/login', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json, */*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-      })
-      .then(res => console.log('auth success', res.json())) // todo more
-      .catch(err => new Error(err));
+    if (this.state.username && this.state.password) {
+      this.props.dispatch(
+        login({ username: this.state.username, password: this.state.password }),
+      );
     }
   }
 
@@ -66,4 +57,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  dispatch: React.PropTypes.func,
+};
+
+Login.defaultProps = {
+  dispatch: null,
+};
+
+export default connect()(Login);
