@@ -27,7 +27,6 @@ class TicketView extends Component {
     this.setState({ activeTab: 'closed' });
   }
 
-
   render() {
     return (
       <div className="TicketView">

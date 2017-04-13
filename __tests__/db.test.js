@@ -8,16 +8,19 @@ const mongoose = require('mongoose');
 const { app, runServer, closeServer } = require('../server');
 
 const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
+const TEST_PORT = process.env.TEST_PORT;
 
 describe('Mongo/Mongoose', () => {
-  beforeEach(() => {
-    runServer(TEST_DATABASE_URL)
+  beforeEach((done) => {
+    runServer(TEST_DATABASE_URL, TEST_PORT)
+    .then(() => done())
     .catch(() => new Error('beforeEach fail'));
   });
 
-  afterEach(() => {
+  afterEach((done) => {
     mongoose.connection.dropDatabase()
       .then(() => closeServer())
+      .then(() => done())
       .catch(err => new Error(err));
   });
 

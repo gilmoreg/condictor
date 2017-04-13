@@ -79,7 +79,25 @@ describe('Sync Actions', () => {
   });
 });
 
+it('should create an action to fill a User', () => {
+  const expectedAction = {
+    type: actions.FILL_USER,
+    user: 'test',
+  };
+  expect(actions.fillUser('test')).toEqual(expectedAction);
+});
+
 describe('Async Actions', () => {
+  it('should create an action to login', (done) => {
+    // TODO
+    done();
+  });
+
+  it('should create an action to log out', (done) => {
+    // TODO
+    done();
+  });
+
   it('should create an action to fill search options from the server', (done) => {
     // TODO
     done();

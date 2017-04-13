@@ -75,7 +75,8 @@ router.post('/signup', (req, res) => {
   .then((user) => {
     req.login(user, (err) => {
       if (!err) {
-        return res.status(201).redirect('/');
+        console.log('/signup successful, returning status 201');
+        return res.status(201).json({ message: 'Signup and login successful' });
       }
       throw new Error(`${err}`);
     });

@@ -64,10 +64,11 @@ Search.defaultProps = {
     products: [],
     owners: [],
   },
+  dispatch: () => {},
 };
 
 Search.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
   options: React.PropTypes.shape({
     consumers: React.PropTypes.array,
     products: React.PropTypes.array,

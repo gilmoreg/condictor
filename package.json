@@ -44,7 +44,8 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.0",
     "faker": "^4.1.0",
-    "jest": "^19.0.2"
+    "jest": "^19.0.2",
+    "supertest": "^3.0.0"
   },
   "babel": {
     "presets": [

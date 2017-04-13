@@ -33,23 +33,12 @@ export class Form extends Component {
 
 Form.defaultProps = {
   activeTab: 'closed',
-  data: {
-    consumers: {
-      consumers: [],
-    },
-    products: {
-      products: [],
-    },
-    users: {
-      users: [],
-    },
-  },
-  loading: true,
+  close: null,
 };
 
 Form.propTypes = {
   activeTab: React.PropTypes.string,
-  close: React.PropTypes.func.isRequired,
+  close: React.PropTypes.func,
 };
 
 export default Form;
