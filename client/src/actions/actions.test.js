@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-expressions */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
 import * as actions from '.';
 
 const mockStore = configureMockStore([thunk]);
@@ -36,6 +37,14 @@ const fakeTicket = {
   closed: Date.now(),
   priority: 'test',
   comments: [fakeComment],
+};
+
+const initialState = {
+  tickets: [],
+  consumers: [],
+  owners: [],
+  products: [],
+  user: null,
 };
 
 describe('Sync Actions', () => {
@@ -88,14 +97,41 @@ it('should create an action to fill a User', () => {
 });
 
 describe('Async Actions', () => {
-  it('should create an action to login', (done) => {
-    // TODO
-    done();
+  afterEach(() => {
+    fetchMock.reset();
   });
 
-  it('should create an action to log out', (done) => {
-    // TODO
-    done();
+  it('should dispatch FILL_USER with valid data from the server', (done) => {
+    fetchMock.mock('http://localhost:3001/login',
+      { message: 'Login successful', user: 'test' },
+      { method: 'post' },
+    );
+    const expectedActions = [
+      { type: actions.FILL_USER, user: 'test' },
+    ];
+    const store = mockStore(initialState);
+    store.dispatch(actions.login({ username: 'test', password: 'test' }))
+      .then(() => {
+        const actualActions = store.getActions();
+        expect(actualActions).toEqual(expectedActions);
+        done();
+      });
+  });
+
+  it('should dispatch FILL_USER with a null user after logout', (done) => {
+    fetchMock.mock('http://localhost:3001/logout',
+      { logoutSuccess: true },
+    );
+    const expectedActions = [
+      { type: 'FILL_USER', user: { user: null } },
+    ];
+    const store = mockStore(initialState);
+    store.dispatch(actions.logout())
+      .then(() => {
+        const actualActions = store.getActions();
+        expect(actualActions).toEqual(expectedActions);
+        done();
+      });
   });
 
   it('should create an action to fill search options from the server', (done) => {

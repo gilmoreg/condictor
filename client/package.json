@@ -25,6 +25,8 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
+    "fetch-mock": "^5.10.0",
+    "nock": "^9.0.13",
     "react-scripts": "0.9.5",
     "redux-mock-store": "^1.2.2"
   },

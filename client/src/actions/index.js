@@ -69,14 +69,13 @@ export const login = credentials => dispatch =>
   });
 
 export const LOGOUT = 'LOGOUT';
-export const logout = (dispatch) => {
+export const logout = () => dispatch =>
   fetch('http://localhost:3001/logout', {
     credentials: 'include',
   })
   .then(() => {
     dispatch(fillUser({ user: null }));
   });
-};
 
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
