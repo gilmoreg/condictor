@@ -37,7 +37,6 @@ export const schema = buildSchema(`
     created: String,
     closed: String,
     priority: Int,
-    category: String,
     comments: [Comment]
   }
 
@@ -69,6 +68,29 @@ export const schema = buildSchema(`
   type SearchResults {
     results: [Ticket]
   }
+  
+  input NewComment {
+    owner: String,
+    description: String
+  }
+
+  input NewTicket {
+    description: String,
+    product: String,
+    consumer: String,
+    owner: String,
+    priority: Int
+  }
+
+  input UpdateTicket {
+    id: String,
+    description: String,
+    product: String,
+    consumer: String,
+    owner: String,
+    priority: Int,
+    closed: String
+  }
 
   type Query {
     ticket(id: String): Ticket
@@ -82,6 +104,12 @@ export const schema = buildSchema(`
     userStats(id: String): UserStats
     stats: Stats
     search(consumer: String, product: String, owner: String, open: Boolean): SearchResults
+  }
+
+  type Mutation {
+    newComment(ticketID: String!, input: NewComment): Comment
+    newTicket(input: NewTicket): Ticket
+    updateTicket(id: String!, input: UpdateTicket): Ticket
   }
 `);
 
@@ -108,4 +136,12 @@ export const root = {
     new Handlers.StatsHandler(),
   search: ({ consumer, product, owner, open }) =>
     new Handlers.SearchHandler(consumer, product, owner, open),
+  newComment: ({ ticketID, input }) => {
+    console.log('newComment Root', ticketID, input);
+    return new Handlers.NewCommentHandler(ticketID, input);
+  },
+  newTicket: ({ ticket }) =>
+    new Handlers.NewTicketHandler(ticket),
+  updateTicket: ({ id, ticket }) =>
+    new Handlers.UpdateTicketHandler(id, ticket),
 };

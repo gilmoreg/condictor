@@ -92,7 +92,7 @@ router.get('/', (req, res) => {
   res.status(200).json({ success: true });
 });
 
-router.use('/graphql', isAuthenticated, graphqlHTTP({
+router.use('/graphql', /* isAuthenticated, */ graphqlHTTP({
   context: { loaders },
   schema,
   rootValue: root,
