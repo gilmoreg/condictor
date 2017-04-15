@@ -4,7 +4,9 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
+import { mockServer } from 'graphql-tools';
 import * as actions from '.';
+import schema from '../../../graphql/schema';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -46,6 +48,20 @@ const initialState = {
   products: [],
   user: null,
 };
+
+const root = {
+  ticket: ({ id }) => fakeTicket,
+  consumer: ({ id }) => fakeConsumer,
+  consumers: () => [fakeConsumer],
+  product: ({ id }) => fakeProduct,
+  products: () => [fakeProduct],
+  comment: ({ id }) => fakeComment,
+  user: ({ id }) => fakeOwner,
+  users: () => [fakeOwner],
+  search: ({ consumer, product, owner, open }) => [fakeTicket],
+};
+
+const myMockServer = mockServer(schema, root);
 
 describe('Sync Actions', () => {
   it('should create an action to fill a ticket', () => {
