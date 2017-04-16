@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment-shortformat';
 import './Ticket.css';
 import Comment from './Comment/Comment';
+import AddComment from './Comment/AddComment';
 
 class Ticket extends Component {
   render() {
@@ -37,7 +38,7 @@ class Ticket extends Component {
           <li>Description: <p>{description}</p></li>
         </ul>
         {comments}
-        <button>Add Comment</button>
+        <AddComment ticketID={this.props.ticket.id} />
         <button>Edit</button>
         <button>Close</button>
       </div>
