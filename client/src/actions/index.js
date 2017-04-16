@@ -11,6 +11,12 @@ export const clearTickets = () => ({
   type: CLEAR_TICKETS,
 });
 
+export const UPDATE_TICKET = 'UPDATE_TICKET';
+export const updateTicket = ticket => ({
+  type: UPDATE_TICKET,
+  ticket,
+});
+
 export const FILL_TICKET = 'FILL_TICKET';
 export const fillTicket = ticket => ({
   type: FILL_TICKET,
@@ -165,6 +171,24 @@ export const fillSearchOptions = () => dispatch =>
       if (products) products.forEach(product => dispatch(fillProductOption(product)));
       if (users) users.forEach(user => dispatch(fillOwnerOption(user)));
       resolve(options);
+    })
+    .catch(err => reject(err));
+  });
+
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const addComment = (ticketID, comment) => dispatch =>
+  new Promise((resolve, reject) => {
+    client.query(`
+      mutation {
+        newComment(ticketID: "${ticketID}", input: { 
+          owner: "${comment.owner}", description: "${comment.description}"
+        }) {
+          id
+        }
+      }
+    `)
+    .then((id) => {
+      if (id) dispatch(updateTicket(id, comment));
     })
     .catch(err => reject(err));
   });
