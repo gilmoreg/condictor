@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './TicketList.css';
 import TicketListItem from './TicketListItem/TicketListItem';
@@ -25,7 +26,7 @@ TicketList.defaultProps = {
 };
 
 TicketList.propTypes = {
-  tickets: React.PropTypes.array,
+  tickets: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
