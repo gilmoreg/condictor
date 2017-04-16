@@ -23,6 +23,13 @@ export const fillTicket = ticket => ({
   ticket,
 });
 
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const addComment = (id, comment) => ({
+  type: ADD_COMMENT,
+  id,
+  comment,
+});
+
 export const FILL_CONSUMER_OPTION = 'FILL_CONSUMER_OPTION';
 export const fillConsumerOption = consumer => ({
   type: FILL_CONSUMER_OPTION,
@@ -175,8 +182,8 @@ export const fillSearchOptions = () => dispatch =>
     .catch(err => reject(err));
   });
 
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const addComment = (ticketID, comment) => dispatch =>
+export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const createComment = (ticketID, comment) => dispatch =>
   new Promise((resolve, reject) => {
     client.query(`
       mutation {

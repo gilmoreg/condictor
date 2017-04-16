@@ -64,6 +64,19 @@ describe('Reducers', () => {
     .toEqual(ticketState);
   });
 
+  it('should add a comment to a ticket on ADD_COMMENT', () => {
+    const updatedTicket = Object.assign({}, fakeTicket, { comments: [fakeComment, fakeComment] });
+    const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
+    const finalState = Object.assign({}, ticketState, { tickets: [updatedTicket] });
+    expect(
+      rootReducer(
+        ticketState,
+        { type: actions.ADD_COMMENT, id: 0, comment: fakeComment },
+      ),
+    )
+    .toEqual(finalState);
+  });
+
   it('should fill a consumer option on FILL_CONSUMER_OPTION', () => {
     const consumerState = Object.assign({}, initialState, { consumers: [fakeConsumer] });
     expect(
