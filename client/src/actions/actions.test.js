@@ -4,9 +4,13 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import { mockServer } from 'graphql-tools';
+import sinon from 'sinon';
 import * as actions from '.';
-import schema from '../../../graphql/schema';
+
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // application specific logging, throwing an error, or other logic here
+});
 
 const mockStore = configureMockStore([thunk]);
 
@@ -60,9 +64,6 @@ const root = {
   users: () => [fakeOwner],
   search: ({ consumer, product, owner, open }) => [fakeTicket],
 };
-
-console.log('mockServer args', schema, root);
-const myMockServer = mockServer(schema, root);
 
 describe('Sync Actions', () => {
   it('should create an action to fill a ticket', () => {
@@ -150,14 +151,35 @@ describe('Async Actions', () => {
         done();
       });
   });
+});
+/*
+describe('Async GraphQL actions', () => {
+  let server = null;
+  beforeEach(() => {
+    server = sinon.fakeServer.create();
+  });
+
+  afterEach(() => {
+    server.restore();
+  });
 
   it('should create an action to fill search options from the server', (done) => {
-    // TODO
-    done();
+    const okResponse = [
+      200,
+      { 'Content-type': 'application/json' },
+      '{"hello":"world"}',
+    ];
+    server.respondWith('POST', '/graphql', okResponse);
+    const store = mockStore(initialState);
+    store.dispatch(actions.searchTickets({}))
+      .then((res) => {
+        console.log('async search', res);
+        done();
+      });
   });
 
   it('should create an action to search for tickets', (done) => {
     // TODO
     done();
   });
-});
+}); */
