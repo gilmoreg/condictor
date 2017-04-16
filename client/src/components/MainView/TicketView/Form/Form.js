@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Form.css';
 import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
@@ -37,8 +38,8 @@ Form.defaultProps = {
 };
 
 Form.propTypes = {
-  activeTab: React.PropTypes.string,
-  close: React.PropTypes.func,
+  activeTab: PropTypes.string,
+  close: PropTypes.func,
 };
 
 export default Form;

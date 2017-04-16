@@ -61,6 +61,7 @@ const root = {
   search: ({ consumer, product, owner, open }) => [fakeTicket],
 };
 
+console.log('mockServer args', schema, root);
 const myMockServer = mockServer(schema, root);
 
 describe('Sync Actions', () => {

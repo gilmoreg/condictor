@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment-shortformat';
 import './Ticket.css';
 import Comment from './Comment/Comment';
@@ -45,26 +46,38 @@ class Ticket extends Component {
 }
 
 Ticket.defaultProps = {
-  ticket: {},
+  ticket: {
+    product: {
+      name: '',
+    },
+    consumer: {
+      name: '',
+    },
+    description: '',
+    owner: {
+      username: '',
+    },
+    comments: [],
+  },
 };
 
 Ticket.propTypes = {
-  ticket: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    product: React.PropTypes.shape({
-      name: React.PropTypes.string,
+  ticket: PropTypes.shape({
+    id: PropTypes.string,
+    product: PropTypes.shape({
+      name: PropTypes.string,
     }),
-    consumer: React.PropTypes.shape({
-      name: React.PropTypes.string,
+    consumer: PropTypes.shape({
+      name: PropTypes.string,
     }),
-    description: React.PropTypes.string,
-    owner: React.PropTypes.shape({
-      username: React.PropTypes.string,
+    description: PropTypes.string,
+    owner: PropTypes.shape({
+      username: PropTypes.string,
     }),
-    created: React.PropTypes.string,
-    priority: React.PropTypes.number,
-    closed: React.PropTypes.string,
-    comments: React.PropTypes.array,
+    created: PropTypes.string,
+    priority: PropTypes.number,
+    closed: PropTypes.string,
+    comments: PropTypes.array,
   }),
 };
 

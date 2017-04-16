@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import TicketListItem from './TicketListItem';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<TicketListItem />, div);
+  const wrapper = shallow(<TicketListItem />);
+  expect(wrapper.node.type).toEqual('div');
 });

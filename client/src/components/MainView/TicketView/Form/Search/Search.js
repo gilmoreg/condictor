@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from './Select';
 import * as actions from '../../../../../actions';
@@ -68,11 +69,11 @@ Search.defaultProps = {
 };
 
 Search.propTypes = {
-  dispatch: React.PropTypes.func,
-  options: React.PropTypes.shape({
-    consumers: React.PropTypes.array,
-    products: React.PropTypes.array,
-    owners: React.PropTypes.array,
+  dispatch: PropTypes.func,
+  options: PropTypes.shape({
+    consumers: PropTypes.array,
+    products: PropTypes.array,
+    owners: PropTypes.array,
   }),
 };
 

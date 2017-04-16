@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import { Search } from './Search';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Search />, div);
+  const wrapper = shallow(<Search />);
+  expect(wrapper.node.type).toEqual('form');
 });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Select extends Component {
   render() {
@@ -25,15 +26,16 @@ export default class Select extends Component {
 Select.defaultProps = {
   type: '',
   options: [],
+  handleChange: () => {},
 };
 
 Select.propTypes = {
-  options: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      id: React.PropTypes.string,
-      name: React.PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
     }),
   ),
-  type: React.PropTypes.string.isRequired,
-  handleChange: React.PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

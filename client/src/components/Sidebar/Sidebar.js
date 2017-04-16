@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Sidebar.css';
 
 class Sidebar extends Component {
@@ -36,7 +37,7 @@ Sidebar.defaultProps = {
 };
 
 Sidebar.propTypes = {
-  changeView: React.PropTypes.func,
+  changeView: PropTypes.func,
 };
 
 export default Sidebar;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment-shortformat';
 import './Comment.css';
 
@@ -16,17 +17,23 @@ class Comment extends Component {
 }
 
 Comment.defaultProps = {
-  comment: {},
+  comment: {
+    owner: {
+      username: '',
+    },
+    description: '',
+    created: '',
+  },
 };
 
 Comment.propTypes = {
-  comment: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    owner: React.PropTypes.shape({
-      username: React.PropTypes.string,
+  comment: PropTypes.shape({
+    id: PropTypes.string,
+    owner: PropTypes.shape({
+      username: PropTypes.string,
     }),
-    description: React.PropTypes.string,
-    created: React.PropTypes.string,
+    description: PropTypes.string,
+    created: PropTypes.string,
   }),
 };
 

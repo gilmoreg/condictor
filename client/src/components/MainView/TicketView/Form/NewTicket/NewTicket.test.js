@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import NewTicket from './NewTicket';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NewTicket />, div);
+  const wrapper = shallow(<NewTicket />);
+  expect(wrapper.node.type).toEqual('form');
 });

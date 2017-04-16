@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './HorizontalTab.css';
 
 class HorizontalTab extends Component {
@@ -17,8 +18,8 @@ HorizontalTab.defaultProps = {
 };
 
 HorizontalTab.propTypes = {
-  title: React.PropTypes.string,
-  onClick: React.PropTypes.func,
+  title: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default HorizontalTab;

@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import Comment from './Comment';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Comment />, div);
+  const wrapper = shallow(<Comment />);
+  expect(wrapper.node.type).toEqual('div');
 });

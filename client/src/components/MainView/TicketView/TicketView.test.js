@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import TicketView from './TicketView';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<TicketView />, div);
+  const wrapper = shallow(<TicketView />);
+  expect(wrapper.node.type).toEqual('div');
 });

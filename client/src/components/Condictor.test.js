@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import Condictor from './Condictor';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Condictor />, div);
+  const wrapper = shallow(<Condictor />);
+  expect(wrapper.node.type).toEqual('div');
 });

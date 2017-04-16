@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './MainView.css';
 import TicketView from './TicketView/TicketView';
 import StatsView from './StatsView/StatsView';
 import Login from './Login';
 
-class MainView extends Component {
+export class MainView extends Component {
   render() {
     let view;
     switch (this.props.activeView) {
@@ -27,7 +28,7 @@ MainView.defaultProps = {
 };
 
 MainView.propTypes = {
-  activeView: React.PropTypes.string,
+  activeView: PropTypes.string,
 };
 
 export default MainView;
