@@ -141,7 +141,7 @@ describe('Async Actions', () => {
       { logoutSuccess: true },
     );
     const expectedActions = [
-      { type: 'FILL_USER', user: { user: null } },
+      { type: 'FILL_USER', user: null },
     ];
     const store = mockStore(initialState);
     store.dispatch(actions.logout())

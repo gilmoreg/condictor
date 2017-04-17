@@ -22,7 +22,7 @@ export class AddComment extends Component {
   submit() {
     console.log('adding comment', this.props.ticketID, this.props.user);
     this.props.dispatch(createComment(this.props.ticketID, {
-      user: this.props.user,
+      owner: this.props.user,
       description: this.state.text,
     }));
   }

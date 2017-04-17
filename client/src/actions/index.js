@@ -82,7 +82,7 @@ export const login = credentials => dispatch =>
     dispatch(fillUser(res.user));  // todo more
   })
   .catch((err) => {
-    dispatch(fillUser({ user: null, error: 'Login failed' }));
+    dispatch(fillUser({ error: 'Login failed' }));
     console.log('LOGIN ERROR', err);
   });
 
@@ -92,7 +92,7 @@ export const logout = () => dispatch =>
     credentials: 'include',
   })
   .then(() => {
-    dispatch(fillUser({ user: null }));
+    dispatch(fillUser(null));
   });
 
 export const SESSION_CHECK = 'SESSION_CHECK';
@@ -102,8 +102,8 @@ export const sessionCheck = () => dispatch =>
   })
   .then(res => res.json())
   .then((res) => {
-    if (res.user) dispatch(fillUser({ user: res.user }));
-    else dispatch(fillUser({ user: null }));
+    if (res.user) dispatch(fillUser(res.user));
+    else dispatch(fillUser(null));
   });
 
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
