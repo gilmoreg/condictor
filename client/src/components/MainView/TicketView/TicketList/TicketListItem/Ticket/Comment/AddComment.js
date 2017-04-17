@@ -21,7 +21,6 @@ export class AddComment extends Component {
 
   submit() {
     this.textInput.value = '';
-    console.log('adding comment', this.props.ticketID, this.props.user);
     this.props.dispatch(createComment(this.props.ticketID, {
       owner: this.props.user,
       description: this.state.text,

@@ -5,7 +5,6 @@ import './Comment.css';
 
 class Comment extends Component {
   render() {
-    // console.log('Comment', this.props.comment);
     const { owner, description, created } = this.props.comment;
     const createDate = moment(created).short();
     return (
