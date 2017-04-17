@@ -4,7 +4,7 @@ const Lokka = require('lokka').Lokka;
 const Transport = require('lokka-transport-http').Transport;
 
 const client = new Lokka({
-  transport: new Transport('http://localhost:3001/graphql'),
+  transport: new Transport(`${API_URL}/graphql`),
 });
 
 // Sync Actions
