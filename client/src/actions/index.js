@@ -1,3 +1,5 @@
+import { API_URL } from '../config';
+
 const Lokka = require('lokka').Lokka;
 const Transport = require('lokka-transport-http').Transport;
 
@@ -62,7 +64,7 @@ export const fillUser = user => ({
 // Async Actions
 export const LOGIN = 'LOGIN';
 export const login = credentials => dispatch =>
-  fetch('http://localhost:3001/login', {
+  fetch(`${API_URL}/login`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -81,13 +83,13 @@ export const login = credentials => dispatch =>
   .then((res) => {
     dispatch(fillUser(res.user));
   })
-  .catch((err) => {
+  .catch(() => {
     dispatch(fillUser({ error: 'Login failed' }));
   });
 
 export const LOGOUT = 'LOGOUT';
 export const logout = () => dispatch =>
-  fetch('http://localhost:3001/logout', {
+  fetch(`${API_URL}/logout`, {
     credentials: 'include',
   })
   .then(() => {
@@ -96,7 +98,7 @@ export const logout = () => dispatch =>
 
 export const SESSION_CHECK = 'SESSION_CHECK';
 export const sessionCheck = () => dispatch =>
-  fetch('http://localhost:3001/check', {
+  fetch(`${API_URL}/check`, {
     credentials: 'include',
   })
   .then(res => res.json())
