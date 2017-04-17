@@ -47,7 +47,7 @@ export class Search extends Component {
         <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
         <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
         <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
-        <button type="submit" id="search-submit-button">Search</button>
+        <button type="submit" id="search-submit-button">Submit</button>
         <h4>Quick searches:</h4>
         <ul>
           <li><button id="quicksearch-allmyopen-button">All My Open</button></li>

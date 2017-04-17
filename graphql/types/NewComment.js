@@ -3,6 +3,7 @@
 import Comment from '../../models/Comment';
 import Ticket from '../../models/Ticket';
 import User from '../../models/User';
+import CommentHandler from './Comment';
 
 export default class NewCommentHandler {
   constructor(ticketID, input) {
@@ -10,7 +11,7 @@ export default class NewCommentHandler {
       return User.findOne({ username: input.owner })
         .then((user) => {
           if (!user) throw new Error('User not found.');
-          Comment.create({
+          return Comment.create({
             owner: user._id,
             description: input.description,
             created: Date.now(),
@@ -20,7 +21,8 @@ export default class NewCommentHandler {
             return Ticket.findByIdAndUpdate(
               ticketID,
               { $push: { comments: comment._id } },
-            );
+            )
+            .then(() => new CommentHandler(comment._id));
           });
         })
         .catch(err => new Error(err));
