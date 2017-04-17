@@ -17,7 +17,6 @@ export default class NewCommentHandler {
           })
           .then((comment) => {
             if (!comment) throw new Error('Comment not found.');
-            console.log('adding comment to ticket', ticketID, comment);
             return Ticket.findByIdAndUpdate(
               ticketID,
               { $push: { comments: comment._id } },
