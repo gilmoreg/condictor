@@ -3,3 +3,8 @@
   padding: 5px;
   background-color: olivedrab;
 }
+
+textarea {
+  width: 99%;
+  display: block;
+}
