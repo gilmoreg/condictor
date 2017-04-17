@@ -6,8 +6,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import { router } from './routes';
 import { logger } from './logger';
-
-require('dotenv').config();
+import { DATABASE_URL, PORT } from './config';
 
 const app = express();
 mongoose.Promise = global.Promise;
@@ -30,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-function runServer(databaseUrl = process.env.DATABASE_URL, port = process.env.PORT) {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
     /* eslint-disable consistent-return */
     mongoose.connect(databaseUrl, (err) => {

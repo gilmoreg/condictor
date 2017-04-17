@@ -2,8 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import User from '../models/User';
-
-require('dotenv').config();
+import { DATABASE_URL } from '../config';
 
 const MongoStore = require('connect-mongo')(session);
 const LocalStrategy = require('passport-local').Strategy;
@@ -42,7 +41,7 @@ router.use(session(
     secret: 'keyboard puma',
     resave: true,
     saveUninitialized: false,
-    store: new MongoStore({ url: process.env.DATABASE_URL }),
+    store: new MongoStore({ url: DATABASE_URL }),
   },
 ));
 router.use(passport.initialize());

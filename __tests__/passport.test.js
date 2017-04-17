@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
+import { TEST_DATABASE_URL, TEST_PORT } from '../config';
+
 const mongoose = require('mongoose');
 const request = require('supertest');
 const { app, runServer, closeServer } = require('../server');
-require('dotenv').config();
 
 mongoose.Promise = global.Promise;
 const agent = request.agent(app);
-const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
-const TEST_PORT = process.env.TEST_PORT;
 
 process.on('unhandledRejection', (err, p) => {
   console.log('An unhandledRejection occurred');

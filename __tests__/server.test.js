@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+import { TEST_DATABASE_URL, TEST_PORT } from '../config';
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { app, runServer, closeServer } = require('../server');
 
-const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
-const TEST_PORT = process.env.TEST_PORT;
 chai.use(chaiHttp);
 
 describe('Server Status', () => {
