@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addComment } from '../../../../../../../actions';
+import { createComment } from '../../../../../../../actions';
 import './AddComment.css';
 
 export class AddComment extends Component {
@@ -20,7 +20,11 @@ export class AddComment extends Component {
   }
 
   submit() {
-    this.props.dispatch(addComment(this.props.ticketID, this.state.text));
+    console.log('adding comment', this.props.ticketID, this.props.user);
+    this.props.dispatch(createComment(this.props.ticketID, {
+      user: this.props.user,
+      description: this.state.text,
+    }));
   }
 
   render() {
@@ -34,13 +38,19 @@ export class AddComment extends Component {
 }
 
 AddComment.defaultProps = {
+  user: '',
   ticketID: '',
   dispatch: () => {},
 };
 
 AddComment.propTypes = {
+  user: PropTypes.string,
   ticketID: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(AddComment);
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(AddComment);

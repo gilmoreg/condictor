@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Sidebar from './Sidebar/Sidebar';
 import MainView from './MainView/MainView';
+import { sessionCheck } from '../actions';
 import './Condictor.css';
 
-export default class Condictor extends Component {
+export class Condictor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeView: 'tickets',
     };
     this.changeView = this.changeView.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.dispatch(sessionCheck());
   }
 
   changeView(view) {
@@ -25,3 +32,13 @@ export default class Condictor extends Component {
     );
   }
 }
+
+Condictor.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+Condictor.defaultProps = {
+  dispatch: () => {},
+};
+
+export default connect()(Condictor);

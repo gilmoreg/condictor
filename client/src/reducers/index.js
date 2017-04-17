@@ -18,6 +18,7 @@ export default function rootReducer(state = initialState, action) {
       return Object.assign({}, state, { tickets: [...state.tickets, action.ticket] });
     }
     case actions.ADD_COMMENT: {
+      console.log('add comment reducer', action.id, action.comment);
       const tickets = state.tickets.map((ticket) => {
         if (`${action.id}` !== ticket.id) {
           return ticket;
@@ -25,6 +26,9 @@ export default function rootReducer(state = initialState, action) {
         return Object.assign({}, ticket, { comments: [...ticket.comments, action.comment] });
       });
       return Object.assign({}, state, { tickets });
+    }
+    case actions.CLEAR_SEARCH_OPTIONS: {
+      return Object.assign({}, state, { consumers: [], owners: [], products: [] });
     }
     case actions.FILL_CONSUMER_OPTION: {
       return Object.assign({}, state, { consumers: [...state.consumers, action.consumer] });

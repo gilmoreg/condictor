@@ -30,6 +30,11 @@ export const addComment = (id, comment) => ({
   comment,
 });
 
+export const CLEAR_SEARCH_OPTIONS = 'CLEAR_SEARCH_OPTIONS';
+export const clearSearchOptions = () => ({
+  type: CLEAR_SEARCH_OPTIONS,
+});
+
 export const FILL_CONSUMER_OPTION = 'FILL_CONSUMER_OPTION';
 export const fillConsumerOption = consumer => ({
   type: FILL_CONSUMER_OPTION,
@@ -88,6 +93,18 @@ export const logout = () => dispatch =>
   })
   .then(() => {
     dispatch(fillUser({ user: null }));
+  });
+
+export const SESSION_CHECK = 'SESSION_CHECK';
+export const sessionCheck = () => dispatch =>
+  fetch('http://localhost:3001/check', {
+    credentials: 'include',
+  })
+  .then(res => res.json())
+  .then((res) => {
+    console.log('session check', res);
+    if (res.user) dispatch(fillUser({ user: res.user }));
+    else dispatch(fillUser({ user: null }));
   });
 
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
@@ -171,6 +188,7 @@ export const fillSearchOptions = () => dispatch =>
     `)
     .then((options) => {
       if (!options) throw new Error('Server response empty');
+      dispatch(clearSearchOptions());
       const { consumers } = options.consumers;
       const { products } = options.products;
       const { users } = options.users;
@@ -185,6 +203,7 @@ export const fillSearchOptions = () => dispatch =>
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const createComment = (ticketID, comment) => dispatch =>
   new Promise((resolve, reject) => {
+    console.log('CREATE_COMMENT');
     client.query(`
       mutation {
         newComment(ticketID: "${ticketID}", input: { 
@@ -195,7 +214,8 @@ export const createComment = (ticketID, comment) => dispatch =>
       }
     `)
     .then((id) => {
-      if (id) dispatch(updateTicket(id, comment));
+      console.log('comment created', id);
+      // if (id) dispatch(updateTicket(id, comment));
     })
     .catch(err => reject(err));
   });

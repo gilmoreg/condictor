@@ -87,12 +87,17 @@ router.post('/signup', (req, res) => {
   });
 });
 
+router.get('/check', (req, res) => {
+  const user = (req.user && req.user.username) ? req.user.username : null;
+  res.status(200).json({ user });
+});
+
 router.get('/', (req, res) => {
   console.log('/', req.body);
   res.status(200).json({ success: true });
 });
 
-router.use('/graphql', /* isAuthenticated, */ graphqlHTTP({
+router.use('/graphql', isAuthenticated, graphqlHTTP({
   context: { loaders },
   schema,
   rootValue: root,
