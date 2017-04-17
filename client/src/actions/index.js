@@ -102,7 +102,6 @@ export const sessionCheck = () => dispatch =>
   })
   .then(res => res.json())
   .then((res) => {
-    console.log('session check', res);
     if (res.user) dispatch(fillUser({ user: res.user }));
     else dispatch(fillUser({ user: null }));
   });
