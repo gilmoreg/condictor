@@ -79,11 +79,10 @@ export const login = credentials => dispatch =>
     return res.json();
   })
   .then((res) => {
-    dispatch(fillUser(res.user));  // todo more
+    dispatch(fillUser(res.user));
   })
   .catch((err) => {
     dispatch(fillUser({ error: 'Login failed' }));
-    console.log('LOGIN ERROR', err);
   });
 
 export const LOGOUT = 'LOGOUT';
