@@ -18,9 +18,8 @@ export default function rootReducer(state = initialState, action) {
       return Object.assign({}, state, { tickets: [...state.tickets, action.ticket] });
     }
     case actions.ADD_COMMENT: {
-      console.log('add comment reducer', action.id, action.comment);
       const tickets = state.tickets.map((ticket) => {
-        if (`${action.id}` !== ticket.id) {
+        if (`${action.ticketID}` !== ticket.id) {
           return ticket;
         }
         return Object.assign({}, ticket, { comments: [...ticket.comments, action.comment] });

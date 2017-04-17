@@ -24,9 +24,9 @@ export const fillTicket = ticket => ({
 });
 
 export const ADD_COMMENT = 'ADD_COMMENT';
-export const addComment = (id, comment) => ({
+export const addComment = (ticketID, comment) => ({
   type: ADD_COMMENT,
-  id,
+  ticketID,
   comment,
 });
 
@@ -209,12 +209,16 @@ export const createComment = (ticketID, comment) => dispatch =>
           owner: "${comment.owner}", description: "${comment.description}"
         }) {
           id
+          owner {
+            username
+          }
+          description
         }
       }
     `)
-    .then((id) => {
-      console.log('comment created', id);
-      // if (id) dispatch(updateTicket(id, comment));
+    .then((newComment) => {
+      console.log('comment created', newComment);
+      if (newComment) dispatch(addComment(ticketID, newComment.newComment));
     })
     .catch(err => reject(err));
   });

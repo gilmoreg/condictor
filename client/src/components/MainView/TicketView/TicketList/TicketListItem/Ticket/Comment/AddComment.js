@@ -20,6 +20,7 @@ export class AddComment extends Component {
   }
 
   submit() {
+    this.textInput.value = '';
     console.log('adding comment', this.props.ticketID, this.props.user);
     this.props.dispatch(createComment(this.props.ticketID, {
       owner: this.props.user,
@@ -30,7 +31,7 @@ export class AddComment extends Component {
   render() {
     return (
       <div className="AddComment">
-        <textarea onChange={this.handleChange} />
+        <textarea onChange={this.handleChange} ref={(input) => { this.textInput = input; }} />
         <button onClick={this.submit}>Add Comment</button>
       </div>
     );
