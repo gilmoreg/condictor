@@ -202,7 +202,6 @@ export const fillSearchOptions = () => dispatch =>
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const createComment = (ticketID, comment) => dispatch =>
   new Promise((resolve, reject) => {
-    console.log('CREATE_COMMENT');
     client.query(`
       mutation {
         newComment(ticketID: "${ticketID}", input: { 
@@ -217,7 +216,6 @@ export const createComment = (ticketID, comment) => dispatch =>
       }
     `)
     .then((newComment) => {
-      console.log('comment created', newComment);
       if (newComment) dispatch(addComment(ticketID, newComment.newComment));
     })
     .catch(err => reject(err));
