@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { login } from '../../actions';
 import './Login.css';
 
-export class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
@@ -65,5 +64,3 @@ Login.propTypes = {
 Login.defaultProps = {
   dispatch: null,
 };
-
-export default connect()(Login);

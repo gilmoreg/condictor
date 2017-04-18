@@ -10,7 +10,7 @@ export class Condictor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeView: 'tickets',
+      activeView: 'login',
     };
     this.changeView = this.changeView.bind(this);
   }
