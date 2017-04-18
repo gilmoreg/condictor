@@ -14,6 +14,7 @@ export class Search extends Component {
       consumer: '',
       product: '',
       owner: '',
+      open: true,
     };
   }
 
@@ -27,6 +28,7 @@ export class Search extends Component {
       case 'search-consumer': options.consumer = e.target.value; break;
       case 'search-product': options.product = e.target.value; break;
       case 'search-owner': options.owner = e.target.value; break;
+      case 'open-checkbox': options.open = e.target.checked; break;
       default: options = this.state;
     }
     this.setState(options);
@@ -38,6 +40,7 @@ export class Search extends Component {
     if (this.state.consumer) searchOptions.consumer = this.state.consumer;
     if (this.state.product) searchOptions.product = this.state.product;
     if (this.state.owner) searchOptions.owner = this.state.owner;
+    if (this.state.open) searchOptions.open = this.state.open;
     this.props.dispatch(actions.searchTickets(searchOptions));
   }
 
@@ -47,13 +50,9 @@ export class Search extends Component {
         <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
         <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
         <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
+        <label htmlFor="open-checkbox">Open</label>
+        <input type="checkbox" onChange={this.handleChange} id="open-checkbox" value="open" />
         <button type="submit" id="search-submit-button">Submit</button>
-        <h4>Quick searches:</h4>
-        <ul>
-          <li><button id="quicksearch-allmyopen-button">All My Open</button></li>
-          <li><button id="quicksearch-allopen-button">All Open</button></li>
-          <li><button id="quicksearch-allmine-button">All Mine</button></li>
-        </ul>
       </form>
     );
   }
@@ -66,6 +65,7 @@ Search.defaultProps = {
     owners: [],
   },
   dispatch: () => {},
+  user: null,
 };
 
 Search.propTypes = {
@@ -75,6 +75,7 @@ Search.propTypes = {
     products: PropTypes.array,
     owners: PropTypes.array,
   }),
+  user: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -83,6 +84,7 @@ const mapStateToProps = state => ({
     products: state.products,
     owners: state.owners,
   },
+  user: state.user,
 });
 
 export default connect(mapStateToProps)(Search);

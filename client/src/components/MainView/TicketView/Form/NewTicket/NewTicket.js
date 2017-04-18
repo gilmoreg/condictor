@@ -14,8 +14,6 @@ class NewTicket extends Component {
   render() {
     return (
       <form className="NewTicket" onSubmit={this.submitNewTicket}>
-        <label htmlFor="new-ticket-title">Title</label>
-        <input id="new-ticket-title" type="text" placeholder="Title" />
         <label htmlFor="new-ticket-priority">Priority</label>
         <select id="new-ticket-priority">
           <option>1</option>
@@ -24,13 +22,6 @@ class NewTicket extends Component {
           <option>4</option>
           <option>5</option>
         </select>
-        <label htmlFor="new-ticket-category">Category</label>
-        <input
-          id="new-ticket-category"
-          type="text"
-          placeholder="Category"
-          list="new-ticket-category-list"
-        />
         <datalist id="new-ticket-category-list">
           <option value="Technical" />
           <option value="Billing" />

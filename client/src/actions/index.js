@@ -114,7 +114,10 @@ export const searchTickets = params => dispatch =>
     if (Object.keys(params).length) {
       options = '(';
       Object.keys(params).forEach((key) => {
-        options += `${key}: "${params[key]}" `;
+        // 'open' is a boolean, cannot have quote marks
+        console.log('search ticket key', key);
+        if (key === 'open') options += `${key}: ${params[key]} `;
+        else options += `${key}: "${params[key]}" `;
       });
       options += ')';
     }

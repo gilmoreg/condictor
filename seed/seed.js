@@ -31,6 +31,7 @@ function generateUsers(num) {
       const user = { username: faker.name.firstName(), password: 'test', fullname: faker.name.findName() };
       promises.push(schemas.User.create(user));
     }
+    promises.push(schemas.User.create({ username: 'demo', password: 'demo', fullname: 'demo' }));
     Promise.all(promises)
       .then((users) => {
         const userIDs = users.map(user => user._id);

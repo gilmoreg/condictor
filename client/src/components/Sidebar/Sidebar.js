@@ -12,9 +12,8 @@ class Sidebar extends Component {
     e.preventDefault();
     switch (e.target.innerText) {
       case 'tickets': this.props.changeView('tickets'); break;
-      case 'stats': this.props.changeView('stats'); break;
       case 'login': this.props.changeView('login'); break;
-      default: this.props.changeView('none');
+      default: this.props.changeView('login');
     }
   }
 
@@ -24,7 +23,6 @@ class Sidebar extends Component {
         <img className="logo" src="" alt="" />
         <ul>
           <li><button onClick={this.changeView}>tickets</button></li>
-          <li><button onClick={this.changeView}>stats</button></li>
           <li><button onClick={this.changeView}>login</button></li>
         </ul>
       </div>
