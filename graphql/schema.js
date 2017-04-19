@@ -136,10 +136,8 @@ export const root = {
     new Handlers.StatsHandler(),
   search: ({ consumer, product, owner, open }) =>
     new Handlers.SearchHandler(consumer, product, owner, open),
-  newComment: ({ ticketID, input }) => {
-    console.log('newComment Root', ticketID, input);
-    return new Handlers.NewCommentHandler(ticketID, input);
-  },
+  newComment: ({ ticketID, input }) =>
+    new Handlers.NewCommentHandler(ticketID, input),
   newTicket: ({ input }) =>
     new Handlers.NewTicketHandler(input),
   updateTicket: ({ id, ticket }) =>
