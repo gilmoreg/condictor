@@ -10,7 +10,6 @@ const TicketSchema = mongoose.Schema({
   created: Date,
   closed: Date,
   priority: String,
-  category: String,
   comments: [mongoose.Schema.Types.ObjectId],
 });
 

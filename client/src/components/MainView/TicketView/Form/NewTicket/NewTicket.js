@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Select from '../Select';
+import * as actions from '../../../../../actions';
 import './NewTicket.css';
 
 class NewTicket extends Component {
@@ -7,38 +11,27 @@ class NewTicket extends Component {
     this.submitNewTicket = this.submitNewTicket.bind(this);
   }
 
+  componentWillMount() {
+    this.props.dispatch(actions.fillSearchOptions());
+  }
+
   submitNewTicket(e) {
     e.preventDefault();
+    /*
+      owner: "${fields.owner}",
+      priority: "${fields.product}",
+      description: "${fields.description}",
+      consumer: "${fields.consumer}",
+      product: "${fields.product}"
+    */
+    this.props.dispatch(actions.newTicket());
   }
 
   render() {
     return (
       <form className="NewTicket" onSubmit={this.submitNewTicket}>
-        <label htmlFor="new-ticket-priority">Priority</label>
-        <select id="new-ticket-priority">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-        <datalist id="new-ticket-category-list">
-          <option value="Technical" />
-          <option value="Billing" />
-          <option value="Feedback" />
-        </datalist>
-        <label htmlFor="new-ticket-resource">Resource</label>
-        <input
-          id="new-ticket-resource"
-          type="text"
-          placeholder="Resource"
-          list="new-ticket-resource-list"
-        />
-        <datalist id="new-ticket-resource-list">
-          <option value="Condictor v0.1" />
-          <option value="Condictor v0.2" />
-          <option value="PeopleSoft v9.2 HR Deployment" />
-        </datalist>
+        <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
+        <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
         <label htmlFor="new-ticket-desc">Description</label>
         <textarea id="new-ticket-desc" rows="5" />
         <button type="submit" id="new-ticket-submit-button">Create</button>
@@ -47,5 +40,30 @@ class NewTicket extends Component {
   }
 }
 
-export default NewTicket;
+NewTicket.defaultProps = {
+  options: {
+    consumers: [],
+    products: [],
+  },
+  dispatch: () => {},
+  user: null,
+};
+
+NewTicket.propTypes = {
+  dispatch: PropTypes.func,
+  options: PropTypes.shape({
+    consumers: PropTypes.array,
+    products: PropTypes.array,
+  }),
+};
+
+const mapStateToProps = state => ({
+  user: state.user,
+  options: {
+    consumers: state.consumers,
+    products: state.products,
+  },
+});
+
+export default connect(mapStateToProps)(NewTicket);
 

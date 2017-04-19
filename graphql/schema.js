@@ -140,8 +140,8 @@ export const root = {
     console.log('newComment Root', ticketID, input);
     return new Handlers.NewCommentHandler(ticketID, input);
   },
-  newTicket: ({ ticket }) =>
-    new Handlers.NewTicketHandler(ticket),
+  newTicket: ({ input }) =>
+    new Handlers.NewTicketHandler(input),
   updateTicket: ({ id, ticket }) =>
     new Handlers.UpdateTicketHandler(id, ticket),
 };

@@ -32,6 +32,12 @@ export const addComment = (ticketID, comment) => ({
   comment,
 });
 
+export const ADD_TICKET = 'ADD_TICKET';
+export const addTicket = ticket => ({
+  type: ADD_TICKET,
+  ticket,
+});
+
 export const CLEAR_SEARCH_OPTIONS = 'CLEAR_SEARCH_OPTIONS';
 export const clearSearchOptions = () => ({
   type: CLEAR_SEARCH_OPTIONS,
@@ -221,6 +227,49 @@ export const createComment = (ticketID, comment) => dispatch =>
     `)
     .then((newComment) => {
       if (newComment) dispatch(addComment(ticketID, newComment.newComment));
+    })
+    .catch(err => reject(err));
+  });
+
+export const CREATE_TICKET = 'CREATE_TICKET';
+export const createTicket = fields => dispatch =>
+  new Promise((resolve, reject) => {
+    client.query(`
+      mutation {
+        newTicket(input: {
+          owner: "${fields.owner}",
+          priority: "${fields.product}",
+          description: "${fields.description}",
+          consumer: "${fields.consumer}",
+          product: "${fields.product}"
+        }) {
+          id
+          priority
+          created
+          closed
+          owner {
+            username
+          }
+          description
+          consumer {
+            name
+          }
+          product {
+            name
+          }
+          comments {
+            id
+            created
+            owner {
+              username
+            }
+            description
+          }
+        }
+      }
+    `)
+    .then((newTicket) => {
+      if (newTicket) dispatch(addTicket(newTicket));
     })
     .catch(err => reject(err));
   });

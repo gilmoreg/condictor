@@ -39,8 +39,7 @@ class Ticket extends Component {
         </ul>
         {comments}
         <AddComment ticketID={this.props.ticket.id} />
-        <button>Edit</button>
-        <button>Close</button>
+        {closed ? '' : <button>Close Ticket</button>}
       </div>
     );
   }

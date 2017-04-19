@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Select from './Select';
+import Select from '../Select';
 import * as actions from '../../../../../actions';
 import './Search.css';
 
@@ -75,7 +75,6 @@ Search.propTypes = {
     products: PropTypes.array,
     owners: PropTypes.array,
   }),
-  user: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -84,7 +83,6 @@ const mapStateToProps = state => ({
     products: state.products,
     owners: state.owners,
   },
-  user: state.user,
 });
 
 export default connect(mapStateToProps)(Search);
