@@ -1,11 +1,3 @@
-/*
-owner: "${fields.owner}",
-priority: "${fields.product}",
-description: "${fields.description}",
-consumer: "${fields.consumer}",
-product: "${fields.product}"
-*/
-
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 import User from '../../models/User';
