@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import moment from 'moment-shortformat';
 import './Ticket.css';
 import Comment from './Comment/Comment';
 import AddComment from './Comment/AddComment';
+import { closeTicket } from '../../../../../../actions';
 
 class Ticket extends Component {
+  constructor(props) {
+    super(props);
+    this.closeTicket = this.closeTicket.bind(this);
+  }
+
+  closeTicket() {
+    this.props.dispatch(closeTicket(this.props.ticket.id, Date.now()));
+  }
+
   render() {
     const {
       product,
@@ -39,7 +50,7 @@ class Ticket extends Component {
         </ul>
         {comments}
         <AddComment ticketID={this.props.ticket.id} />
-        {closed ? '' : <button>Close Ticket</button>}
+        {closed ? '' : <button onClick={this.closeTicket}>Close Ticket</button>}
       </div>
     );
   }
@@ -59,6 +70,7 @@ Ticket.defaultProps = {
     },
     comments: [],
   },
+  dispatch: () => {},
 };
 
 Ticket.propTypes = {
@@ -79,6 +91,7 @@ Ticket.propTypes = {
     closed: PropTypes.string,
     comments: PropTypes.array,
   }),
+  dispatch: PropTypes.func,
 };
 
-export default Ticket;
+export default connect()(Ticket);

@@ -17,6 +17,15 @@ export default function rootReducer(state = initialState, action) {
     case actions.FILL_TICKET: {
       return Object.assign({}, state, { tickets: [...state.tickets, action.ticket] });
     }
+    case actions.MARK_TICKET_CLOSED: {
+      const tickets = state.tickets.map((ticket) => {
+        if (action.id !== ticket.id) {
+          return ticket;
+        }
+        return Object.assign({}, ticket, { closed: action.closed });
+      });
+      return Object.assign({}, state, { tickets });
+    }
     case actions.ADD_COMMENT: {
       const tickets = state.tickets.map((ticket) => {
         if (`${action.ticketID}` !== ticket.id) {

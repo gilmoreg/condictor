@@ -19,6 +19,13 @@ export const updateTicket = ticket => ({
   ticket,
 });
 
+export const MARK_TICKET_CLOSED = 'MARK_TICKET_CLOSED';
+export const markTicketClosed = (id, closed) => ({
+  type: MARK_TICKET_CLOSED,
+  id,
+  closed,
+});
+
 export const FILL_TICKET = 'FILL_TICKET';
 export const fillTicket = ticket => ({
   type: FILL_TICKET,
@@ -226,7 +233,10 @@ export const createComment = (ticketID, comment) => dispatch =>
       }
     `)
     .then((newComment) => {
-      if (newComment) dispatch(addComment(ticketID, newComment.newComment));
+      if (newComment) {
+        dispatch(addComment(ticketID, newComment.newComment));
+        resolve(newComment);
+      }
     })
     .catch(err => reject(err));
   });
@@ -269,7 +279,28 @@ export const createTicket = fields => dispatch =>
       }
     `)
     .then((newTicket) => {
-      if (newTicket) dispatch(addTicket(newTicket));
+      if (newTicket) {
+        dispatch(addTicket(newTicket));
+        resolve(newTicket);
+      }
+    })
+    .catch(err => reject(err));
+  });
+
+export const CLOSE_TICKET = 'CLOSE_TICKET';
+export const closeTicket = id => dispatch =>
+  new Promise((resolve, reject) => {
+    client.query(`
+      mutation {
+        closeTicket(id: "${id}") {
+          id
+          closed
+        }
+      }
+    `)
+    .then((ticket) => {
+      dispatch(markTicketClosed(ticket.id, ticket.closed));
+      resolve(ticket);
     })
     .catch(err => reject(err));
   });
