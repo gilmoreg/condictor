@@ -14,7 +14,7 @@ export class Search extends Component {
       consumer: '',
       product: '',
       owner: '',
-      open: true,
+      open: false,
     };
   }
 
@@ -50,7 +50,7 @@ export class Search extends Component {
         <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
         <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
         <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
-        <label htmlFor="open-checkbox">Open</label>
+        <label htmlFor="open-checkbox">Only Open</label>
         <input type="checkbox" onChange={this.handleChange} id="open-checkbox" value="open" />
         <button type="submit" id="search-submit-button">Submit</button>
       </form>
