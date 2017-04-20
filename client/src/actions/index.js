@@ -238,7 +238,7 @@ export const createTicket = fields => dispatch =>
       mutation {
         newTicket(input: {
           owner: "${fields.owner}",
-          priority: "${fields.product}",
+          priority: ${fields.priority},
           description: "${fields.description}",
           consumer: "${fields.consumer}",
           product: "${fields.product}"

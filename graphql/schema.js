@@ -110,6 +110,7 @@ export const schema = buildSchema(`
     newComment(ticketID: String!, input: NewComment): Comment
     newTicket(input: NewTicket): Ticket
     updateTicket(id: String!, input: UpdateTicket): Ticket
+    closeTicket(id: String!): Ticket
   }
 `);
 
@@ -140,6 +141,6 @@ export const root = {
     new Handlers.NewCommentHandler(ticketID, input),
   newTicket: ({ input }) =>
     new Handlers.NewTicketHandler(input),
-  updateTicket: ({ id, ticket }) =>
-    new Handlers.UpdateTicketHandler(id, ticket),
+  closeTicket: ({ id }) =>
+    new Handlers.CloseTicketHandler(id),
 };

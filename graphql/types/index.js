@@ -1,3 +1,4 @@
+import CloseTicketHandler from './CloseTicket';
 import CommentHandler from './Comment';
 import ConsumerHandler from './Consumer';
 import ConsumersHandler from './Consumers';
@@ -14,6 +15,7 @@ import UsersHandler from './Users';
 import UserStatsHandler from './UserStats';
 
 module.exports = {
+  CloseTicketHandler,
   CommentHandler,
   ConsumerHandler,
   ConsumersHandler,
