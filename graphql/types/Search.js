@@ -45,7 +45,7 @@ export default class SearchHandler {
         .then((options) => {
           let dbOptions = {};
           const searchOptions = options;
-          if (this.open) searchOptions.push({ open: this.open });
+          if (this.open) searchOptions.push({ closed: { $exists: false } });
           // See if we ended up with any search options. If not, send an empty object
           // (Mongo will complain about an $and with an empty array)
           if (searchOptions.length) dbOptions = { $and: [...searchOptions] };
