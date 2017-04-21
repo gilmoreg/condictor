@@ -51,13 +51,21 @@ describe('Reducers', () => {
     expect(
       rootReducer(
         ticketState,
-        { type: actions.ADD_COMMENT, id: 0, comment: fakeComment },
+        { type: actions.ADD_COMMENT, ticketID: 0, comment: fakeComment },
       ),
     )
     .toEqual(finalState);
   });
 
-  // CLEAR_SEARCH_OPTIONS
+  it('should clear search options on CLEAR_SEARCH_OPTIONS', () => {
+    const options = {
+      consumers: [fakeConsumer],
+      owners: [fakeOwner],
+      products: [fakeProduct],
+    };
+    const searchState = Object.assign({}, initialState, options);
+    expect(rootReducer(searchState, { type: actions.CLEAR_SEARCH_OPTIONS })).toEqual(initialState);
+  });
 
   it('should clear tickets on CLEAR_TICKETS', () => {
     const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });

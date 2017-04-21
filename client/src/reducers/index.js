@@ -18,6 +18,7 @@ export default function rootReducer(state = initialState, action) {
         }
         return Object.assign({}, ticket, { comments: [...ticket.comments, action.comment] });
       });
+      console.log('add_comment', tickets[0].comments);
       return Object.assign({}, state, { tickets });
     }
 
