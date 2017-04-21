@@ -248,7 +248,6 @@ describe('Async GraphQL actions', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.searchTickets({}))
       .then((res) => {
-        console.log('async search', res);
         done();
       });
   });

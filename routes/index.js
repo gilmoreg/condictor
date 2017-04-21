@@ -10,10 +10,8 @@ const router = express.Router();
 /* eslint-disable consistent-return */
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log('isAuthenticated success', req.user);
     return next();
   }
-  console.log('isAuthenticated failure', req.session);
   res.json({ message: 'Not authenticated.' }).end();
 };
 
@@ -75,7 +73,6 @@ router.post('/signup', (req, res) => {
   .then((user) => {
     req.login(user, (err) => {
       if (!err) {
-        console.log('/signup successful, returning status 201');
         return res.status(201).json({ message: 'Signup and login successful',
           user: user.username });
       }
@@ -93,7 +90,6 @@ router.get('/check', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  console.log('/', req.body);
   res.status(200).json({ success: true });
 });
 
@@ -105,7 +101,6 @@ router.use('/graphql', isAuthenticated, graphqlHTTP({
 }));
 
 router.get('/logout', isAuthenticated, (req, res) => {
-  console.log('/logout', req.body);
   req.logout();
   res.json({ logoutSuccess: true }); // .redirect('/nowhere');
 });

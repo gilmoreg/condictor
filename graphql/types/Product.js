@@ -11,10 +11,7 @@ export default class ProductHandler {
           this.product = product;
           resolve(product);
         })
-        .catch((err) => {
-          console.log('err fetching product', err);
-          reject(err);
-        });
+        .catch(err => reject(err));
     });
   }
   id() {

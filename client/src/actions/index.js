@@ -110,7 +110,6 @@ export const sessionCheck = () => dispatch =>
   })
   .then(res => res.json())
   .then((res) => {
-    console.log('session check', res);
     if (res.user) dispatch(fillUser(res.user));
     else dispatch(fillUser(null));
   });
@@ -252,7 +251,6 @@ export const searchTickets = params => dispatch =>
       options = '(';
       Object.keys(params).forEach((key) => {
         // 'open' is a boolean, cannot have quote marks
-        console.log('search ticket key', key);
         if (key === 'open') options += `${key}: ${params[key]} `;
         else options += `${key}: "${params[key]}" `;
       });

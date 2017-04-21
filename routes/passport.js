@@ -49,14 +49,11 @@ router.use(passport.session());
 
 
 passport.serializeUser((user, done) => {
-  console.log('serializeUser', user);
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  console.log('deserializeUser', id);
   User.findById(id, (err, user) => {
-    console.log('deserialized', err, user);
     done(err, user);
   });
 });

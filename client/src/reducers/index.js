@@ -9,7 +9,6 @@ const initialState = {
 };
 
 export default function rootReducer(state = initialState, action) {
-  console.log(action.type, 'dispatched');
   switch (action.type) {
     case actions.ADD_COMMENT: {
       const tickets = state.tickets.map((ticket) => {
@@ -18,7 +17,6 @@ export default function rootReducer(state = initialState, action) {
         }
         return Object.assign({}, ticket, { comments: [...ticket.comments, action.comment] });
       });
-      console.log('add_comment', tickets[0].comments);
       return Object.assign({}, state, { tickets });
     }
 

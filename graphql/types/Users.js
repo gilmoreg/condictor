@@ -11,10 +11,7 @@ export default class UsersHandler {
           products.map(product => new UserHandler(product._id));
           resolve(products);
         })
-        .catch((err) => {
-          console.log('err fetching users', err);
-          reject(err);
-        });
+        .catch(err => reject(err));
     });
   }
 }

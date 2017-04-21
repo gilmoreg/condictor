@@ -11,10 +11,7 @@ export default class ProductsHandler {
           products.map(product => new ProductHandler(product._id));
           resolve(products);
         })
-        .catch((err) => {
-          console.log('err fetching products', err);
-          reject(err);
-        });
+        .catch(err => reject(err));
     });
   }
 }
