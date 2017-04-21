@@ -44,26 +44,6 @@ const fakeTicket = {
 };
 
 describe('Reducers', () => {
-  it('should return current state on undefined action', () => {
-    expect(rootReducer(initialState, { type: undefined })).toEqual(initialState);
-  });
-
-  it('should clear tickets on CLEAR_TICKETS', () => {
-    const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
-    expect(rootReducer(ticketState, { type: actions.CLEAR_TICKETS })).toEqual(initialState);
-  });
-
-  it('should fill a ticket on FILL_TICKET', () => {
-    const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
-    expect(
-      rootReducer(
-        initialState,
-        { type: actions.FILL_TICKET, ticket: fakeTicket },
-      ),
-    )
-    .toEqual(ticketState);
-  });
-
   it('should add a comment to a ticket on ADD_COMMENT', () => {
     const updatedTicket = Object.assign({}, fakeTicket, { comments: [fakeComment, fakeComment] });
     const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
@@ -75,6 +55,13 @@ describe('Reducers', () => {
       ),
     )
     .toEqual(finalState);
+  });
+
+  // CLEAR_SEARCH_OPTIONS
+
+  it('should clear tickets on CLEAR_TICKETS', () => {
+    const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
+    expect(rootReducer(ticketState, { type: actions.CLEAR_TICKETS })).toEqual(initialState);
   });
 
   it('should fill a consumer option on FILL_CONSUMER_OPTION', () => {
@@ -110,6 +97,18 @@ describe('Reducers', () => {
     .toEqual(productState);
   });
 
+
+  it('should fill a ticket on FILL_TICKET', () => {
+    const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
+    expect(
+      rootReducer(
+        initialState,
+        { type: actions.FILL_TICKET, ticket: fakeTicket },
+      ),
+    )
+    .toEqual(ticketState);
+  });
+
   it('should fill a user on FILL_USER', () => {
     const userState = Object.assign({}, initialState, { user: 'test' });
     expect(
@@ -119,5 +118,11 @@ describe('Reducers', () => {
       ),
     )
     .toEqual(userState);
+  });
+
+  // MARK_TICKET_CLOSED
+
+  it('should return current state on undefined action', () => {
+    expect(rootReducer(initialState, { type: undefined })).toEqual(initialState);
   });
 });
