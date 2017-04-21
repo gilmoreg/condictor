@@ -7,11 +7,6 @@ import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
 import * as actions from '.';
 
-process.on('unhandledRejection', (reason, p) => {
-  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-  // application specific logging, throwing an error, or other logic here
-});
-
 const mockStore = configureMockStore([thunk]);
 
 const fakeOwner = {
@@ -66,14 +61,9 @@ const root = {
 };
 
 describe('Sync Actions', () => {
-  it('should create an action to fill a ticket', () => {
-    const expectedAction = {
-      type: actions.FILL_TICKET,
-      ticket: fakeTicket,
-    };
-    expect(actions.fillTicket(fakeTicket)).toEqual(expectedAction);
-  });
-
+  // ADD_COMMENT
+  // ADD_TICKET
+  // CLEAR_SEARCH_OPTIONS
   it('should create an action to clear tickets', () => {
     const expectedAction = {
       type: actions.CLEAR_TICKETS,
@@ -104,22 +94,32 @@ describe('Sync Actions', () => {
     };
     expect(actions.fillProductOption(fakeProduct)).toEqual(expectedAction);
   });
+
+  it('should create an action to fill a ticket', () => {
+    const expectedAction = {
+      type: actions.FILL_TICKET,
+      ticket: fakeTicket,
+    };
+    expect(actions.fillTicket(fakeTicket)).toEqual(expectedAction);
+  });
+
+  it('should create an action to fill a User', () => {
+    const expectedAction = {
+      type: actions.FILL_USER,
+      user: 'test',
+    };
+    expect(actions.fillUser('test')).toEqual(expectedAction);
+  });
+
+  // MARK_TICKET_CLOSED
 });
 
-it('should create an action to fill a User', () => {
-  const expectedAction = {
-    type: actions.FILL_USER,
-    user: 'test',
-  };
-  expect(actions.fillUser('test')).toEqual(expectedAction);
-});
-
-describe('Async Actions', () => {
+describe('Async Non-GraphQL Actions', () => {
   afterEach(() => {
     fetchMock.reset();
   });
 
-  it('should dispatch FILL_USER with valid data from the server', (done) => {
+  it('LOGIN should dispatch FILL_USER with valid data from the server', (done) => {
     fetchMock.mock('http://localhost:3001/login',
       { message: 'Login successful', user: 'test' },
       { method: 'post' },
@@ -136,7 +136,7 @@ describe('Async Actions', () => {
       });
   });
 
-  it('should dispatch FILL_USER with a null user after logout', (done) => {
+  it('LOGOUT should dispatch FILL_USER with a null user after logout', (done) => {
     fetchMock.mock('http://localhost:3001/logout',
       { logoutSuccess: true },
     );
@@ -151,9 +151,20 @@ describe('Async Actions', () => {
         done();
       });
   });
+
+  // SESSION_CHECK
 });
+
 /*
 describe('Async GraphQL actions', () => {
+
+  // CLOSE_TICKET
+  // CREATE_COMMENT
+  // CREATE_TICKET
+  // FILL_SEARCH_OPTIONS
+  // SEARCH_TICKETS
+
+
   let server = null;
   beforeEach(() => {
     server = sinon.fakeServer.create();

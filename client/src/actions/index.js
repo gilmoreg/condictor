@@ -68,13 +68,53 @@ export const markTicketClosed = (id, closed) => ({
   closed,
 });
 
-export const UPDATE_TICKET = 'UPDATE_TICKET';
-export const updateTicket = ticket => ({
-  type: UPDATE_TICKET,
-  ticket,
-});
+// Async Non-GraphQL Actions
+export const LOGIN = 'LOGIN';
+export const login = credentials => dispatch =>
+  fetch(`${API_URL}/login`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json, */*',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: credentials.username,
+      password: credentials.password,
+    }),
+  })
+  .then((res) => {
+    if (res.status !== 200) throw new Error('Login failed');
+    return res.json();
+  })
+  .then((res) => {
+    dispatch(fillUser(res.user));
+  })
+  .catch(() => {
+    dispatch(fillUser({ error: 'Login failed' }));
+  });
 
-// Async Actions
+export const LOGOUT = 'LOGOUT';
+export const logout = () => dispatch =>
+  fetch(`${API_URL}/logout`, {
+    credentials: 'include',
+  })
+  .then(() => {
+    dispatch(fillUser(null));
+  });
+
+export const SESSION_CHECK = 'SESSION_CHECK';
+export const sessionCheck = () => dispatch =>
+  fetch(`${API_URL}/check`, {
+    credentials: 'include',
+  })
+  .then(res => res.json())
+  .then((res) => {
+    if (res.user) dispatch(fillUser(res.user));
+    else dispatch(fillUser(null));
+  });
+
+// Async GraphQL Actions
 export const CLOSE_TICKET = 'CLOSE_TICKET';
 export const closeTicket = id => dispatch =>
   new Promise((resolve, reject) => {
@@ -203,40 +243,6 @@ export const fillSearchOptions = () => dispatch =>
     .catch(err => reject(err));
   });
 
-export const LOGIN = 'LOGIN';
-export const login = credentials => dispatch =>
-  fetch(`${API_URL}/login`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      Accept: 'application/json, */*',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username: credentials.username,
-      password: credentials.password,
-    }),
-  })
-  .then((res) => {
-    if (res.status !== 200) throw new Error('Login failed');
-    return res.json();
-  })
-  .then((res) => {
-    dispatch(fillUser(res.user));
-  })
-  .catch(() => {
-    dispatch(fillUser({ error: 'Login failed' }));
-  });
-
-export const LOGOUT = 'LOGOUT';
-export const logout = () => dispatch =>
-  fetch(`${API_URL}/logout`, {
-    credentials: 'include',
-  })
-  .then(() => {
-    dispatch(fillUser(null));
-  });
-
 export const SEARCH_TICKETS = 'SEARCH_TICKETS';
 export const searchTickets = params => dispatch =>
   new Promise((resolve, reject) => {
@@ -292,15 +298,4 @@ export const searchTickets = params => dispatch =>
       }
     })
     .catch(err => reject(err));
-  });
-
-export const SESSION_CHECK = 'SESSION_CHECK';
-export const sessionCheck = () => dispatch =>
-  fetch(`${API_URL}/check`, {
-    credentials: 'include',
-  })
-  .then(res => res.json())
-  .then((res) => {
-    if (res.user) dispatch(fillUser(res.user));
-    else dispatch(fillUser(null));
   });
