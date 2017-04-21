@@ -5,5 +5,5 @@ import { Auth } from './Auth';
 
 it('renders without crashing', () => {
   const wrapper = shallow(<Auth />);
-  expect(wrapper.node.type).toEqual('form');
+  expect(wrapper.node.type).toEqual('div');
 });

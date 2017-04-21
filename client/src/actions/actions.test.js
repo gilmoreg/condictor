@@ -61,9 +61,30 @@ const root = {
 };
 
 describe('Sync Actions', () => {
-  // ADD_COMMENT
-  // ADD_TICKET
-  // CLEAR_SEARCH_OPTIONS
+  it('should create an action to add a comment', () => {
+    const expectedAction = {
+      type: actions.ADD_COMMENT,
+      ticketID: '0',
+      comment: fakeComment,
+    };
+    expect(actions.addComment('0', fakeComment)).toEqual(expectedAction);
+  });
+
+  it('should create an action to add a ticket', () => {
+    const expectedAction = {
+      type: actions.ADD_TICKET,
+      ticket: fakeTicket,
+    };
+    expect(actions.addTicket(fakeTicket)).toEqual(expectedAction);
+  });
+
+  it('should create an action to clear search options', () => {
+    const expectedAction = {
+      type: actions.CLEAR_SEARCH_OPTIONS,
+    };
+    expect(actions.clearSearchOptions()).toEqual(expectedAction);
+  });
+
   it('should create an action to clear tickets', () => {
     const expectedAction = {
       type: actions.CLEAR_TICKETS,
@@ -111,7 +132,16 @@ describe('Sync Actions', () => {
     expect(actions.fillUser('test')).toEqual(expectedAction);
   });
 
-  // MARK_TICKET_CLOSED
+  it('should create an action to mark a ticket closed', () => {
+    const closed = Date.now();
+    const expectedAction = {
+      type: actions.MARK_TICKET_CLOSED,
+      id: '0',
+      closed,
+    };
+    expect(actions.markTicketClosed('0', closed))
+    .toEqual(expectedAction);
+  });
 });
 
 describe('Async Non-GraphQL Actions', () => {
@@ -136,6 +166,10 @@ describe('Async Non-GraphQL Actions', () => {
       });
   });
 
+  it('LOGIN should dispatch FILL_USER with an error message on failed login', (done) => {
+    done();
+  });
+
   it('LOGOUT should dispatch FILL_USER with a null user after logout', (done) => {
     fetchMock.mock('http://localhost:3001/logout',
       { logoutSuccess: true },
@@ -152,7 +186,37 @@ describe('Async Non-GraphQL Actions', () => {
       });
   });
 
-  // SESSION_CHECK
+  it('SESSION_CHECK should dispatch FILL_USER with a valid user if logged in', (done) => {
+    fetchMock.mock('http://localhost:3001/check',
+      { user: 'test' },
+    );
+    const expectedActions = [
+      { type: actions.FILL_USER, user: 'test' },
+    ];
+    const store = mockStore(initialState);
+    store.dispatch(actions.sessionCheck())
+      .then(() => {
+        const actualActions = store.getActions();
+        expect(actualActions).toEqual(expectedActions);
+        done();
+      });
+  });
+
+  it('SESSION_CHECK should dispatch FILL_USER with null if not logged in', () => {
+    fetchMock.mock('http://localhost:3001/check',
+      {},
+    );
+    const expectedActions = [
+      { type: actions.FILL_USER, user: null },
+    ];
+    const store = mockStore(initialState);
+    store.dispatch(actions.sessionCheck())
+      .then(() => {
+        const actualActions = store.getActions();
+        expect(actualActions).toEqual(expectedActions);
+        done();
+      });
+  });
 });
 
 /*

@@ -5,7 +5,7 @@ import Select from '../Select';
 import * as actions from '../../../../../actions';
 import './NewTicket.css';
 
-class NewTicket extends Component {
+export class NewTicket extends Component {
   constructor(props) {
     super(props);
     this.submitNewTicket = this.submitNewTicket.bind(this);

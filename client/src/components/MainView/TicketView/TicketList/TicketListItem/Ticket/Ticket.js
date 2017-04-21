@@ -7,7 +7,7 @@ import Comment from './Comment/Comment';
 import AddComment from './Comment/AddComment';
 import { closeTicket } from '../../../../../../actions';
 
-class Ticket extends Component {
+export class Ticket extends Component {
   constructor(props) {
     super(props);
     this.closeTicket = this.closeTicket.bind(this);
