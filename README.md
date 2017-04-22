@@ -2,6 +2,7 @@
 
 ## In project root:
 
+Have mongo running
 * Terminal 1
 ```
 npm run server
