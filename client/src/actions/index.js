@@ -195,10 +195,10 @@ export const createTicket = fields => dispatch =>
         }
       }
     `)
-    .then((newTicket) => {
-      if (newTicket) {
-        dispatch(addTicket(newTicket));
-        resolve(newTicket);
+    .then((res) => {
+      if (res) {
+        dispatch(addTicket(res.newTicket));
+        resolve(res);
       }
     })
     .catch(err => reject(err));

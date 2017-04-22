@@ -2,6 +2,7 @@ import * as actions from '../actions';
 
 const initialState = {
   tickets: [],
+  newTicket: {},
   consumers: [],
   owners: [],
   products: [],
@@ -18,6 +19,10 @@ export default function rootReducer(state = initialState, action) {
         return Object.assign({}, ticket, { comments: [...ticket.comments, action.comment] });
       });
       return Object.assign({}, state, { tickets });
+    }
+
+    case actions.ADD_TICKET: {
+      return Object.assign({}, state, { newTicket: action.ticket });
     }
 
     case actions.CLEAR_SEARCH_OPTIONS: {

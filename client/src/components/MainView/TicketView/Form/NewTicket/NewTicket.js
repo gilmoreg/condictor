@@ -1,7 +1,9 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from '../Select';
+import Ticket from '../../TicketList/TicketListItem/Ticket/Ticket';
 import * as actions from '../../../../../actions';
 import './NewTicket.css';
 
@@ -25,13 +27,14 @@ export class NewTicket extends Component {
   submitNewTicket(e) {
     e.preventDefault();
     if (this.props.user) {
-      this.props.dispatch(actions.createTicket({
+      const newTicket = {
         owner: this.props.user,
         consumer: this.state.consumer,
         product: this.state.product,
         description: this.state.description,
         priority: this.state.priority,
-      }));
+      };
+      this.props.dispatch(actions.createTicket(newTicket));
     }
   }
 
@@ -55,22 +58,25 @@ export class NewTicket extends Component {
 
   render() {
     return (
-      <form className="NewTicket" onSubmit={this.submitNewTicket}>
-        <label htmlFor="new-ticket-priority">Priority</label>
-        <input
-          id="new-ticket-priority"
-          type="number"
-          handleChange={this.handleChange}
-          min="1"
-          max="5"
-          name="Priority"
-        />
-        <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
-        <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
-        <label htmlFor="new-ticket-desc">Description</label>
-        <textarea id="new-ticket-desc" rows="5" onChange={this.handleChange} />
-        <button type="submit" id="new-ticket-submit-button">Create Ticket</button>
-      </form>
+      <div className="NewTicket">
+        <form onSubmit={this.submitNewTicket}>
+          <label htmlFor="new-ticket-priority">Priority</label>
+          <input
+            id="new-ticket-priority"
+            type="number"
+            onChange={this.handleChange}
+            min="1"
+            max="5"
+            name="Priority"
+          />
+          <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
+          <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
+          <label htmlFor="new-ticket-desc">Description</label>
+          <textarea id="new-ticket-desc" rows="5" onChange={this.handleChange} />
+          <button type="submit" id="new-ticket-submit-button">Create Ticket</button>
+        </form>
+        {this.props.newTicket.id ? <Ticket ticket={this.props.newTicket} /> : ''}
+      </div>
     );
   }
 }
@@ -82,6 +88,7 @@ NewTicket.defaultProps = {
   },
   dispatch: () => {},
   user: null,
+  newTicket: {},
 };
 
 NewTicket.propTypes = {
@@ -91,6 +98,7 @@ NewTicket.propTypes = {
     consumers: PropTypes.array,
     products: PropTypes.array,
   }),
+  newTicket: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -99,6 +107,7 @@ const mapStateToProps = state => ({
     consumers: state.consumers,
     products: state.products,
   },
+  newTicket: state.newTicket,
 });
 
 export default connect(mapStateToProps)(NewTicket);

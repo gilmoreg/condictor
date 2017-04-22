@@ -10,7 +10,6 @@ export class MainView extends Component {
     let view;
     switch (this.props.activeView) {
       case 'tickets': view = (<TicketView />); break;
-      // case 'stats': view = (<StatsView />); break;
       case 'login': view = (<Auth />); break;
       default: view = (<div />);
     }
