@@ -14,8 +14,9 @@ export class Condictor extends Component {
   render() {
     return (
       <div className="Condictor">
-        <TicketView />
+        <h1>Condictor</h1>
         <Auth />
+        <TicketView />
       </div>
     );
   }
