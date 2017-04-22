@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from '../Select';
 import Ticket from '../../TicketList/TicketListItem/Ticket/Ticket';
-import * as actions from '../../../../../actions';
+import * as actions from '../../../../actions';
 import './NewTicket.css';
 
 export class NewTicket extends Component {

@@ -1,3 +1,18 @@
 .Login {
-  margin-top: 50px;
+  position: absolute;
+  top: 1em;
+  right: 0px;
+}
+
+.Login form {
+  display: block;
+}
+
+.Login input {
+  display: block;
+  width: 150px;
+}
+
+.Login label {
+  display: block;
 }

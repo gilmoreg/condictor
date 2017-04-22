@@ -1,33 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Sidebar from './Sidebar/Sidebar';
-import MainView from './MainView/MainView';
+import TicketView from './TicketView/TicketView';
+import Auth from './Auth/Auth';
 import { sessionCheck } from '../actions';
 import './Condictor.css';
 
 export class Condictor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeView: 'login',
-    };
-    this.changeView = this.changeView.bind(this);
-  }
-
   componentWillMount() {
     this.props.dispatch(sessionCheck());
-  }
-
-  changeView(view) {
-    this.setState({ activeView: view });
   }
 
   render() {
     return (
       <div className="Condictor">
-        <Sidebar changeView={this.changeView} />
-        <MainView activeView={this.state.activeView} />
+        <TicketView />
+        <Auth />
       </div>
     );
   }

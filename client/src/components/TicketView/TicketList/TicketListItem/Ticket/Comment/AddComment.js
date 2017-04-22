@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createComment } from '../../../../../../../actions';
+import { createComment } from '../../../../../../actions';
 import './AddComment.css';
 
 export class AddComment extends Component {

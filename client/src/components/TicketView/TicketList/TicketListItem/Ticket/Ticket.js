@@ -6,7 +6,7 @@ import moment from 'moment-shortformat';
 import './Ticket.css';
 import Comment from './Comment/Comment';
 import AddComment from './Comment/AddComment';
-import { closeTicket } from '../../../../../../actions';
+import { closeTicket } from '../../../../../actions';
 
 export class Ticket extends Component {
   constructor(props) {
