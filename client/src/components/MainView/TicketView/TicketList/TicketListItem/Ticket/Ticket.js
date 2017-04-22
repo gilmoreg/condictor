@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,10 +15,11 @@ export class Ticket extends Component {
   }
 
   closeTicket() {
-    this.props.dispatch(closeTicket(this.props.ticket.id, Date.now()));
+    this.props.dispatch(closeTicket(this.props.id, Date.now()));
   }
 
   render() {
+    const ticket = this.props.tickets.filter(t => (t.id === this.props.id))[0];
     const {
       product,
       consumer,
@@ -26,15 +28,16 @@ export class Ticket extends Component {
       created,
       priority,
       closed,
-    } = this.props.ticket;
+    } = ticket;
+
     const createDate = moment(created).short();
     let closeDate;
     if (closed) {
       closeDate = moment(closed).short();
     }
     let comments = [];
-    if (this.props.ticket.comments.length) {
-      comments = this.props.ticket.comments
+    if (ticket.comments.length) {
+      comments = ticket.comments
         .map(comment => <Comment key={comment.id} comment={comment} />);
     }
     return (
@@ -49,7 +52,7 @@ export class Ticket extends Component {
           <li>Description: <p>{description}</p></li>
         </ul>
         {comments}
-        <AddComment ticketID={this.props.ticket.id} />
+        {closed ? '' : <AddComment ticketID={this.props.id} />}
         {closed ? '' : <button onClick={this.closeTicket}>Close Ticket</button>}
       </div>
     );
@@ -57,41 +60,19 @@ export class Ticket extends Component {
 }
 
 Ticket.defaultProps = {
-  ticket: {
-    product: {
-      name: '',
-    },
-    consumer: {
-      name: '',
-    },
-    description: '',
-    owner: {
-      username: '',
-    },
-    comments: [],
-  },
+  id: '',
+  tickets: [],
   dispatch: () => {},
 };
 
 Ticket.propTypes = {
-  ticket: PropTypes.shape({
-    id: PropTypes.string,
-    product: PropTypes.shape({
-      name: PropTypes.string,
-    }),
-    consumer: PropTypes.shape({
-      name: PropTypes.string,
-    }),
-    description: PropTypes.string,
-    owner: PropTypes.shape({
-      username: PropTypes.string,
-    }),
-    created: PropTypes.string,
-    priority: PropTypes.number,
-    closed: PropTypes.string,
-    comments: PropTypes.array,
-  }),
+  id: PropTypes.string,
+  tickets: PropTypes.array,
   dispatch: PropTypes.func,
 };
 
-export default connect()(Ticket);
+const mapStateToProps = state => ({
+  tickets: state.tickets,
+});
+
+export default connect(mapStateToProps)(Ticket);

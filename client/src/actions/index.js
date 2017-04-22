@@ -126,9 +126,9 @@ export const closeTicket = id => dispatch =>
         }
       }
     `)
-    .then((ticket) => {
-      dispatch(markTicketClosed(ticket.id, ticket.closed));
-      resolve(ticket);
+    .then((res) => {
+      dispatch(markTicketClosed(res.closeTicket.id, res.closeTicket.closed));
+      resolve(res.closeTicket);
     })
     .catch(err => reject(err));
   });

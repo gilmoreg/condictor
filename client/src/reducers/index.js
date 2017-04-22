@@ -10,6 +10,7 @@ const initialState = {
 };
 
 export default function rootReducer(state = initialState, action) {
+  console.log('DISPATCHED', action);
   switch (action.type) {
     case actions.ADD_COMMENT: {
       const tickets = state.tickets.map((ticket) => {
@@ -54,12 +55,14 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case actions.MARK_TICKET_CLOSED: {
+      console.log('MARK_TICKET_CLOSED', action);
       const tickets = state.tickets.map((ticket) => {
         if (action.id !== ticket.id) {
           return ticket;
         }
         return Object.assign({}, ticket, { closed: action.closed });
       });
+      console.log('MARK_TICKET_CLOSED state', tickets);
       return Object.assign({}, state, { tickets });
     }
 

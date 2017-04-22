@@ -23,7 +23,7 @@ class TicketListItem extends Component {
     return (
       <div className="TicketListItem">
         <button onClick={this.handleClick}>{`${desc} Priority ${priority}`}</button>
-        {this.state.expand ? <Ticket ticket={this.props.ticket} /> : ''}
+        {this.state.expand ? <Ticket id={this.props.ticket.id} /> : ''}
       </div>
     );
   }
