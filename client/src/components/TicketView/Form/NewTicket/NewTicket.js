@@ -26,7 +26,11 @@ export class NewTicket extends Component {
 
   submitNewTicket(e) {
     e.preventDefault();
-    if (this.props.user) {
+    if (this.props.user &&
+        this.state.consumer &&
+        this.state.product &&
+        this.state.description &&
+        this.state.priority) {
       const newTicket = {
         owner: this.props.user,
         consumer: this.state.consumer,
@@ -75,7 +79,7 @@ export class NewTicket extends Component {
           <textarea id="new-ticket-desc" rows="5" onChange={this.handleChange} />
           <button type="submit" id="new-ticket-submit-button">Create Ticket</button>
         </form>
-        {this.props.newTicket.id ? <Ticket ticket={this.props.newTicket} /> : ''}
+        {this.props.newTicket.id ? <Ticket id={this.props.newTicket.id} /> : ''}
       </div>
     );
   }

@@ -20,6 +20,7 @@ export class Ticket extends Component {
 
   render() {
     const ticket = this.props.tickets.filter(t => (t.id === this.props.id))[0];
+    console.log('<Ticket>', ticket);
     const {
       product,
       consumer,

@@ -23,7 +23,10 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case actions.ADD_TICKET: {
-      return Object.assign({}, state, { newTicket: action.ticket });
+      return Object.assign({},
+        state,
+        { newTicket: action.ticket, tickets: [...state.tickets, action.ticket] },
+      );
     }
 
     case actions.CLEAR_SEARCH_OPTIONS: {
@@ -55,14 +58,12 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case actions.MARK_TICKET_CLOSED: {
-      console.log('MARK_TICKET_CLOSED', action);
       const tickets = state.tickets.map((ticket) => {
         if (action.id !== ticket.id) {
           return ticket;
         }
         return Object.assign({}, ticket, { closed: action.closed });
       });
-      console.log('MARK_TICKET_CLOSED state', tickets);
       return Object.assign({}, state, { tickets });
     }
 

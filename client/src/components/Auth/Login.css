@@ -3,6 +3,7 @@
   top: 1em;
   right: 0px;
   background-color: white;
+  outline: 1px solid black;
 }
 
 .Login form {
