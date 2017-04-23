@@ -5,10 +5,6 @@ import NewTicket from './NewTicket/NewTicket';
 import Search from './Search/Search';
 
 export class Form extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let formView;
     const options = {
