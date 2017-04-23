@@ -39,7 +39,7 @@ const fakeTicket = {
   product: fakeProduct,
   consumer: fakeConsumer,
   created: Date.now(),
-  closed: Date.now(),
+  closed: '',
   priority: 'test',
   comments: [fakeComment],
 };
@@ -129,7 +129,19 @@ describe('Reducers', () => {
     .toEqual(userState);
   });
 
-  // MARK_TICKET_CLOSED
+  it('should mark a ticket closed on MARK_TICKET_CLOSED', () => {
+    const closed = Date.now();
+    const updatedTicket = Object.assign({}, fakeTicket, { closed });
+    const ticketState = Object.assign({}, initialState, { tickets: [fakeTicket] });
+    const finalState = Object.assign({}, ticketState, { tickets: [updatedTicket] });
+    expect(
+      rootReducer(
+        ticketState,
+        { type: actions.MARK_TICKET_CLOSED, id: '0', closed },
+      ),
+    )
+    .toEqual(finalState);
+  });
 
   it('should reset state on RESET', () => {
     const fakeState = Object.assign({}, initialState, { user: 'test', tickets: [fakeTicket] });
