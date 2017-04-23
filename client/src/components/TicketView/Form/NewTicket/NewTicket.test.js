@@ -5,5 +5,5 @@ import { NewTicket } from './NewTicket';
 
 it('renders without crashing', () => {
   const wrapper = shallow(<NewTicket />);
-  expect(wrapper.node.type).toEqual('form');
+  expect(wrapper.node.type).toEqual('div');
 });

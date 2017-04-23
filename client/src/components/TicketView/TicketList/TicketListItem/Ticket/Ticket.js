@@ -20,7 +20,6 @@ export class Ticket extends Component {
 
   render() {
     const ticket = this.props.tickets.filter(t => (t.id === this.props.id))[0];
-    console.log('<Ticket>', ticket);
     const {
       product,
       consumer,
@@ -62,7 +61,15 @@ export class Ticket extends Component {
 
 Ticket.defaultProps = {
   id: '',
-  tickets: [],
+  tickets: [{
+    product: '',
+    consumer: '',
+    description: '',
+    owner: '',
+    created: '',
+    priority: '',
+    closed: '',
+  }],
   dispatch: () => {},
 };
 

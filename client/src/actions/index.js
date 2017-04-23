@@ -68,6 +68,11 @@ export const markTicketClosed = (id, closed) => ({
   closed,
 });
 
+export const RESET = 'RESET';
+export const reset = () => ({
+  type: RESET,
+});
+
 // Async Non-GraphQL Actions
 export const LOGIN = 'LOGIN';
 export const login = credentials => dispatch =>
@@ -100,7 +105,7 @@ export const logout = () => dispatch =>
     credentials: 'include',
   })
   .then(() => {
-    dispatch(fillUser(null));
+    dispatch(reset());
   });
 
 export const SESSION_CHECK = 'SESSION_CHECK';
@@ -111,7 +116,7 @@ export const sessionCheck = () => dispatch =>
   .then(res => res.json())
   .then((res) => {
     if (res.user) dispatch(fillUser(res.user));
-    else dispatch(fillUser(null));
+    else dispatch(reset());
   });
 
 // Async GraphQL Actions

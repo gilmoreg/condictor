@@ -67,6 +67,10 @@ export default function rootReducer(state = initialState, action) {
       return Object.assign({}, state, { tickets });
     }
 
+    case actions.RESET: {
+      return initialState;
+    }
+    
     default: return state;
   }
 }

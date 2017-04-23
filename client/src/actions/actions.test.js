@@ -142,6 +142,14 @@ describe('Sync Actions', () => {
     expect(actions.markTicketClosed('0', closed))
     .toEqual(expectedAction);
   });
+
+  it('should create an action to reset state', () => {
+    const expectedAction = {
+      type: actions.RESET,
+    };
+    expect(actions.reset())
+    .toEqual(expectedAction);
+  });
 });
 
 describe('Async Non-GraphQL Actions', () => {
@@ -170,12 +178,12 @@ describe('Async Non-GraphQL Actions', () => {
     done();
   });
 
-  it('LOGOUT should dispatch FILL_USER with a null user after logout', (done) => {
+  it('LOGOUT should dispatch RESET after logout', (done) => {
     fetchMock.mock('http://localhost:3001/logout',
       { logoutSuccess: true },
     );
     const expectedActions = [
-      { type: 'FILL_USER', user: null },
+      { type: 'RESET' },
     ];
     const store = mockStore(initialState);
     store.dispatch(actions.logout())
@@ -207,7 +215,7 @@ describe('Async Non-GraphQL Actions', () => {
       {},
     );
     const expectedActions = [
-      { type: actions.FILL_USER, user: null },
+      { type: actions.RESET },
     ];
     const store = mockStore(initialState);
     store.dispatch(actions.sessionCheck())
