@@ -1,20 +1,63 @@
 .Login {
-  position: absolute;
-  top: 1em;
-  right: 0px;
+  margin-top: 20px;
+  width: 450px;
+  height: 500px;
   background-color: white;
-  outline: 1px solid black;
+  border-radius: 6px;
+  padding: 50px 50px;
+  text-align: center;
+  box-shadow:  1px 1px 3px rgba(0,0,0,0.15);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.Login form {
-  display: block;
+.fa {
+  display: inline-block;
 }
 
-.Login input {
-  display: block;
+input {
+  display: inline-block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
   width: 150px;
+  transition: all .5s ease-out;
 }
 
-.Login label {
-  display: block;
+input::placeholder {
+  color: #ccc;
+}
+input:focus {
+  outline: none;
+  border-bottom-color: rgba(30,138,190,1.00);
+}
+
+i {
+  padding: 5px;
+  color: rgba(30,138,190,1);
+}
+
+.btn {
+  border: 1px solid white;
+  width: 80%;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  letter-spacing: .5px;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.btn-outline-colorize {
+  border-color: inherit;
+  color: rgba(30,138,190,1.00);
+  transition: all .25s ease-out;
+}
+.btn-outline-colorize:hover {
+  border-color: inherit;
+  color: white;
+  background-color: rgba(30,138,190,1.00);
 }

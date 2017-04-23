@@ -1,4 +1,3 @@
 .Auth {
-  position: absolute;
-  right: 0px;
+  float: right;
 }

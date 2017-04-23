@@ -18,8 +18,8 @@ export default class Login extends Component {
     e.preventDefault();
     const credentials = this.state;
     switch (e.target.id) {
-      case 'username-input': credentials.username = e.target.value; break;
-      case 'password-input': credentials.password = e.target.value; break;
+      case 'username': credentials.username = e.target.value; break;
+      case 'password': credentials.password = e.target.value; break;
       default: break;
     }
     this.setState(credentials);
@@ -37,21 +37,29 @@ export default class Login extends Component {
   render() {
     return (
       <form className="Login" onSubmit={this.login}>
-        <label htmlFor="username-input">Username</label>
+        <h1 className="h1">Condictor</h1>
+        <hr />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          In reiciendis ad laborum rem
+          nulla sequi dolore minima sit debitis.
+        </p>
+        <i className="fa fa-user-circle-o" />
         <input
-          id="username-input"
+          id="username"
           type="text"
           placeholder="Username"
           onChange={this.onChange}
         />
-        <label htmlFor="password-input">Password</label>
+        <br />
+        <i className="fa fa-key" />
         <input
-          id="password-input"
+          id="password"
           type="password"
           placeholder="Password"
           onChange={this.onChange}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="btn btn-colorize">Login</button>
       </form>
     );
   }
