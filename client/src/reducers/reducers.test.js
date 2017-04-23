@@ -5,6 +5,7 @@ import rootReducer from '.';
 import * as actions from '../actions';
 
 const initialState = {
+  newTicket: {},
   tickets: [],
   consumers: [],
   owners: [],
@@ -129,6 +130,17 @@ describe('Reducers', () => {
   });
 
   // MARK_TICKET_CLOSED
+
+  it('should reset state on RESET', () => {
+    const fakeState = Object.assign({}, initialState, { user: 'test', tickets: [fakeTicket] });
+    expect(
+      rootReducer(
+        fakeState,
+        { type: actions.RESET },
+      ),
+    )
+    .toEqual(initialState);
+  });
 
   it('should return current state on undefined action', () => {
     expect(rootReducer(initialState, { type: undefined })).toEqual(initialState);
