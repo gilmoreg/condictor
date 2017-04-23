@@ -70,7 +70,7 @@ export default function rootReducer(state = initialState, action) {
     case actions.RESET: {
       return initialState;
     }
-    
+
     default: return state;
   }
 }
