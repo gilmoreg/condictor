@@ -154,7 +154,7 @@ describe('Sync Actions', () => {
 
 describe('Async Non-GraphQL Actions', () => {
   afterEach(() => {
-    fetchMock.reset();
+    fetchMock.restore();
   });
 
   it('LOGIN should dispatch FILL_USER with valid data from the server', (done) => {
@@ -175,6 +175,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('LOGIN should dispatch FILL_USER with an error message on failed login', (done) => {
+    // TODO
     done();
   });
 
@@ -183,7 +184,7 @@ describe('Async Non-GraphQL Actions', () => {
       { logoutSuccess: true },
     );
     const expectedActions = [
-      { type: 'RESET' },
+      { type: actions.RESET },
     ];
     const store = mockStore(initialState);
     store.dispatch(actions.logout())
@@ -210,7 +211,7 @@ describe('Async Non-GraphQL Actions', () => {
       });
   });
 
-  it('SESSION_CHECK should dispatch FILL_USER with null if not logged in', () => {
+  it('SESSION_CHECK should dispatch FILL_USER with null if not logged in', (done) => {
     fetchMock.mock('http://localhost:3001/check',
       {},
     );
