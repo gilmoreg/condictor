@@ -24,7 +24,6 @@ Condictor is a lightweight helpdesk issue tracker. It allows you to create ticke
     * Dates formatted with [moment](https://momentjs.com/).
 
 ## Build/run instructions:
-
 Initial deployment:
 ```
 // In project root
@@ -41,28 +40,14 @@ cd ..
 npm start
 ```
 
-### In project root:
-
-Have mongo running
-* Terminal 1
-```
-npm run server
-```
-* Terminal 2
-```
-cd client
-npm start
-```
-
 ## To run tests:
+```
+// In project root
 
-## In project root:
-* Terminal 1
-```
+// Run server tests
 npm run test-server
-```
-* Terminal 2
-```
+
+// Run client tests
 npm run test-client
 ```
 
