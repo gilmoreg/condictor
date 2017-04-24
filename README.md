@@ -36,8 +36,14 @@ cd ../client
 npm install
 cd ..
 // This will use 'concurrently' to launch the server and client simultaneously
-// Alternatively you can run 'npm run server' from the root and 'npm start' in the client directory in different terminals
 npm start
+
+// Alternatively, you can launch the client and server in different terminals
+// Terminal 1, from project root:
+npm run server
+// Terminal 2, from project root:
+cd client
+npm start 
 ```
 
 ## To run tests:
