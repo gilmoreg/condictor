@@ -25,6 +25,22 @@ Condictor is a lightweight helpdesk issue tracker. It allows you to create ticke
 
 ## Build/run instructions:
 
+Initial deployment:
+```
+// In project root
+npm install
+cd seed
+npm install
+// This will populate Mongo with test data
+npm start
+cd ../client
+npm install
+cd ..
+// This will use 'concurrently' to launch the server and client simultaneously
+// Alternatively you can run 'npm run server' from the root and 'npm start' in the client directory in different terminals
+npm start
+```
+
 ### In project root:
 
 Have mongo running
