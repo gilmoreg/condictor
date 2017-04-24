@@ -30,6 +30,7 @@ input {
 input::placeholder {
   color: #ccc;
 }
+
 input:focus {
   outline: none;
   border-bottom-color: rgba(30,138,190,1.00);

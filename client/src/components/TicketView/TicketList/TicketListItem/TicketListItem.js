@@ -22,7 +22,7 @@ class TicketListItem extends Component {
     const desc = `${description.substring(0, 30)}...`;
     return (
       <div className="TicketListItem">
-        <button onClick={this.handleClick}>{`${desc} Priority ${priority}`}</button>
+        <button onClick={this.handleClick}>{desc}<span>Priority {priority}</span></button>
         {this.state.expand ? <Ticket id={this.props.ticket.id} /> : ''}
       </div>
     );

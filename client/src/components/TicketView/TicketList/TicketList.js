@@ -15,7 +15,6 @@ export class TicketList extends Component {
     }
     return (
       <div className="TicketList">
-        <h4>TicketList</h4>
         {tickets}
       </div>
     );
