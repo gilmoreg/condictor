@@ -26,6 +26,8 @@ Condictor is a lightweight helpdesk issue tracker. It allows you to create ticke
 ## Build/run instructions:
 Initial deployment:
 ```
+// MONGO MUST BE RUNNING!
+
 // In project root
 npm install
 cd seed
