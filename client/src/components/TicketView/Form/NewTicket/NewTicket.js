@@ -72,7 +72,7 @@ export class NewTicket extends Component {
             min="1"
             max="5"
             name="Priority"
-            value="1"
+            defaultValue="1"
           />
           <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
           <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
