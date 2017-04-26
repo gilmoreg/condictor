@@ -31,10 +31,10 @@ input::placeholder {
   color: #ccc;
 }
 
-input:focus {
+/* input:focus {
   outline: none;
   border-bottom-color: rgba(30,138,190,1.00);
-}
+} */
 
 i {
   padding: 5px;
