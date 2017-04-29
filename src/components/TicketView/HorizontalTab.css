@@ -1,0 +1,22 @@
+.HorizontalTab {
+  text-align: center;
+  display: inline-block;
+  width: 100px;
+  height: 2em;
+  background-color: white;
+}
+
+.HorizontalTab:first-child {
+  border-right: 1px solid grey;
+}
+
+.HorizontalTab button {
+  padding: 10px;
+  width: 90px;
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  color: hsl(147, 24%, 41%);
+  font-weight: 500;
+  font-size: 12px;
+}

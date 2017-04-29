@@ -1,0 +1,23 @@
+.Form {
+  padding: 10px 10px 20px 10px;
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+.Form label {
+  padding-top: 5px;
+  margin-left: 5px;
+}
+
+.Form input, .Form select, .Form textarea {
+  display: block;
+  margin: 5px;
+}
+
+.Form button {
+  margin: 5px;
+}
+
+.close-button {
+  text-align: center;
+}

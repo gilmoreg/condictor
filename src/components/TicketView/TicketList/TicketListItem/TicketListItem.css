@@ -1,0 +1,43 @@
+.TicketListItem {
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.TicketListItem button {
+  width: 100%;
+  background-color: white;
+  border: none; 
+  text-align: left;
+  text-decoration: underline;
+}
+
+.TicketListItem span {
+  background-color: hsl(170, 41%, 24%);
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 2px;
+  color: black;
+  float: right;
+}
+
+.TicketListItem .priority1 {
+  background-color: red;
+}
+
+.TicketListItem .priority2 {
+  background-color: orange;
+}
+
+.TicketListItem .priority3 {
+  background-color: yellow;
+}
+
+.TicketListItem .priority4 {
+  background-color: green;
+}
+
+.TicketListItem .priority5 {
+  background-color: white;
+}

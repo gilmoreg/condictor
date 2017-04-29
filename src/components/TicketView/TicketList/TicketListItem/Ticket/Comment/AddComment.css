@@ -1,0 +1,9 @@
+.AddComment {
+  margin: 5px;
+  padding: 5px;
+}
+
+textarea {
+  width: 99%;
+  display: block;
+}
