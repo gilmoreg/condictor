@@ -1,8 +1,0 @@
-.NewTicket {
-  padding: 10px 0px 20px 10px;
-}
-
-.NewTicket [type="number"] {
-  width: 50px;
-  height: 1em;
-}
