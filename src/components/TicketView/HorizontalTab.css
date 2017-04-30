@@ -20,3 +20,7 @@
   font-weight: 500;
   font-size: 12px;
 }
+
+.HorizontalTab button:focus {
+  outline: none;
+}
