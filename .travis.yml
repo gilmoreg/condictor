@@ -1,0 +1,3 @@
+language: node_js
+node_js: node
+after_install: npm deploy
