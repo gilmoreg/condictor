@@ -94,10 +94,12 @@ export const login = credentials => dispatch =>
   })
   .then((res) => {
     dispatch(fillUser(res.user));
+    return res.user;
   })
   .catch(() => {
     // If not logged in, app state should be clear
     dispatch(reset());
+    return null;
   });
 
 export const LOGOUT = 'LOGOUT';

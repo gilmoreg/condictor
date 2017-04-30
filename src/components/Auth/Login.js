@@ -11,6 +11,7 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      error: '',
     };
   }
 
@@ -30,7 +31,11 @@ export default class Login extends Component {
     if (this.state.username && this.state.password) {
       this.props.dispatch(
         login({ username: this.state.username, password: this.state.password }),
-      );
+      )
+      .then((response) => {
+        if (response === null) this.setState({ error: <p>Error logging in.</p> });
+        else this.setState({ error: '' });
+      });
     }
   }
 
@@ -59,6 +64,7 @@ export default class Login extends Component {
           placeholder="Password"
           onChange={this.onChange}
         />
+        {this.state.error ? this.state.error : ''}
         <button type="submit" className="btn btn-colorize">Login</button>
       </form>
     );
