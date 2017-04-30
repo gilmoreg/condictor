@@ -2,6 +2,7 @@
   "name": "condictor",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gilmoreg.github.io/condictor/",
   "dependencies": {
     "dotenv": "^4.0.0",
     "eslint": "^3.19.0",
@@ -28,6 +29,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
     "fetch-mock": "^5.10.0",
+    "gh-pages": "^0.12.0",
     "graphql-tools": "^0.11.0",
     "nock": "^9.0.13",
     "react-addons-test-utils": "^15.5.1",
@@ -40,6 +42,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   }
 }

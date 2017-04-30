@@ -24,39 +24,20 @@ Condictor is a lightweight helpdesk issue tracker. It allows you to create ticke
     * Dates formatted with [moment](https://momentjs.com/).
 
 ## Build/run instructions:
-Initial deployment:
+
+Condictor requires a deployed instance of [condictor-backend](https://github.com/gilmoreg/condictor-backend).
+The demo has one running on a Docker image on Heroku.
+
 ```
-// MONGO MUST BE RUNNING!
-
-// In project root
+# In project root
 npm install
-cd seed
-npm install
-// This will populate Mongo with test data
 npm start
-cd ../client
-npm install
-cd ..
-// This will use 'concurrently' to launch the server and client simultaneously
-npm start
-
-// Alternatively, you can launch the client and server in different terminals
-// Terminal 1, from project root:
-npm run server
-// Terminal 2, from project root:
-cd client
-npm start 
 ```
 
 ## To run tests:
 ```
-// In project root
-
-// Run server tests
-npm run test-server
-
-// Run client tests
-npm run test-client
+# In project root
+npm test
 ```
 
 ## Development Roadmap
