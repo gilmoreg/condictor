@@ -1,4 +1,4 @@
 language: node_js
 node_js: node
-after_install:
+after_success:
   - npm deploy
