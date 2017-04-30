@@ -77,3 +77,7 @@ i {
   color: white;
   background-color: rgba(30,138,190,1.00);
 }
+
+.Login .error {
+  color: red;
+}

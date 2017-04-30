@@ -33,7 +33,7 @@ export default class Login extends Component {
         login({ username: this.state.username, password: this.state.password }),
       )
       .then((response) => {
-        if (response === null) this.setState({ error: <p>Error logging in.</p> });
+        if (response === null) this.setState({ error: <p className="error">Error logging in.</p> });
         else this.setState({ error: '' });
       });
     }
