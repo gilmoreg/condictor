@@ -26,7 +26,8 @@ Condictor is a lightweight helpdesk issue tracker. It allows you to create ticke
 ## Build/run instructions:
 
 Condictor requires a deployed instance of [condictor-backend](https://github.com/gilmoreg/condictor-backend).
-The demo has one running on a Docker image on Heroku.
+
+The demo has one running in a Docker image on Heroku.
 
 ```
 # In project root
