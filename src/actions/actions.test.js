@@ -174,11 +174,6 @@ describe('Async Non-GraphQL Actions', () => {
       });
   });
 
-  it('LOGIN should dispatch FILL_USER with an error message on failed login', (done) => {
-    // TODO
-    done();
-  });
-
   it('LOGOUT should dispatch RESET after logout', (done) => {
     fetchMock.mock('http://localhost:3001/logout',
       { logoutSuccess: true },

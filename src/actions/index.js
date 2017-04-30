@@ -96,7 +96,8 @@ export const login = credentials => dispatch =>
     dispatch(fillUser(res.user));
   })
   .catch(() => {
-    dispatch(fillUser({ error: 'Login failed' }));
+    // If not logged in, app state should be clear
+    dispatch(reset());
   });
 
 export const LOGOUT = 'LOGOUT';
