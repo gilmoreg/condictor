@@ -158,7 +158,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('LOGIN should dispatch FILL_USER with valid data from the server', (done) => {
-    fetchMock.mock('http://localhost:3001/login',
+    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/login',
       { message: 'Login successful', user: 'test' },
       { method: 'post' },
     );
@@ -175,7 +175,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('LOGOUT should dispatch RESET after logout', (done) => {
-    fetchMock.mock('http://localhost:3001/logout',
+    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/logout',
       { logoutSuccess: true },
     );
     const expectedActions = [
@@ -191,7 +191,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('SESSION_CHECK should dispatch FILL_USER with a valid user if logged in', (done) => {
-    fetchMock.mock('http://localhost:3001/check',
+    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/check',
       { user: 'test' },
     );
     const expectedActions = [
@@ -207,7 +207,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('SESSION_CHECK should dispatch FILL_USER with null if not logged in', (done) => {
-    fetchMock.mock('http://localhost:3001/check',
+    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/check',
       {},
     );
     const expectedActions = [
