@@ -7,7 +7,8 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
+    this.onChange = this.onChange.bind(this);    
     this.state = {
       username: '',
       password: '',
@@ -39,6 +40,11 @@ export default class Login extends Component {
     }
   }
 
+  demoLogin(e) {
+    e.preventDefault();
+    this.props.dispatch(login({ username: 'test', password: 'test' }));
+  }
+
   render() {
     return (
       <form className="Login" onSubmit={this.login}>
@@ -66,6 +72,7 @@ export default class Login extends Component {
         />
         {this.state.error ? this.state.error : ''}
         <button type="submit" className="btn btn-colorize">Login</button>
+        <button className="btn btn-colorize" onClick={this.demoLogin}>Login to Demo</button>
       </form>
     );
   }
