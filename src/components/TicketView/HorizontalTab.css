@@ -6,10 +6,6 @@
   background-color: white;
 }
 
-.HorizontalTab:first-child {
-  border-right: 1px solid grey;
-}
-
 .HorizontalTab button {
   padding: 10px;
   width: 90px;
@@ -23,4 +19,16 @@
 
 .HorizontalTab button:focus {
   outline: none;
+}
+.HorizontalTab button:hover {
+  cursor: pointer;
+}
+
+.HorizontalTab:nth-child(1) {
+  border-right: 1px solid rgba(0, 0, 0, .1);
+  border-top-left-radius: 6px;
+}
+
+.HorizontalTab:nth-child(2) {
+  border-top-right-radius: 6px;
 }

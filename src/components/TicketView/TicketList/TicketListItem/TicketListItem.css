@@ -8,36 +8,50 @@
 .TicketListItem button {
   width: 100%;
   background-color: white;
-  border: none; 
+  border: none;
   text-align: left;
   text-decoration: underline;
 }
 
 .TicketListItem span {
-  background-color: hsl(170, 41%, 24%);
   border-radius: 5px;
   font-size: 12px;
   padding: 2px;
-  color: black;
   float: right;
 }
 
+.TicketListItem .priority1,
+.TicketListItem .priority2,
+.TicketListItem .priority3,
+.TicketListItem .priority4,
+.TicketListItem .priority5,
+.TicketListItem .priority6 {
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 5px 8px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, .15);
+  letter-spacing: .5px;
+}
+
+/* .TicketListItem .priority-1. */
 .TicketListItem .priority1 {
-  background-color: red;
+  background-color: #B04949;
 }
 
 .TicketListItem .priority2 {
-  background-color: orange;
+  background-color: #D08134;
 }
 
 .TicketListItem .priority3 {
-  background-color: yellow;
+  background-color: #CAC042;
 }
 
 .TicketListItem .priority4 {
-  background-color: green;
+  background-color: #719C3F;
 }
 
 .TicketListItem .priority5 {
-  background-color: white;
+  background-color: #6395D0;
 }
