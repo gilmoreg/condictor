@@ -51,9 +51,10 @@ export default class Login extends Component {
         <h1 className="h1">Condictor</h1>
         <hr />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          In reiciendis ad laborum rem
-          nulla sequi dolore minima sit debitis.
+          Welcome to <strong>Condictor</strong>, the lightweight helpdesk issue tracker.
+          Please log into the demo account to try it out!
+          You can view existing tickets, open new ones, add comments to open tickets,
+          and close them when you are done.
         </p>
         <i className="fa fa-user-circle-o" />
         <input
