@@ -8,7 +8,7 @@ class TicketView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'closed',
+      activeTab: 'search',
     };
     this.newClick = this.newClick.bind(this);
     this.searchClick = this.searchClick.bind(this);
