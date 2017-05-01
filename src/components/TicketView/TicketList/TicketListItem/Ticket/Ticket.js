@@ -30,10 +30,10 @@ export class Ticket extends Component {
       closed,
     } = ticket;
 
-    const createDate = moment(created).short();
+    const createDate = moment(new Date(created)).short();
     let closeDate;
     if (closed) {
-      closeDate = moment(closed).short();
+      closeDate = moment(new Date(closed)).short();
     }
     let comments = [];
     if (ticket.comments.length) {
