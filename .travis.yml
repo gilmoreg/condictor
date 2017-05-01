@@ -2,4 +2,10 @@ language: node_js
 node_js: node
 after_success:
   - npm run build
-  - npm run deploy
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master
