@@ -22,7 +22,7 @@ export class Form extends Component {
     return (
       <div className="Form">
         {formView}
-        {this.props.activeTab !== 'closed' ? <div className="close-button"><button onClick={this.props.close}>Close</button></div> : <div />}
+        {this.props.activeTab !== 'closed' ? <div className="close-button"><button className='btn btn-colorize-blue' onClick={this.props.close}>Close</button></div> : <div />}
       </div>
     );
   }

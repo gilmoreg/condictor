@@ -1,7 +1,8 @@
-.Comment { 
+.Comment {
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   border-left: 3px solid #69cc98;
   margin-bottom: 10px;
   border-radius: 6px;
+  background-color: #f7f7f7;
 }

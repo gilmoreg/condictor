@@ -78,7 +78,7 @@ export class NewTicket extends Component {
           <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
           <label htmlFor="new-ticket-desc">Description</label>
           <textarea id="new-ticket-desc" rows="5" onChange={this.handleChange} />
-          <button type="submit" id="new-ticket-submit-button">Create Ticket</button>
+          <button className="btn btn-colorize-blue" type="submit" id="new-ticket-submit-button">Create Ticket</button>
         </form>
         {this.props.newTicket.id ? <Ticket id={this.props.newTicket.id} /> : ''}
       </div>
@@ -116,4 +116,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(NewTicket);
-
