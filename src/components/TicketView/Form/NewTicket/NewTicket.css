@@ -6,3 +6,10 @@
   width: 50px;
   height: 1em;
 }
+
+.NewTicket button {
+  margin-top: 20px;
+  display: block;
+  position: relative;
+  right: 0;
+}

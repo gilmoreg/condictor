@@ -52,7 +52,7 @@ export class Search extends Component {
         <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
         <label htmlFor="open-checkbox">Only Open</label>
         <input type="checkbox" onChange={this.handleChange} id="open-checkbox" value="open" />
-        <button type="submit" id="search-submit-button">Submit</button>
+        <button className="btn btn-colorize-blue" type="btn submit" id="search-submit-button">Submit</button>
       </form>
     );
   }
