@@ -154,6 +154,7 @@ export const createComment = (ticketID, comment) => dispatch =>
             username
           }
           description
+          created
         }
       }
     `)
