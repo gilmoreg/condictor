@@ -13,6 +13,11 @@
   transform: translate(-50%, -50%);
 }
 
+.Login .login {
+  display: block;
+  margin: 0 auto;
+}
+
 .fa {
   display: inline-block;
 }

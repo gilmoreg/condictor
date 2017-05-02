@@ -72,7 +72,7 @@ export default class Login extends Component {
           onChange={this.onChange}
         />
         {this.state.error ? this.state.error : ''}
-        <button type="submit" className="btn btn-colorize">Login</button>
+        <button type="submit" className="btn btn-colorize login">Login</button>
         <button className="btn btn-colorize" onClick={this.demoLogin}>Login to Demo</button>
       </form>
     );
