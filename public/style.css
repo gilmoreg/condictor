@@ -12,3 +12,15 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+}
+
+footer p {
+  font-size: 9px;
+}
