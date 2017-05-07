@@ -3,7 +3,11 @@
   font-family: 'Work Sans', sans-serif; 
 }
 
-html { height: auto; min-height: 100%; }
+html { 
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+}
 
 body {
   margin: 30px;
