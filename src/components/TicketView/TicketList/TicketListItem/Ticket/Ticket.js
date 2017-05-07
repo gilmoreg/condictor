@@ -53,7 +53,7 @@ export class Ticket extends Component {
         </ul>
         {comments}
         {closed ? '' : <AddComment ticketID={this.props.id} />}
-        {closed ? '' : <button onClick={this.closeTicket}>Close Ticket</button>}
+        {closed ? '' : <button className="btn btn-colorize-blue" onClick={this.closeTicket}>Close Ticket</button>}
       </div>
     );
   }

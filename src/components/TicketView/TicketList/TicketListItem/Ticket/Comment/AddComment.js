@@ -31,7 +31,7 @@ export class AddComment extends Component {
     return (
       <div className="AddComment">
         <textarea onChange={this.handleChange} ref={(input) => { this.textInput = input; }} />
-        <button onClick={this.submit}>Add Comment</button>
+        <button className="btn btn-colorize-blue" onClick={this.submit}>Add Comment</button>
       </div>
     );
   }
