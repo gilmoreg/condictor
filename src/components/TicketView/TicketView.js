@@ -12,7 +12,6 @@ class TicketView extends Component {
     };
     this.newClick = this.newClick.bind(this);
     this.searchClick = this.searchClick.bind(this);
-    this.closeClick = this.closeClick.bind(this);
   }
 
   newClick() {
@@ -23,16 +22,12 @@ class TicketView extends Component {
     this.setState({ activeTab: (this.state.activeTab === 'search') ? 'closed' : 'search' });
   }
 
-  closeClick() {
-    this.setState({ activeTab: 'closed' });
-  }
-
   render() {
     return (
       <div className="TicketView">
         <HorizontalTab title="New" onClick={this.newClick} />
         <HorizontalTab title="Search" onClick={this.searchClick} />
-        <Form activeTab={this.state.activeTab} close={this.closeClick} />
+        <Form activeTab={this.state.activeTab} />
         <TicketList />
       </div>
     );
