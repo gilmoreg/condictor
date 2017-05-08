@@ -15,11 +15,11 @@ class TicketView extends Component {
   }
 
   newClick() {
-    this.setState({ activeTab: (this.state.activeTab === 'new') ? 'closed' : 'new' });
+    this.setState({ activeTab: 'new' });
   }
 
   searchClick() {
-    this.setState({ activeTab: (this.state.activeTab === 'search') ? 'closed' : 'search' });
+    this.setState({ activeTab: 'search' });
   }
 
   render() {
