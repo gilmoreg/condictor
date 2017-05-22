@@ -6,9 +6,7 @@ by [Grayson Gilmore](https://github.com/gilmoreg/).
 [See the live site here](http://condictor.gilmoreg.com/).
 
 ## Screenshots
-![Condictor screenshot 1](http://res.cloudinary.com/dk85nueap/image/upload/c_scale,w_300/v1494190293/Screen_Shot_2017-05-07_at_3.49.04_PM_jgbddw.png)
-![Condictor screenshot 2](http://res.cloudinary.com/dk85nueap/image/upload/c_scale,w_300/v1494190358/Screen_Shot_2017-05-07_at_3.48.51_PM_nnswrt.png)
-![Condictor screenshot 3](http://res.cloudinary.com/dk85nueap/image/upload/c_scale,w_300/v1494190391/Screen_Shot_2017-05-07_at_3.48.12_PM_b0gx2w.png)
+![condictor-montage](https://cloud.githubusercontent.com/assets/18176333/26330669/b2e90af6-3f12-11e7-96a3-b5349ef61d8f.png)
 
 ## Summary
 Condictor is a lightweight helpdesk issue tracker. It allows you to create tickets that track issues reported by consumers for your supported products. Users can add comments and close tickets. The demo version comes with prefilled test data (a set of consumers, products, users, and tickets).
