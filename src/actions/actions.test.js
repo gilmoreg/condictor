@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
 import * as actions from '.';
+import { API_URL } from '../config';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -158,7 +159,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('LOGIN should dispatch FILL_USER with valid data from the server', (done) => {
-    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/login',
+    fetchMock.mock(`${API_URL}/login`,
       { message: 'Login successful', user: 'test' },
       { method: 'post' },
     );
@@ -175,7 +176,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('LOGOUT should dispatch RESET after logout', (done) => {
-    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/logout',
+    fetchMock.mock(`${API_URL}/logout`,
       { logoutSuccess: true },
     );
     const expectedActions = [
@@ -191,7 +192,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('SESSION_CHECK should dispatch FILL_USER with a valid user if logged in', (done) => {
-    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/check',
+    fetchMock.mock(`${API_URL}/check`,
       { user: 'test' },
     );
     const expectedActions = [
@@ -207,7 +208,7 @@ describe('Async Non-GraphQL Actions', () => {
   });
 
   it('SESSION_CHECK should dispatch FILL_USER with null if not logged in', (done) => {
-    fetchMock.mock('https://guarded-lowlands-58773.herokuapp.com/check',
+    fetchMock.mock(`${API_URL}/check`,
       {},
     );
     const expectedActions = [
