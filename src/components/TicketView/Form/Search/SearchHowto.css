@@ -3,3 +3,9 @@
   display: inline-block;
   vertical-align: top;
 }
+
+.search-howto strong {
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}

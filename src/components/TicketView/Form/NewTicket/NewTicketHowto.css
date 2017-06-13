@@ -3,3 +3,15 @@
   display: inline-block;
   vertical-align: top;
 }
+
+.new-ticket-howto strong {
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+
+.new-ticket-howto li {
+  color: #3F6170;
+  font-size: 14px;
+}
+
