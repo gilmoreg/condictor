@@ -5,5 +5,5 @@ import { Search } from './Search';
 
 it('renders without crashing', () => {
   const wrapper = shallow(<Search />);
-  expect(wrapper.node.type).toEqual('form');
+  expect(wrapper.node.type).toEqual('div');
 });
