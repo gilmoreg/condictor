@@ -14,7 +14,7 @@ const Form = (props) => {
   switch (props.activeTab) {
     case 'new': formView = (<NewTicket />); break;
     case 'search': formView = (<Search options={options} />); break;
-    default: formView = (<Search options={options} />);
+    default: formView = (<NewTicket />);
   }
 
   return (
