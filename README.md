@@ -46,3 +46,4 @@ npm test
 * Pagination and sorting for ticket lists
 * Support for editing tickets (assigning to different users or switching products, for example)
 * Statistics (number of tickets per user, average open time, etc.)
+
