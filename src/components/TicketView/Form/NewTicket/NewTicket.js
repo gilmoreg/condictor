@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from '../Select';
 import Ticket from '../../TicketList/TicketListItem/Ticket/Ticket';
+import NewTicketHowto from './NewTicketHowto';
 import * as actions from '../../../../actions';
 import './NewTicket.css';
 
@@ -81,6 +82,7 @@ export class NewTicket extends Component {
           <button className="btn btn-colorize-blue" type="submit" id="new-ticket-submit-button">Create Ticket</button>
         </form>
         {this.props.newTicket.id ? <Ticket id={this.props.newTicket.id} /> : ''}
+        <NewTicketHowto />
       </div>
     );
   }

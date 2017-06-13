@@ -1,26 +1,33 @@
 .Search {
+  width: 100%;
   padding: 10px 0px 20px 10px;
+  vertical-align: top;
 }
 
-.Search ul {
+.Search form {
+  width: 50%;
+  display: inline-block;
+}
+
+.Search form ul {
   list-style: none;
 }
 
-.Search li {
+.Search form li {
   display: inline-block;
   padding-right: 10px;
 }
 
-.Search label {
+.Search form label {
   margin: 0 10px;
 }
 
-.Search input {
+.Search form input {
   width: 100px;
   display: inline-block;
 }
 
-.Search button {
+.Search form button {
   display: block;
   margin: 0 10px;
 }

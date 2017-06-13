@@ -1,5 +1,12 @@
 .NewTicket {
   padding: 10px 0px 20px 10px;
+  width: 100%;
+  vertical-align: top;
+}
+
+.NewTicket form {
+  width: 50%;
+  display: inline-block;
 }
 
 .NewTicket [type="number"] {

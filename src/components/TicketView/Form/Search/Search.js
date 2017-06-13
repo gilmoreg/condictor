@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from '../Select';
+import SearchHowto from './SearchHowto';
 import * as actions from '../../../../actions';
 import './Search.css';
 
@@ -46,14 +47,17 @@ export class Search extends Component {
 
   render() {
     return (
-      <form className="Search" onSubmit={this.search}>
-        <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
-        <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
-        <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
-        <label htmlFor="open-checkbox">Only Open</label>
-        <input type="checkbox" onChange={this.handleChange} id="open-checkbox" value="open" />
-        <button className="btn btn-colorize-blue" type="btn submit" id="search-submit-button">Submit</button>
-      </form>
+      <div className="Search">
+        <form onSubmit={this.search}>
+          <Select type={'Consumer'} handleChange={this.handleChange} options={this.props.options.consumers} />
+          <Select type={'Product'} handleChange={this.handleChange} options={this.props.options.products} />
+          <Select type={'Owner'} handleChange={this.handleChange} options={this.props.options.owners} />
+          <label htmlFor="open-checkbox">Only Open</label>
+          <input type="checkbox" onChange={this.handleChange} id="open-checkbox" value="open" />
+          <button className="btn btn-colorize-blue" type="btn submit" id="search-submit-button">Submit</button>
+        </form>
+        <SearchHowto />
+      </div>
     );
   }
 }
