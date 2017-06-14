@@ -1,12 +1,16 @@
 .NewTicket {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
   padding: 10px 0px 20px 10px;
-  width: 100%;
   vertical-align: top;
 }
 
 .NewTicket form {
-  width: 50%;
-  display: inline-block;
+  flex-basis: 50%;
+  flex-grow: 1;
+  /*width: 50%;*/
+  /*display: inline-block;*/
   padding-right: 20px;
 }
 

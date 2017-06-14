@@ -1,12 +1,14 @@
 .Search {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
   padding: 10px 0px 20px 10px;
   vertical-align: top;
 }
 
 .Search form {
-  width: 50%;
-  display: inline-block;
+  flex-basis: 50%;
+  flex-grow: 1;
 }
 
 .Search form ul {

@@ -1,6 +1,6 @@
 .search-howto {
-  width: 50%;
-  display: inline-block;
+  flex-basis: 50%;
+  flex-grow: 1;
   vertical-align: top;
   padding-right: 20px;
 }
