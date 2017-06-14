@@ -2,6 +2,7 @@
   width: 50%;
   display: inline-block;
   vertical-align: top;
+  padding-right: 20px;
 }
 
 .new-ticket-howto strong {
