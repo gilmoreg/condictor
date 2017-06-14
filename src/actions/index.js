@@ -1,7 +1,7 @@
 import { API_URL } from '../config';
 
 const Lokka = require('lokka').Lokka;
-const Transport = require('lokka-transport-http').Transport;
+const Transport = require('../lokka-transport-http').Transport;
 
 const client = new Lokka({
   transport: new Transport(`${API_URL}/graphql`),
