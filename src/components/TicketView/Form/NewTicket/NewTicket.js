@@ -81,7 +81,6 @@ export class NewTicket extends Component {
           <textarea id="new-ticket-desc" rows="5" onChange={this.handleChange} />
           <button className="btn btn-colorize-blue" type="submit" id="new-ticket-submit-button">Create Ticket</button>
         </form>
-        {this.props.newTicket.id ? <Ticket id={this.props.newTicket.id} /> : ''}
         <NewTicketHowto />
       </div>
     );
