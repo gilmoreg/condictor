@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from '../Select';
-import Ticket from '../../TicketList/TicketListItem/Ticket/Ticket';
 import NewTicketHowto from './NewTicketHowto';
 import * as actions from '../../../../actions';
 import './NewTicket.css';
