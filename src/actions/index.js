@@ -73,6 +73,12 @@ export const reset = () => ({
   type: RESET,
 });
 
+export const SET_FRESH_TICKET = 'SET_FRESH_TICKET';
+export const setFreshTicket = id => ({
+  type: SET_FRESH_TICKET,
+  id,
+});
+
 // Async Non-GraphQL Actions
 export const LOGIN = 'LOGIN';
 export const login = credentials => dispatch =>
@@ -207,6 +213,7 @@ export const createTicket = fields => dispatch =>
     .then((res) => {
       if (res) {
         dispatch(addTicket(res.newTicket));
+        dispatch(setFreshTicket(res.newTicket.id));
         resolve(res);
       }
     })
@@ -299,6 +306,7 @@ export const searchTickets = params => dispatch =>
     .then((response) => {
       if (response.search && response.search.results) {
         dispatch(clearTickets());
+        dispatch(setFreshTicket(null));
         response.search.results.forEach(ticket => dispatch(fillTicket(ticket)));
         resolve(response.search.results);
       } else {

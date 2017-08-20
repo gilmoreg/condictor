@@ -7,6 +7,7 @@ const initialState = {
   owners: [],
   products: [],
   user: null,
+  fresh: null,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -68,6 +69,10 @@ export default function rootReducer(state = initialState, action) {
 
     case actions.RESET: {
       return initialState;
+    }
+
+    case actions.SET_FRESH_TICKET: {
+      return Object.assign({}, state, { fresh: action.id });
     }
 
     default: return state;
