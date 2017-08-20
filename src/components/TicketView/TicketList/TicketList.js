@@ -12,6 +12,11 @@ export class TicketList extends Component {
       tickets = this.props.tickets.map(ticket =>
         <TicketListItem key={ticket.id} ticket={ticket} />,
       );
+      if (this.props.fresh) {
+        const fresh = tickets.findIndex(e => e.key === this.props.fresh);
+        // Move fresh ticket to the top
+        if (fresh) [tickets[0], tickets[fresh]] = [tickets[fresh], tickets[0]];
+      }
     }
     return (
       <div className="TicketList">
@@ -23,14 +28,17 @@ export class TicketList extends Component {
 
 TicketList.defaultProps = {
   tickets: [],
+  fresh: null,
 };
 
 TicketList.propTypes = {
   tickets: PropTypes.array,
+  fresh: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   tickets: state.tickets,
+  fresh: state.fresh,
 });
 
 export default connect(mapStateToProps)(TicketList);
