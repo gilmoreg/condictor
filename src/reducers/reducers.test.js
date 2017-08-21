@@ -11,6 +11,7 @@ const initialState = {
   owners: [],
   products: [],
   user: null,
+  fresh: null,
 };
 
 const fakeOwner = {
