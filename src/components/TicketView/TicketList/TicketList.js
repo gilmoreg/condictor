@@ -10,7 +10,7 @@ export class TicketList extends Component {
     let tickets = [];
     if (this.props.tickets.length) {
       tickets = this.props.tickets.map(ticket =>
-        <TicketListItem key={ticket.id} ticket={ticket} />,
+        <TicketListItem key={ticket.id} ticket={ticket} fresh={this.props.fresh} />,
       );
       if (this.props.fresh) {
         const fresh = tickets.findIndex(e => e.key === this.props.fresh);

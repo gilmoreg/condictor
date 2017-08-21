@@ -12,6 +12,13 @@ class TicketListItem extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fresh === this.props.ticket.id) {
+      this.setState({ expand: true });
+      console.log(this.props.fresh);
+    }
+  }
+
   handleClick() {
     this.setState({ expand: !this.state.expand });
   }
@@ -34,6 +41,7 @@ TicketListItem.defaultProps = {
     description: '',
     priority: 1,
   },
+  fresh: null,
 };
 
 TicketListItem.propTypes = {
@@ -53,6 +61,7 @@ TicketListItem.propTypes = {
     priority: PropTypes.number,
     closed: PropTypes.string,
   }),
+  fresh: PropTypes.string,
 };
 
 export default TicketListItem;
