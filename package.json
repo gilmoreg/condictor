@@ -5,7 +5,7 @@
   "homepage": "https://gilmoreg.github.io/condictor/",
   "dependencies": {
     "dotenv": "^4.0.0",
-    "eslint": "^3.19.0",
+    "eslint": "^4.18.2",
     "eslint-loader": "^1.7.1",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.6.1",
